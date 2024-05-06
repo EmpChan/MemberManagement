@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% load static %}
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>오브젝트 등록</title>
+	
+	<link href="{% static 'css/default.css' %}" rel="stylesheet" type="text/css" >
+	<link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css" >
+	
+	<style>
+		#horizontal-tab{
+			width: 82px;
+		}
+		.list-con{
+			min-height:738px;
+		}
+	/* 등록 */
+		.objr-table{
+			height: 442px;
+			font-size: 16px !important;
+		}
+	 
+		.img-upload{
+			display: none;
+		} 
+		
+		.img-regist{
+			display: inline-block;
+			position: relative;
+			width: 250px;
+			height: 250px;
+			/* border-radius: 50%;
+			background: #fafafa; */
+			border: none;
+			margin-bottom: 20px;
+			cursor: pointer;
+		}
+	
+		.img-regist > img{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			/* border-radius: 50%; */
+		}
+	
+		.rgbtn-txt{
+			font-weight: 500;
+			font-size: 16px;
+		}
+		
+		.obji-wrap{
+			display: flex;
+			height: 100%;
+			justify-content: center;
+			align-items: center;
+		}
+	
+		.obj-inf{
+			width: 80%;
+		}
+	
+		.obj-inf>li{
+			display: flex;
+			column-gap: 20px;
+			margin-bottom: 30px;
+		}
+		
+		.obj-inf>li:last-child{
+			margin: 0;
+		}
+		
+		.obj-inf>li > .inf-tbox{
+			width: 160px;
+			height:40px;
+			line-height: 40px;
+			background: #F4F6FA;
+			font-weight: 500;
+			border-radius: 4px;
+		}
+		
+		.obj-inf > li > input{
+			width: 75%;
+			outline: none;
+			border: 1px solid #C7CDD8;
+			border-radius: 4px;
+			padding: 0 10px;
+		}
+		
+		.obj-inf > li > select{
+			height: 40px !important;
+		}
+	</style>
+
+	<script>
+		$(function(){
+			selectTap(2);
+			sublistTab(0);
+			$('.setting > .tab-menu').addClass("on");
+			$('.sideSubtab3').addClass("on");
+		});
+		
+		$(window).on('load', function(){
+			$('.setting > .setting-sub').css("display","block");
+		});
+			
+		
+		// input 클릭시 이미지 미리보기
+		
+		function realUpload(input){
+			var reader = new FileReader();
+		  
+			reader.onload = function(e){
+				$('#img-regist').attr('src', e.target.result);
+			}
+			
+			reader.readAsDataURL(input.files[0]);
+		}
+		
+		
+			function sublistTab(num){
+				var menuLength = $(".sl-st").length;
+				
+				for(var i = 0; i < menuLength; i++){
+					if(i == num){
+						$(".sl-st:eq("+i+")").addClass("on");
+					}
+					else{
+						$(".sl-st:eq("+i+")").removeClass("on");
+					}
+				} 
+			}
+		
+			/* 탭메뉴 클릭시 메뉴바 라인 슬라이드 이동 */
+			
+			$(document).on("click", ".sl-st", function(e) {
+				var horizontalUnderLine = document.getElementById("horizontal-tab");
+				horizontalUnderLine.style.left = e.currentTarget.offsetLeft + "px";
+				horizontalUnderLine.style.width = e.currentTarget.offsetWidth + "px";
+				horizontalUnderLine.style.top = e.currentTarget.offsetTop + e.currentTarget.offsetHeight + 6 + "px" ;
+			});
+	</script>
+</head>
+
+<body>
+<!-- 사이드 바 -->
+<c:import url="/image/main/getSideBar.do" />
+<div class="main">
+	<div class="container">
+		<!-- 헤더 -->
+		<c:import url="/image/main/getHeader.do" />
+
+		<!-- 네비게이션 바 -->
+		<c:import url="/image/main/getMainNav.do" />
+
+		<div class="list-con">
+			<ul class="sublist-tab">
+			    <li class="moving-tab" id="horizontal-tab"></li>
+			    <li class="sl-st" onclick="sublistTab(0)" style="margin-right:25px;">
+					<a href="<c:url value='/image/main/getObjectList.do' />">오브젝트 목록</a>
+				</li>
+				<li class="sl-st" onclick="sublistTab(1)">
+					<a href="<c:url value='/image/main/getObjectBatch.do' />">일괄등록 목록</a>
+				</li>
+			</ul>
+			<div class="table-list">
+				<div class="tbtop-con">
+					<h3>오브젝트 등록</h3>
+				</div>
+				<div class="table-wrap">
+					<table class="common-table objr-table">
+						<colgroup>
+							<col width="35%"/>
+							<col width="65%"/>
+						</colgroup>
+						<thead>
+							<tr>
+								<th><span>이미지</span></th>
+								<th><span>오브젝트</span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<div style="border-right:1px solid #C7CDD8">
+										<input type="file" id="imgUpload" class="img-upload" accept="image/*" onchange="realUpload(this)">
+										<label type="button" class="img-regist" for="imgUpload">
+											<img id="img-regist" src="/static/img/img-regist.png" alt="">
+										</label>
+										<p class="rgbtn-txt">클릭하여 이미지를 등록해주세요</p>
+									</div>
+								</td>
+								<td class="obji-wrap">
+									<ul class="obj-inf">
+										<li>
+											<div class="inf-tbox">이름</div>
+											<input type="text">
+										</li>
+										<li>
+											<div class="inf-tbox">성별</div>
+											<select>
+												<option value=""></option>
+											</select>
+										</li>
+										<li>
+											<div class="inf-tbox">소속</div>
+											<input type="text">
+										</li>
+										<li>
+											<div class="inf-tbox">주소</div>
+											<input type="text">
+										</li>
+									</ul>
+								</td>     
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<!-- 하단버튼 -->
+				<div class="btn-wrap">
+					<button type="button" class="main-btn common-btn">저장</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
+

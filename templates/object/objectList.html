@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% load static %}
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>오브젝트 관리</title>
+	
+	<link href="{% static 'css/default.css' %}" rel="stylesheet" type="text/css" >
+	<link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css" >
+	
+	<style>
+		#horizontal-tab{
+			width: 82px;
+		}
+	</style>
+	<script>
+		$(function(){
+			selectTap(2);
+			sublistTab(0);
+			$('.setting > .tab-menu').addClass("on");
+			$('.sideSubtab3').addClass("on");
+		});
+		
+		$(window).on('load', function(){
+			$('.setting > .setting-sub').css("display","block");
+		});
+	
+	
+		function sublistTab(num){
+			var menuLength = $(".sl-st").length;
+	
+			for(var i = 0; i < menuLength; i++){
+				if(i == num){
+					$(".sl-st:eq("+i+")").addClass("on");
+				}
+				else{
+					$(".sl-st:eq("+i+")").removeClass("on");
+				}
+			}
+		}
+		
+		function selectAll(selectAll)  {
+			const checkboxes = document.getElementsByName('selectBox');
+				
+			checkboxes.forEach((checkbox) => {
+				checkbox.checked = selectAll.checked;
+			})
+		}
+		
+		/* 탭메뉴 클릭시 메뉴바 라인 슬라이드 이동 */
+		$(document).on("click", ".sl-st", function(e) {
+			var horizontalUnderLine = document.getElementById("horizontal-tab");
+			horizontalUnderLine.style.left = e.currentTarget.offsetLeft + "px";
+			horizontalUnderLine.style.width = e.currentTarget.offsetWidth + "px";
+			horizontalUnderLine.style.top = e.currentTarget.offsetTop + e.currentTarget.offsetHeight + 6 + "px" ;
+		});
+
+		
+		/* 비활성화 모달창 */
+		 function disabledBtn(){
+			 document.getElementById("disabledModar").style.display="block";
+		 }
+		 function closeModal2() {
+				document.getElementById("disabledModar").style.display="none";
+			}
+	</script>
+</head>
+<body>
+	<!-- 비활성화  -->
+	<div id="disabledModar" class="modar-bk">
+		<div class="modar-wrap disabled-md">
+			<div class="modar-header">
+				<p>비활성화</p>
+				<div onclick="closeModal2();" class="close-btn"><img src="/static/img/close-icon.png" alt=""></div>
+			</div>	
+			<div class="modar-con">
+				<h2 style="margin-bottom:20px;">모든 오브젝트에서 해당 필드가 비활성화 됩니다.<br>계속하시겠습니까?</h2>
+				<div class="mdbtn-wrap">
+					<button onclick="closeModal2();" id="cancelBtn">취소</button>
+					<button id="delectBtn">삭제</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 사이드 바 -->
+	<c:import url="/image/main/getSideBar.do" />
+	<div class="main">
+		<div class="container">
+			<!-- 헤더 -->
+			<c:import url="/image/main/getHeader.do" />
+		
+			<!-- 네비게이션 바 -->
+			<c:import url="/image/main/getMainNav.do" />
+		
+			<div class="list-con">
+				<ul class="sublist-tab">
+					<li class="moving-tab" id="horizontal-tab"></li>
+					<li class="sl-st" onclick="sublistTab(0)" style="margin-right:25px;">
+						<a href="<c:url value='/image/main/getObjectList.do' />">오브젝트 목록</a>
+					</li>
+					<li class="sl-st" onclick="sublistTab(1)">
+						<a href="<c:url value='/image/main/getObjectBatch.do' />">일괄등록 목록</a>
+					</li>
+				</ul>
+				<div class="table-list">
+					<div class="tbtop-con">
+						<h3>오브젝트 목록</h3>
+						<div class="rsh-sort">
+							<div class="serch-box">
+								<input type="text" placeholder="검색어를 입력하세요.">
+							</div>
+							<button type="button" class="main-btn" onclick="location.href='getObjectRegister.do';">오브젝트 등록</button>
+						</div>
+					</div>
+					<div class="table-wrap">
+						<table class="common-table retouch-table">
+							<colgroup>
+								<col width="7%"/>
+								<col width="7%"/>
+								<col width="15%"/>
+								<col width="8%"/>
+								<col width="10%"/>
+								<col width="28%"/>
+								<col width="12%"/>
+								<col width="12%"/>
+							</colgroup>
+				
+							<thead>
+								<tr>
+									<th><span class="th-check"><input type="checkbox" name="selectBox" onclick="selectAll(this)"></span></th>
+									<th><span>번호</span></th>
+									<th><span>이름</span></th>
+									<th><span>성별</span></th>
+									<th><span>소속</span></th>
+									<th><span>주소</span></th>
+									<th><span>등록일</span></th>
+									<th><span>활성화 여부</span></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr onclick="location.href='getObjectView.do';">
+									<td><input type="checkbox" name="selectBox"></td>
+									<td>1</td>
+									<td>robertoGagliardini</td>                                   
+									<td>여성</td>                                    
+									<td>코쿤</td> 
+									<td>충북 청주시 흥덕구 오송읍 의료단지길 116</td> 
+									<td>2023-01-01</td> 
+									<td>N</td>   
+								</tr>
+								<tr>
+									<td><input type="checkbox" name="selectBox"></td>
+									<td>1</td>
+									<td>robertoGagliardini</td>                                   
+									<td>여성</td>                                    
+									<td>코쿤</td> 
+									<td>충북 청주시 흥덕구 오송읍 의료단지길 116</td> 
+									<td>2023-01-01</td> 
+									<td>N</td>   
+								</tr>
+								<tr>
+									<td><input type="checkbox" name="selectBox"></td>
+									<td>1</td>
+									<td>robertoGagliardini</td>                                   
+									<td>여성</td>                                    
+									<td>코쿤</td> 
+									<td>충북 청주시 흥덕구 오송읍 의료단지길 116</td> 
+									<td>2023-01-01</td> 
+									<td>N</td>   
+								</tr>
+								<tr>
+									<td><input type="checkbox" name="selectBox"></td>
+									<td>1</td>
+									<td>robertoGagliardini</td>                                   
+									<td>여성</td>                                    
+									<td>코쿤</td> 
+									<td>충북 청주시 흥덕구 오송읍 의료단지길 116</td> 
+									<td>2023-01-01</td> 
+									<td>N</td>   
+								</tr>
+								<tr>
+									<td><input type="checkbox" name="selectBox"></td>
+									<td>1</td>
+									<td>robertoGagliardini</td>                                   
+									<td>여성</td>                                    
+									<td>코쿤</td> 
+									<td>충북 청주시 흥덕구 오송읍 의료단지길 116</td> 
+									<td>2023-01-01</td> 
+									<td>N</td>   
+								</tr>
+								<tr>
+									<td><input type="checkbox" name="selectBox"></td>
+									<td>1</td>
+									<td>robertoGagliardini</td>                                   
+									<td>여성</td>                                    
+									<td>코쿤</td> 
+									<td>충북 청주시 흥덕구 오송읍 의료단지길 116</td> 
+									<td>2023-01-01</td> 
+									<td>N</td>   
+								</tr>
+								<tr>
+									<td><input type="checkbox" name="selectBox"></td>
+									<td>1</td>
+									<td>robertoGagliardini</td>                                   
+									<td>여성</td>                                    
+									<td>코쿤</td> 
+									<td>충북 청주시 흥덕구 오송읍 의료단지길 116</td> 
+									<td>2023-01-01</td> 
+									<td>N</td>   
+								</tr>
+								<tr>
+									<td><input type="checkbox" name="selectBox"></td>
+									<td>1</td>
+									<td>robertoGagliardini</td>                                   
+									<td>여성</td>                                    
+									<td>코쿤</td> 
+									<td>충북 청주시 흥덕구 오송읍 의료단지길 116</td> 
+									<td>2023-01-01</td> 
+									<td>N</td>   
+								</tr>
+								<tr>
+									<td><input type="checkbox" name="selectBox"></td>
+									<td>1</td>
+									<td>robertoGagliardini</td>                                   
+									<td>여성</td>                                    
+									<td>코쿤</td> 
+									<td>충북 청주시 흥덕구 오송읍 의료단지길 116</td> 
+									<td>2023-01-01</td> 
+									<td>N</td>   
+								</tr>
+								<tr class="radius-tr">
+									<td><input type="checkbox" name="selectBox"></td>
+									<td>1</td>
+									<td>robertoGagliardini</td>                                   
+									<td>여성</td>                                    
+									<td>코쿤</td> 
+									<td>충북 청주시 흥덕구 오송읍 의료단지길 116</td> 
+									<td>2023-01-01</td> 
+									<td>N</td>   
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="pagenation">
+						<img src="/static/img/test-pn.png" alt="">
+					</div>
+		
+					<!-- 하단버튼 -->
+					<div class="btn-wrap">
+						<button type="button" class="sub-btn common-btn" onclick="disabledBtn();">비활성화</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+

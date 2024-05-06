@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% load static %}
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>오브젝트 일괄등록</title>
+	
+	<link href="{% static 'css/default.css' %}" rel="stylesheet" type="text/css" >
+	<link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css" >
+	
+	<style>
+		#horizontal-tab{
+			width: 82px;
+			left:108px !important;
+		}
+		.fail-red{
+			color:#FF524E;
+			cursor:pointer;
+		}
+		.rightSort{
+			justify-content:flex-end !important;
+			padding-top:24px;
+		}
+		
+		
+		#successModar .noc{
+			color:#2B72FF;
+		}
+	</style>
+	
+	<script>
+		$(function(){
+			selectTap(2);
+			sublistTab(1);
+			$('.setting > .tab-menu').addClass("on");
+			$('.sideSubtab3').addClass("on");
+		
+			// 인풋박스안에 파일이름 넣기
+			var uploadFile = $('.file-box .realFile');
+			uploadFile.on('change', function () {
+			    var filename = "";
+			    if (window.FileReader) {
+			        filename = $(this)[0].files[0].name;
+			    } else {
+			        filename = $(this).val().split('/').pop().split('\\').pop();
+			    }
+			    $(this).siblings('.upload-name').val(filename);
+			});     
+		
+		
+		
+		});
+		
+		$(window).on('load', function(){
+			$('.setting > .setting-sub').css("display","block");
+		});
+			
+			
+		function sublistTab(num){
+			var menuLength = $(".sl-st").length;
+			
+			for(var i = 0; i < menuLength; i++){
+				if(i == num){
+					$(".sl-st:eq("+i+")").addClass("on");
+				}
+				else{
+					$(".sl-st:eq("+i+")").removeClass("on");
+				}
+			}
+		}
+		
+		/* 탭메뉴 클릭시 메뉴바 라인 슬라이드 이동 */
+		$(document).on("click", ".sl-st", function(e) {
+			var horizontalUnderLine = document.getElementById("horizontal-tab");
+			horizontalUnderLine.style.left = e.currentTarget.offsetLeft + "px";
+			horizontalUnderLine.style.width = e.currentTarget.offsetWidth + "px";
+			horizontalUnderLine.style.top = e.currentTarget.offsetTop + e.currentTarget.offsetHeight + 6 + "px" ;
+		});
+		
+		function batchMd() {
+			document.getElementById("batchModar").style.display="block";
+		}
+		
+		function closeModal() {
+			document.getElementById("batchModar").style.display="none";
+		}
+		
+		function delModal() {
+			document.getElementById("delectModar").style.display="block";
+		}
+		function closeModal2() {
+			document.getElementById("delectModar").style.display="none";
+		}
+		
+		function uploadFail() {
+			document.getElementById("upfailModar").style.display="block";
+		}
+		function closeModal3() {
+			document.getElementById("upfailModar").style.display="none";
+		}
+		
+		function uploadSuc() {
+			document.getElementById("successModar").style.display="block";
+		}
+		function closeModal4() {
+			document.getElementById("successModar").style.display="none";
+		}
+</script>
+</head>
+<body>
+	<!-- 일괄 등록 모달 -->
+	<div id="batchModar" class="modar-bk">
+		<div class="modar-wrap batch-md">
+			<div class="modar-header">
+				<p>항목 추가</p>
+				<div onclick="closeModal();" class="close-btn"><img src="/static/img/close-icon.png" alt=""></div>
+			</div>
+			<div class="modar-con2">
+				<h2>오브젝트 일괄 등록</h2>
+				<div class="iputWrap">
+					<ul class="inputList">
+						<li>
+							<button type="button" class="form-download">일괄등록 양식 다운로드</button>
+						</li>
+					</ul>
+					<ul class="inputList">
+						<li>
+							<p>엑셀로 일괄등록</p>
+							<div class="file-box">
+								<input class="upload-name" disabled>
+                                <label for="realFile">파일선택</label>
+                                <input type="file" id="realFile" class="realFile">
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="mdbtn-wrap rightSort">
+					<button id="bacthBtn" style="width:148px;">일괄 등록하기</button>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	
+	<!-- 삭제 모달  -->
+	<div id="delectModar" class="modar-bk">
+		<div class="modar-wrap delect-md">
+			<div class="modar-header">
+				<p>삭제</p>
+				<div onclick="closeModal2();" class="close-btn"><img src="/static/img/close-icon.png" alt=""></div>
+			</div>	
+			<div class="modar-con">
+				<h2>선택한 회원을 삭제하시겠습니까?</h2>
+				<div class="mdbtn-wrap">
+					<button id="cancelBtn" onclick="closeModal2();">취소</button>
+					<button id="delectBtn">삭제</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 업로드 실패 모달 -->
+	<div id="upfailModar" class="modar-bk">
+		<div class="modar-wrap upfail-md">
+			<div class="modar-header">
+				<p>업로드 실패</p>
+				<div onclick="closeModal3();" class="close-btn"><img src="/static/img/close-icon.png" alt=""></div>
+			</div>	
+			<div class="modar-con">
+				<h2 style="margin-bottom:0;">다음 엑셀 파일을 참고하여 수정 후<br>다시 업로드 해주십시오.</h2>
+				<button type="button" id="" class="bacthForm-dl">일괄등록 양식 다운로드</button>
+				<div class="mdbtn-wrap">
+					<button id="" class="okBtn" onclick="closeModal3();">확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- 업로드 성공 모달  -->
+	<div id="successModar" class="modar-bk">
+		<div class="modar-wrap success-md">
+			<div class="modar-header">
+				<p>업로드 성공</p>
+				<div onclick="closeModal4();" class="close-btn"><img src="/static/img/close-icon.png" alt=""></div>
+			</div>	
+			<div class="modar-con">
+				<h2>업로드 성공 : <span class="noc">10</span>건<br>일괄 등록이 완료되었습니다.</h2>
+				<div class="mdbtn-wrap">
+					<button id="cancelBtn" onclick="closeModal2();">취소</button>
+					<button id="delectBtn">삭제</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 사이드 바 -->
+	<c:import url="/image/main/getSideBar.do" />
+	<div class="main">
+		<div class="container">
+			<!-- 헤더 -->
+			<c:import url="/image/main/getHeader.do" />
+	
+			<!-- 네비게이션 바 -->
+			<c:import url="/image/main/getMainNav.do" />
+	
+	
+			<div class="list-con">
+				<ul class="sublist-tab">
+					<li class="moving-tab" id="horizontal-tab"></li>
+					<li class="sl-st" onclick="sublistTab(0)" style="margin-right:25px;">
+						<a href="<c:url value='/image/main/getObjectList.do' />">오브젝트 목록</a>
+					</li>
+					<li class="sl-st" onclick="sublistTab(1)">
+						<a href="<c:url value='/image/main/getObjectBatch.do' />">일괄등록 목록</a>
+					</li>
+				</ul>
+				<div class="table-list">
+					<div class="tbtop-con">
+						<h3>일괄등록 목록</h3>
+						<div class="rsh-sort">
+							<div class="serch-box">
+								<input type="text" placeholder="검색어를 입력하세요.">
+							</div>
+							<button type="button" class="main-btn" onclick="batchMd();">일괄 등록</button>
+						</div>
+					</div>
+					<div class="table-wrap">
+						<table class="common-table retouch-table">
+							<colgroup>
+								<col width="7%">
+								<col width="7%">
+								<col width="28%">
+								<col width="10%">
+								<col width="10%">
+								<col width="10%">
+								<col width="14%">
+								<col width="14%">
+							</colgroup>
+	      
+							<thead>
+								<tr>
+									<th><span class="th-check"><input type="checkbox"></span></th>
+									<th><span>번호</span></th>
+									<th><span>엑셀파일명</span></th>
+									<th><span>처리요청 건수</span></th>
+									<th><span>완료건수</span></th>
+									<th><span>심폐건수</span></th>
+									<th><span>등록일</span></th>
+									<th><span>처리결과</span></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><input type="checkbox"></td>
+									<td>1</td>
+									<td>일괄등록_파일A.xlsx</td>                                   
+									<td>9</td>                                    
+									<td>7</td> 
+									<td>2</td> 
+									<td>2023-01-01</td> 
+									<td onclick="uploadSuc();">성공</td>   
+								</tr>
+								<tr>
+									<td><input type="checkbox"></td>
+									<td>1</td>
+									<td>일괄등록_파일A.xlsx</td>                                   
+									<td>9</td>                                    
+									<td>7</td> 
+									<td>2</td> 
+									<td>2023-01-01</td> 
+									<td class="fail-red" onclick="uploadFail();">실패</td>   
+								</tr>
+								<tr>
+									<td><input type="checkbox"></td>
+									<td>1</td>
+									<td>일괄등록_파일A.xlsx</td>                                   
+									<td>9</td>                                    
+									<td>7</td> 
+									<td>2</td> 
+									<td>2023-01-01</td> 
+									<td>성공</td>   
+								</tr>
+								<tr>
+									<td><input type="checkbox"></td>
+									<td>1</td>
+									<td>일괄등록_파일A.xlsx</td>                                   
+									<td>9</td>                                    
+									<td>7</td> 
+									<td>2</td> 
+									<td>2023-01-01</td> 
+									<td>성공</td>   
+								</tr>
+								<tr>
+									<td><input type="checkbox"></td>
+									<td>1</td>
+									<td>일괄등록_파일A.xlsx</td>                                   
+									<td>9</td>                                    
+									<td>7</td> 
+									<td>2</td> 
+									<td>2023-01-01</td> 
+									<td>성공</td>   
+								</tr>
+								<tr>
+									<td><input type="checkbox"></td>
+									<td>1</td>
+									<td>일괄등록_파일A.xlsx</td>                                   
+									<td>9</td>                                    
+									<td>7</td> 
+									<td>2</td> 
+									<td>2023-01-01</td> 
+									<td>성공</td>   
+								</tr>
+								<tr>
+									<td><input type="checkbox"></td>
+									<td>1</td>
+									<td>일괄등록_파일A.xlsx</td>                                   
+									<td>9</td>                                    
+									<td>7</td> 
+									<td>2</td> 
+									<td>2023-01-01</td> 
+									<td>성공</td>   
+								</tr>
+								<tr>
+									<td><input type="checkbox"></td>
+									<td>1</td>
+									<td>일괄등록_파일A.xlsx</td>                                   
+									<td>9</td>                                    
+									<td>7</td> 
+									<td>2</td> 
+									<td>2023-01-01</td> 
+									<td>성공</td>   
+								</tr>
+								<tr>
+									<td><input type="checkbox"></td>
+									<td>1</td>
+									<td>일괄등록_파일A.xlsx</td>                                   
+									<td>9</td>                                    
+									<td>7</td> 
+									<td>2</td> 
+									<td>2023-01-01</td> 
+									<td>성공</td>   
+								</tr>
+								<tr class="radius-tr">
+									<td><input type="checkbox"></td>
+									<td>1</td>
+									<td>일괄등록_파일A.xlsx</td>                                   
+									<td>9</td>                                    
+									<td>7</td> 
+									<td>2</td> 
+									<td>2023-01-01</td> 
+									<td>성공</td>   
+								</tr>
+	
+							</tbody>
+						</table>
+					</div>
+					<div class="pagenation">
+						<img src="/static/img/test-pn.png" alt="">
+					</div>
+	
+					<!-- 하단버튼 -->
+					<div class="btn-wrap">
+						<button type="button" class="sub-btn common-btn" onclick="delModal();">선택목록 삭제</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
