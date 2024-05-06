@@ -1,4 +1,7 @@
 from django.shortcuts import render
 
-def test(request):
-    return render(request,"memberManager/manage.html")
+def home(request):
+    return render(request,"memberManager/setupMain.html")
+
+def manage(request):
+    return render(request, "memberManager/manage.html")

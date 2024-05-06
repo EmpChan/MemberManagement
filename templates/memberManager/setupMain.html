@@ -1,4 +1,16 @@
-    <div class="main">
+{% extends 'navVertical.html' %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	{% load static %}
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+</head>
+
+<body>
+	{% block content %}
+	<div class="main">
         <div class="container">
             <div class="setupCon">
             	<div class="setupWrap">
@@ -52,3 +64,8 @@
             </div> 
         </div>
     </div>
+	
+{% endblock %}
+</body>
+
+</html>
