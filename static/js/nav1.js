@@ -39,7 +39,6 @@ btnHome.addEventListener('click', function() {
 
 btnSettings.addEventListener('click', function() {
     set_back_white();
-    document.getElementById('setupMain').style.display='block';
     this.style.backgroundColor = 'aliceblue';
 });
 
