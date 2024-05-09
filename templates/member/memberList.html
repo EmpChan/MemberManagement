@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>회원 관리</title>
+	
+	<link href="{% static 'css/default.css' %}" rel="stylesheet" type="text/css" >
+	<link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css" >
+
+	<script>
+		$(function(){
+			selectTap(0);
+			$('.setting > .tab-menu').addClass("on");
+			$('.sideSubtab1').addClass("on");
+		});
+		
+		$(window).on('load', function(){
+			$('.setting > .setting-sub').css("display","block");
+		});
+		
+		function selectAll(selectAll)  {
+			  const checkboxes 
+			       = document.getElementsByName('selectBox');
+			  
+			  checkboxes.forEach((checkbox) => {
+			    checkbox.checked = selectAll.checked;
+			  })
+			}
+		
+		/* 모달창 */
+		 
+		 function delModal() {
+			document.getElementById("delectModar").style.display="block";
+		}
+		 function closeModal() {
+				document.getElementById("delectModar").style.display="none";
+			}
+		 
+		 function saveModal() {
+			 document.getElementById("saveModar").style.display="block";
+		 }
+		 function closeModal2() {
+				document.getElementById("saveModar").style.display="none";
+			}	
+	</script>
+</head>
+<style>
+ #horizontal-tab{
+     width: 132px;
+ }
+</style>
+
+<body>
+<!-- 삭제 모달  -->
+<div id="delectModar" class="modar-bk">
+	<div class="modar-wrap delect-md">
+		<div class="modar-header">
+			<p>삭제</p>
+			<div onclick="closeModal();" class="close-btn"><img src="<c:url value='/images/close-icon.png'/>" alt=""></div>
+		</div>	
+		<div class="modar-con">
+			<h2>선택한 회원을 삭제하시겠습니까?</h2>
+			<div class="mdbtn-wrap">
+				<button id="cancelBtn" onclick="closeModal();">취소</button>
+				<button id="delectBtn">삭제</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 저장 모달  -->
+<div id="saveModar" class="modar-bk">
+	<div class="modar-wrap save-md">
+		<div class="modar-header">
+			<p>확인</p>
+			<div onclick="closeModal2();" class="close-btn"><img src="<c:url value='/images/close-icon.png'/>" alt=""></div>
+		</div>	
+		<div class="modar-con">
+			<h2>선택한 회원의 저장이 완료되었습니다.</h2>
+			<div class="mdbtn-wrap">
+				<button class="okBtn" onclick="closeModal2();">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 사이드 바 -->
+<c:import url="/image/main/getSideBar.do" />
+    <div class="main">
+        <div class="container">
+            <!-- 헤더 -->
+			<c:import url="/image/main/getHeader.do" />
+            
+            <!-- 네비게이션 바 -->
+			<c:import url="/image/main/getMainNav.do" />
+            
+            
+            <div class="list-con">
+                <ul class="sublist-tab">
+                    <li class="moving-tab" id="horizontal-tab"></li>
+                    <li class="sl-st on" onclick="sublistTab(0)">
+                        <a href="#">가입 승인 및 권한 관리</a>
+                    </li>
+                </ul>
+                <div class="table-list">
+                     <div class="tbtop-con">
+                        <h3>가입 및 승인 권한 관리</h3>
+                        <div class="serch-box">
+                            <input type="text" placeholder="검색어를 입력하세요.">
+                        </div>
+                     </div>
+                     <div class="table-wrap">
+                        <table class="common-table retouch-table">
+                            <colgroup>
+                            	<col width="7%"/>
+                            	<col width="7%"/>
+                            	<col width="24%"/>
+                            	<col width="16%"/>
+                            	<col width="16%"/>
+                            	<col width="15%"/>
+                            	<col width="15%"/>
+                            </colgroup>
+                            <thead>
+                                 <tr>
+                                    <th><span class="th-check"><input type="checkbox" name="selectBox" onclick="selectAll(this)"></span></th>
+                                    <th><span>번호</span></th>
+                                    <th><span>아이디</span></th>
+                                    <th><span>고유번호</span></th>
+                                    <th><span>기업요청일</span></th>
+                                    <th><span>승인여부</span></th>
+                                    <th><span>권한승인</span></th>
+                                 </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="checkbox" name="selectBox"></td>
+                                    <td>1</td>
+                                    <td>samirHandanovic</td>                                   
+                                    <td>1000001</td>                                    
+                                    <td>12.12</td> 
+                                    <td>
+                                        <select name="" id="">
+                                            <option value="">승인</option>
+                                            <option value="">미승인</option>
+                                        </select>
+                                    </td>                                  
+                                    <td>
+                                        <select name="" id="">
+                                            <option value="">조회</option>
+                                            <option value="">미조회</option>
+                                        </select>
+                                    </td>       
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="selectBox"></td>
+                                    <td>1</td>
+                                    <td>samirHandanovic</td>                                   
+                                    <td>1000001</td>                                    
+                                    <td>12.12</td> 
+                                    <td>
+                                        <select name="" id="">
+                                            <option value="">승인</option>
+                                            <option value="">미승인</option>
+                                        </select>
+                                    </td>                                  
+                                   <td>
+                                        <select name="" id="">
+                                            <option value="">조회</option>
+                                            <option value="">미조회</option>
+                                        </select>
+                                    </td> 
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="selectBox"></td>
+                                    <td>1</td>
+                                    <td>samirHandanovic</td>                                   
+                                    <td>1000001</td>                                    
+                                    <td>12.12</td> 
+                                    <td>
+                                        <select name="" id="">
+                                            <option value="">승인</option>
+                                            <option value="">미승인</option>
+                                        </select>
+                                    </td>                                  
+                                    <td>
+                                        <select name="" id="">
+                                            <option value="">조회</option>
+                                            <option value="">미조회</option>
+                                        </select>
+                                    </td> 
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="selectBox"></td>
+                                    <td>1</td>
+                                    <td>samirHandanovic</td>                                   
+                                    <td>1000001</td>                                    
+                                    <td>12.12</td> 
+                                    <td>
+                                        <select name="" id="">
+                                            <option value="">승인</option>
+                                            <option value="">미승인</option>
+                                        </select>
+                                    </td>                                  
+                                    <td>
+                                        <select name="" id="">
+                                            <option value="">조회</option>
+                                            <option value="">미조회</option>
+                                        </select>
+                                    </td> 
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="selectBox"></td>
+                                    <td>1</td>
+                                    <td>samirHandanovic</td>                                   
+                                    <td>1000001</td>                                    
+                                    <td>12.12</td> 
+                                    <td>
+                                        <select name="" id="">
+                                            <option value="">승인</option>
+                                            <option value="">미승인</option>
+                                        </select>
+                                    </td>                                  
+                                    <td>
+                                        <select name="" id="">
+                                            <option value="">조회</option>
+                                            <option value="">미조회</option>
+                                        </select>
+                                    </td> 
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="selectBox"></td>
+                                    <td>1</td>
+                                    <td>samirHandanovic</td>                                   
+                                    <td>1000001</td>                                    
+                                    <td>12.12</td> 
+                                    <td>
+                                        <select name="" id="">
+                                            <option value="">승인</option>
+                                            <option value="">미승인</option>
+                                        </select>
+                                    </td>                                  
+                                    <td>
+                                        <select name="" id="">
+                                            <option value="">조회</option>
+                                            <option value="">미조회</option>
+                                        </select>
+                                    </td> 
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="selectBox"></td>
+                                    <td>1</td>
+                                    <td>samirHandanovic</td>                                   
+                                    <td>1000001</td>                                    
+                                    <td>12.12</td> 
+                                    <td>
+                                        <select name="" id="">
+                                            <option value="">승인</option>
+                                            <option value="">미승인</option>
+                                        </select>
+                                    </td>                                  
+                                    <td>
+                                        <select name="" id="">
+                                            <option value="">조회</option>
+                                            <option value="">미조회</option>
+                                        </select>
+                                    </td> 
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="selectBox"></td>
+                                    <td>1</td>
+                                    <td>samirHandanovic</td>                                   
+                                    <td>1000001</td>                                    
+                                    <td>12.12</td> 
+                                    <td>
+                                        <select name="" id="">
+                                            <option value="">승인</option>
+                                            <option value="">미승인</option>
+                                        </select>
+                                    </td>                                  
+                                    <td>
+                                        <select name="" id="">
+                                            <option value="">조회</option>
+                                            <option value="">미조회</option>
+                                        </select>
+                                    </td> 
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="selectBox"></td>
+                                    <td>1</td>
+                                    <td>samirHandanovic</td>                                   
+                                    <td>1000001</td>                                    
+                                    <td>12.12</td> 
+                                    <td>
+                                        <select name="" id="">
+                                            <option value="">승인</option>
+                                            <option value="">미승인</option>
+                                        </select>
+                                    </td>                                  
+                                    <td>
+                                        <select name="" id="">
+                                            <option value="">조회</option>
+                                            <option value="">미조회</option>
+                                        </select>
+                                    </td> 
+                                </tr>
+                                
+                                <tr class="radius-tr">
+                                    <td><input type="checkbox" name="selectBox"></td>
+                                    <td>1</td>
+                                    <td>samirHandanovic</td>                                   
+                                    <td>1000001</td>                                    
+                                    <td>12.12</td> 
+                                    <td>
+                                        <select name="" id="">
+                                            <option value="">승인</option>
+                                            <option value="">미승인</option>
+                                        </select>
+                                    </td>                                  
+                                    <td>
+                                        <select name="" id="">
+                                            <option value="">조회</option>
+                                            <option value="">미조회</option>
+                                        </select>
+                                    </td> 
+                                </tr>
+                            </tbody>
+                        </table>
+                     </div>
+                     <div class="pagenation">
+                     	<img src="<c:url value='/images/test-pn.png'/>" alt="">
+                     </div>
+                     
+                     <!-- 하단버튼 -->
+                     <div class="btn-wrap">
+                     	<button type="button" id="delect" class="sub-btn common-btn" onclick="delModal();">선택목록 삭제</button>
+                     	<button type="button" class="main-btn common-btn" onclick="saveModal();">선택목록 저장</button>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

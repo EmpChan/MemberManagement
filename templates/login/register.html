@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% load static %}
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>회원가입</title>
+	
+	<link href="{% static 'css/default.css' %}" rel="stylesheet" type="text/css" >
+	<link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css" >
+
+	<style>
+		.logCon{
+			display:flex;
+			max-width:1920px;
+			height:100%;
+			padding:20px;
+			overflow:hidden;
+		}
+		.log-leftbg{
+			position:relative;
+			min-width:1240px;
+			height:100%;
+			border-radius:12px;
+			background:#DEEAFF;
+		}
+		.log-leftbg > img{
+			position:absolute;
+			width:934px;
+			top:53%;
+			left:50%;
+			transform:translate(-50%,-50%);
+		}
+		.log-right{
+			display:flex;
+			width:100%;
+			flex-direction:column;
+			justify-content:center;
+			/* align-items:center; */
+			padding:0 106px;
+			color:#6B768B;
+		}
+		.log-right > .logTit{
+			padding-bottom:40px;
+			margin-bottom:40px;
+			border-bottom:1px solid #F4F6FA;
+			color:#373F57;
+		}
+		.log-right > .logTit > h1{
+			font-family: 'Montserrat', sans-serif;
+			font-size:40px;
+			font-weight:800;
+		}
+		.log-right > .logTit > p{
+			font-size:24px;
+			font-weight:600;
+			text-align:center;
+			
+		}
+		.log-right .sub-tit{
+			font-size:20px;
+			font-weight:800;
+		}
+		
+		.log-ipwarp{
+			margin-top:20px;
+		}
+		.log-ipwarp > input{
+			width:100%;
+			height:48px;
+			border:1px solid #D7DCE5;
+			border-radius:4px;
+			padding:0 12px;
+			font-size:16px;
+			color:#373F57;
+		}
+		.log-ipwarp > input:placeholder{
+			color:#373F57;
+		}
+		.log-ipwarp > p{
+			font-size:14px;
+			font-weight:600;
+			margin-bottom:6px;
+		}
+		.join-btnbox{
+			display:flex;
+			column-gap:8px;
+			margin-top:32px;
+		}
+		.join-btnbox > button{
+			width:100%;
+			height:48px;
+			border-radius:4px;
+			font-size:18px;
+			font-weight:600;
+			transition:all .2s;
+		}
+		.join-btnbox > .join-succeed{
+			width:100%;
+			height:48px;
+			color:#fff;
+			background:#2B72FF;
+		}
+		.join-btnbox > .join-cancel{
+			color:#2B72FF;
+			border:1px solid #2B72FF;	
+		}
+		.join-btnbox > .join-cancel:hover{
+			background:#2B72FF;
+			color:#fff;
+		}
+	</style>
+
+</head>
+<body>
+	<div class="logCon">
+		<div class="log-leftbg">
+			<img src="/static/img/login-bg.png" alt="">
+		</div>
+		<div class="log-right">
+			<div class="logTit">
+				<h1><span style="color:#2B72FF;">IMAGE</span> Management</h1>
+				<p>이미지 관리 시스템</p>
+			</div>
+			<div class="sub-tit">회원가입</div>
+			<div class="log-ipwarp">
+				<p>아이디</p>
+				<input type="text" placeholder="아이디를 입력해주세요">
+			</div>
+			<div class="log-ipwarp">
+				<p>비밀번호</p>
+				<input type="password" placeholder="비밀번호를 입력해주세요">
+			</div>
+			<div class="log-ipwarp">
+				<p>비밀번호 확인</p>
+				<input type="password" placeholder="비밀번호를 입력해주세요">
+			</div>
+			<div class="join-btnbox">
+				<button type="button" class="join-cancel" onclick="location.href='getLoginPage.do';">취소</button>
+				<button type="button" class="join-succeed" onclick="location.href='getLoginPage.do';">회원가입</button>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% load static %}
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>오브젝트 항목 관리</title>
+	
+	<link href="{% static 'css/default.css' %}" rel="stylesheet" type="text/css" >
+	<link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css" >
+	
+	<style>
+		#horizontal-tab{
+			width:114px !important;
+		}
+		
+		.additme-md{
+			height:auto;
+		}
+		.disabled-md{
+			height:206px;
+		}
+		.iputWrap{
+			padding-bottom:24px;
+			border-bottom: 1px solid #C7CDD8;
+		}
+		
+		.inputList{
+			display:flex;
+			align-items:flex-end;
+			column-gap:10px;
+		}
+		.inputList>li{
+			width:100%;
+			margin-top:20px;
+		}
+		.inputList>li>p{
+			font-size:14px;
+			font-weight:700;
+			margin-bottom:6px;
+		}
+		.inputList>li select{
+			width:100%;
+			height:32px;
+			border-radius:4px;
+			border:1px solid #C7CDD8;
+		}
+		.inputList>li>input[type="text"]{
+			height:32px;
+			width:100%;
+			border:1px solid #C7CDD8;
+			border-radius:4px;
+			padding:0 8px;
+		}
+		
+		.inputList .radio-choose{
+			display:flex;
+			align-items:center;
+			gap:4px;
+			height:32px;
+			border:1px solid #C7CDD8;
+			border-radius:4px;
+			padding:0 10px;
+			background:#EAEDF4;
+			color:#6B768B;
+			cursor:pointer;
+		}
+		.inputList .radio-choose span{
+			font-size:14px;
+			font-weight:500;
+		}
+		.inputList .radio-choose.on{
+			background:#EFF5FF;
+			color:#2B72FF;
+			border-color:#2B72FF;
+		}
+		
+		.itemWrap{
+			display:none;
+			max-height:120px;
+			overflow-Y:auto;
+			margin-top:8px;
+			
+		}
+		.item-flex{
+			display:flex;
+			gap:10px;
+			margin-bottom:8px;
+		}
+		.item-input{
+			display:flex;
+			width:100%;
+			height:32px;
+			align-items:center;
+			border-radius:4px;
+		}
+		.item-input > .item-num{
+			min-width:64px;
+			height:100%;
+			line-height:32px;
+			text-align:center;
+			background:#6B768B;
+			border-radius:4px 0 0 4px;
+			color:#fff;
+			font-size:14px;
+			font-weight:600;
+		}
+		.item-input > input{
+			width:100%;
+			height:100%;
+			border:1px solid #C7CDD8;
+			border-radius:0 4px 4px 0;
+			margin:2px 0;
+			padding: 0 10px 0 8px;
+			border-left:0 !important;
+		}
+		.item-input > input:focus{
+			border:1px solid #373F57 !important;
+			border-left:0 !important;
+		}
+		.item-btnwrap{
+			display:flex;
+			gap:6px;
+		}
+		.item-btnwrap>button{
+			width:68px;
+			border-radius:4px;
+			font-size:14px;
+			transition:all .2s;
+		}
+	</style>
+	
+	<script>
+		$(function(){
+			selectTap(1);
+			$('.setting > .tab-menu').addClass("on");
+			$('.sideSubtab2').addClass("on");
+			
+			/* 항목추가 모달창 */
+			$(".radio-choose").on("click",function(){
+				var chooseOn = $(this).hasClass("on");
+				if (!chooseOn) {
+					$(".radio-choose").removeClass("on");
+					$(this).addClass("on");
+					$(this).find(":radio").prop("checked",true);
+					
+					if($(this).hasClass("itemAdd")){
+						$(".itemWrap").css("display","block");
+					}else{
+						$(".itemWrap").css("display","none");
+					}
+				}
+			});
+			
+			/* 항목 추가 요청 전송 */
+			$("#saveBtn").on('click', function(){				
+				$.ajax({
+				    type: 'POST',
+				    url: '/image/main/addObjectItemList.do',
+				    data: JSON.stringify({
+							inputType: $('input[name=inputType]:checked').val(),
+							objectitemName: $('input[name=objectitemName]').val(),
+							objectitemCode: $('input[name=objectitemCode]').val(),
+							description: $('input[name=description]').val(),
+							isPrimary: ($("select[name=isPrimary]").val() === "Y") ? true : false,
+							isSub: ($("select[name=isSub]").val() === "Y") ? true : false,
+							isRelation: ($("select[name=isRelation]").val() === "Y") ? true : false
+				    	}),
+				    success: () => { location.reload(); },
+				    error: () => { alert('저장 도중 오류가 발생하였습니다.') },
+				    contentType: "application/json;charset=utf-8",
+				    dataType: 'json'
+				});
+				
+			});
+		});
+	
+		$(window).on('load', function(){
+			$('.setting > .setting-sub').css("display","block");
+		});
+			
+		function selectAll(selectAll)  {
+			const checkboxes = document.getElementsByName('selectBox');
+			
+			checkboxes.forEach((checkbox) => {
+				checkbox.checked = selectAll.checked;
+			});
+		};	
+	
+		function itemAddtMd() {
+			document.getElementById("AddModar").style.display="block";
+		}
+		
+		function closeModal() {
+			document.getElementById("AddModar").style.display="none";
+		}
+		 
+		
+		/* 비활성화 모달창 */
+		function disabledBtn(){
+			document.getElementById("disabledModar").style.display="block";
+		}
+		function closeModal2() {
+			document.getElementById("disabledModar").style.display="none";
+		}
+		
+	</script>
+</head>
+<body>
+	<!-- 항목 추가 모달 -->
+	<div id="AddModar" class="modar-bk">
+		<div class="modar-wrap additme-md">
+			<div class="modar-header">
+				<p>항목 추가</p>
+				<div onclick="closeModal();" class="close-btn"><img src="/static/img/close-icon.png" alt=""></div>
+			</div>
+			<div class="modar-con2">
+				<h2>항목 추가</h2>
+				<div class="iputWrap">
+					<ul class="inputList">
+						<li>
+							<p>입력형식</p>
+							<div class="radio-choose on">
+								<input type="radio" id="radioTxt" class="radioCk" name="inputType" checked="checked" value="TEXT">
+								<span>텍스트</span>
+							</div>
+						</li>
+						<li>
+							<div class="radio-choose itemAdd" id="itemAdd">
+								<input type="radio" id="radioSelect" class="radioCk" name="inputType" value="SELECT">
+								<span>선택 입력</span>
+							</div>
+						</li>
+					</ul>
+					<div class="itemWrap">
+						<ul class="item-flex">
+							<li class="item-input">
+								<span class="item-num">항목 1</span>
+								<input tpye="text">
+							</li>
+							<li class="item-btnwrap">
+								<button class="itemadd-btn">추가</button>
+								<button class="itemdel-btn">삭제</button>
+							</li>
+						</ul>
+					</div>
+					<ul class="inputList">
+						<li>
+							<p>항목 이름</p>
+							<input type="text" name="objectitemName">
+						</li>
+						<li>
+							<p>항목 코드</p>
+							<input type="text" name="objectitemCode">
+						</li>
+					</ul>
+					<ul class="inputList">
+						<li>
+							<p>항목 설명</p>
+							<input type="text" name="description">
+						</li>
+						<li>
+							<p>대표 항목 설정</p>
+							<select name="isPrimary">
+								<option>N</option>
+								<option>Y</option>
+							</select>
+						</li>
+					</ul>
+					<ul class="inputList">
+						<li>
+							<p>서브 항목 설정</p>
+							<select name="isSub">
+								<option>N</option>
+								<option>Y</option>
+							</select>
+						</li>
+						<li>
+							<p>연관 항목 설정</p>
+							<select name="isRelation">
+								<option>N</option>
+								<option>Y</option>
+							</select>
+						</li>
+					</ul>
+				</div>
+				<div class="mdbtn-wrap rightSort">
+					<button id="saveBtn">저장</button>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	<!-- 비활성화  -->
+	<div id="disabledModar" class="modar-bk">
+		<div class="modar-wrap disabled-md">
+			<div class="modar-header">
+				<p>비활성화</p>
+				<div onclick="closeModal2();" class="close-btn"><img src="/static/img/close-icon.png" alt=""></div>
+			</div>	
+			<div class="modar-con">
+				<h2 style="margin-bottom:20px;">모든 오브젝트에서 해당 필드가 비활성화 됩니다.<br>계속하시겠습니까?</h2>
+				<div class="mdbtn-wrap">
+					<button onclick="closeModal2();" id="cancelBtn">취소</button>
+					<button id="delectBtn">삭제</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 사이드 바 -->
+	<c:import url="/image/main/getSideBar.do" />
+	
+	<div class="main">
+		<div class="container">
+		<!-- 헤더 -->
+		<c:import url="/image/main/getHeader.do" />
+
+		<!-- 네비게이션 바 -->
+		<c:import url="/image/main/getMainNav.do" />
+
+			<div class="list-con">
+				<ul class="sublist-tab">
+					<li class="moving-tab" id="horizontal-tab"></li>
+					<li class="sl-st on" onclick="sublistTab(0)">
+						<a href="#">오브젝트 항목 관리</a>
+					</li>
+				</ul>
+			
+				<div class="table-list">
+					<div class="tbtop-con">
+						<h3>항목관리</h3>
+						<div class="rsh-sort">
+							<div class="serch-box">
+								<input type="text" placeholder="검색어를 입력하세요.">
+							</div>
+							<button type="button" class="main-btn" onclick="itemAddtMd();">항목 추가</button>
+						</div>
+					</div>
+					<div class="table-wrap">
+						<table class="common-table retouch-table">
+							<colgroup>
+								<col width="7%"/>
+								<col width="7%"/>
+								<col width="10%"/>
+								<col width="10%"/>
+								<col width="10%"/>
+								<col width="20%"/>
+								<col width="9%"/>
+								<col width="9%"/>
+								<col width="9%"/>
+								<col width="9%"/>
+							</colgroup>
+							<thead>
+								<tr>
+									<th><span class="th-check"><input type="checkbox" name="selectBox" onclick="selectAll(this)"></span></th>
+									<th><span>번호</span></th>
+									<th><span>입력 형식</span></th>
+									<th><span>항목 이름</span></th>
+									<th><span>항목 코드</span></th>
+									<th><span>항목 설명</span></th>
+									<th><span>대표 항목</span></th>
+									<th><span>서브 항목</span></th>
+									<th><span>그룹 연관 항목</span></th>
+									<th><span>활성화 여부</span></th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="item" items="${objectitems}">
+									<tr>
+										<td><input type="checkbox" name="selectBox"></td>
+										<td><c:out value="${item.objectitemTypeId}"></c:out></td>
+										<td>
+											<c:if test="${item.inputType == \"TEXT\"}">
+												문자열
+											</c:if>
+											<c:if test="${item.inputType == \"SELECT\"}">
+												선택항목
+											</c:if>
+										</td>
+										<td><c:out value="${item.objectitemName}"></c:out></td>
+										<td><c:out value="${item.objectitemCode}"></c:out></td>
+										<td><c:out value="${item.description}"></c:out></td>
+										<td>
+											<c:choose>
+												<c:when test="${item.isPrimary == true}">Y</c:when>
+												<c:otherwise>N</c:otherwise>
+											</c:choose>
+										</td>
+										<td>
+											<c:choose>
+												<c:when test="${item.isSub == true}">Y</c:when>
+												<c:otherwise>N</c:otherwise>
+											</c:choose>
+										</td>
+										<td>
+											<c:choose>
+												<c:when test="${item.isRelation == true}">Y</c:when>
+												<c:otherwise>N</c:otherwise>
+											</c:choose>
+										</td>
+										<td>
+											<c:choose>
+												<c:when test="${item.isActivated == true}">Y</c:when>
+												<c:otherwise>N</c:otherwise>
+											</c:choose>
+										</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
+					
+					<div class="pagenation">
+						<img src="/static/img/test-pn.png" alt="">
+					</div>
+				
+					<!-- 하단버튼 -->
+					<div class="btn-wrap">
+						<button type="button" class="sub-btn common-btn" onclick="disabledBtn();">비활성화</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

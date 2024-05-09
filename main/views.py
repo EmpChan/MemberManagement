@@ -17,3 +17,19 @@ def objectRegister(request):
 
 def objectView(request):
     return render(request, "object/objectView.html")
+
+def objectItemList(request):
+    return render(request, "objectItem/objectItemList.html")
+
+def login(request):
+    return render(request, "login/login.html")
+
+def register(request):
+    return render(request, "login/register.html")
+
+def linkList(request):
+    return render(request, "link/linkList.html")
+
+def linkLevelList(request):
+    return render(request, "link/linkLevelList.html")
+
