@@ -33,3 +33,6 @@ def linkList(request):
 def linkLevelList(request):
     return render(request, "link/linkLevelList.html")
 
+def setupMain(request):
+    return render(request, "setup/setupMain.html")
+
