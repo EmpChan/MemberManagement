@@ -115,20 +115,24 @@
 		</div>
 		<div class="log-right">
 			<div class="logTit">
-				<h1><span style="color:#2B72FF;">IMAGE</span> Management</h1>
-				<p>이미지 관리 시스템</p>
+				<h1><span style="color:#2B72FF;">MEMBER</span> Management</h1>
+				<p>회원 관리 시스템</p>
 			</div>
-			<div class="sub-tit">로그인</div>
-			<div class="log-ipwarp">
-				<p>아이디</p>
-				<input type="text" placeholder="아이디를 입력해주세요">
-			</div>
-			<div class="log-ipwarp">
-				<p>비밀번호</p>
-				<input type="password" placeholder="비밀번호를 입력해주세요">
-			</div>
-			<div class="join-btn"><span  onclick="location.href='getRegisterPage.do';">회원가입</span></div>
-			<button type="button" class="login-btn" onclick="location.href='getSetupPage.do';">로그인</button>
+			<form action = "{% url 'login:login' %}" method="POST">
+				{% csrf_token %}
+				{% include "form_errors.html" %}
+				<div class="sub-tit">로그인</div>
+				<div class="log-ipwarp">
+					<p>아이디</p>
+					<input type="text" placeholder="아이디를 입력해주세요">
+				</div>
+				<div class="log-ipwarp">
+					<p>비밀번호</p>
+					<input type="password" placeholder="비밀번호를 입력해주세요">
+				</div>
+				<div class="join-btn"><span  onclick="location.href='/login/register';">회원가입</span></div>
+				<button type="submit" class="login-btn">로그인</button>
+			</form>
 		</div>
 	</div>
 </body>

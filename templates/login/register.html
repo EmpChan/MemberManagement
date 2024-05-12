@@ -118,26 +118,34 @@
 		</div>
 		<div class="log-right">
 			<div class="logTit">
-				<h1><span style="color:#2B72FF;">IMAGE</span> Management</h1>
-				<p>이미지 관리 시스템</p>
+				<h1><span style="color:#2B72FF;">MEMBER</span> Management</h1>
+				<p>회원 관리 시스템</p>
 			</div>
-			<div class="sub-tit">회원가입</div>
-			<div class="log-ipwarp">
-				<p>아이디</p>
-				<input type="text" placeholder="아이디를 입력해주세요">
-			</div>
-			<div class="log-ipwarp">
-				<p>비밀번호</p>
-				<input type="password" placeholder="비밀번호를 입력해주세요">
-			</div>
-			<div class="log-ipwarp">
-				<p>비밀번호 확인</p>
-				<input type="password" placeholder="비밀번호를 입력해주세요">
-			</div>
-			<div class="join-btnbox">
-				<button type="button" class="join-cancel" onclick="location.href='getLoginPage.do';">취소</button>
-				<button type="button" class="join-succeed" onclick="location.href='getLoginPage.do';">회원가입</button>
-			</div>
+			<div class="sub-tit">회원가입</div>			
+			<form action="{% url 'login:register' %}" method = "POST">
+				{% csrf_token %}
+				{% include "form_errors.html" %}
+				<div class="log-ipwarp">
+					<p>아이디</p>
+					<input type="text" placeholder="아이디를 입력해주세요" name="username" id ="username">
+				</div>
+				<div class="log-ipwarp">
+					<p>비밀번호</p>
+					<input type="password" placeholder="비밀번호를 입력해주세요" name="password1" id="password1">
+				</div>
+				<div class="log-ipwarp">
+					<p>비밀번호 확인</p>
+					<input type="password" placeholder="비밀번호를 입력해주세요" name="password2" id="password2">
+				</div>
+				<div class="log-ipwarp">
+					<p>이메일</p>
+					<input type="email" placeholder="이메일을 입력해주세요" name="email" id="email">
+				</div>
+				<div class="join-btnbox">
+					<button type="button" class="join-cancel" onclick="location.href='/login';">취소</button>
+					<button type="submit" class="join-succeed" onclick="location.href='/login';">회원가입</button>
+				</div>
+			</form>
 		</div>
 	</div>
 </body>

@@ -21,12 +21,6 @@ def objectView(request):
 def objectItemList(request):
     return render(request, "objectItem/objectItemList.html")
 
-def login(request):
-    return render(request, "login/login.html")
-
-def register(request):
-    return render(request, "login/register.html")
-
 def linkList(request):
     return render(request, "link/linkList.html")
 
