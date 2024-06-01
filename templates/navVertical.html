@@ -6,7 +6,6 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/navVertical.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/setupMain.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/navHorizen.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/manage.css' %}">
 </head>
 
 <body>
@@ -21,9 +20,9 @@
                 <p><strong>HOME</strong></p>
             </div>
             <!--설정 네비-->
-            <div id="btn_settings" style="justify-content: space-between;">
+            <div id="setting" style="justify-content: space-between;">
                 <img src="static/img/settings.png">
-                <p><strong>설정관리</strong></p>
+                <p id="btn_settings"><strong>설정관리</strong></p>
                 <img src="static/img/down-arrow.png" id="down_arrow">
             </div>              
             <!--설정 내비 하위 설정들-->
@@ -65,4 +64,5 @@
     {% block content %}{% endblock %}
     </div>
 </body>
+<script src="static/js/nav1.js"></script>
 </html>
