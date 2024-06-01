@@ -1,3 +1,6 @@
+body {
+    background-color: #F4F6FA;
+}
 .gnb>li>a.on>img{
 rotate:0deg !important;
 }

@@ -2,12 +2,12 @@
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
 
-  const container = document.getElementById('container');
-  const width = container.clientWidth;
-  const height = container.clientHeight;
-  const cx = width * 0.5;
-  const cy = height * 0.5;
-  const radius = Math.min(width, height) / 2 - 80;
+const container = document.getElementById('container');
+const width = container.clientWidth*1.3;
+const height = container.clientHeight*1.3;
+const cx = width * 0.5;
+const cy = height * 0.5;
+const radius = Math.min(width, height) / 2 - 80;
 const data = {
   "name": "엠시스",
   "children": [
