@@ -43,7 +43,7 @@ def linkList(request):
 def linkLevelList(request):
     if request.user.is_authenticated:
         return redirect("login:login")
-    return render(request, "link/linkLevelList.html")
+    return render(request, "linkLevel/linkLevelList.html")
 
 def setupMain(request):
     if request.user.is_authenticated:

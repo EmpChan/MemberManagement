@@ -1,134 +1,106 @@
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+
 const data = {
-    "name": "영",
-    "children": [
-      {
-        "name": "하나",
-        "children": [
-          {
-            "name": "황재찬",
-            "children": [
-              {"name": "고영찬", "value": 100},
-              {"name": "박찬혁", "value": 1},
-              {"name": "1", "value": 1},
-              {"name": "2", "value": 1}
-            ]
-          },
-          {
-            "name": "고영찬",
-            "children": [
-              {"name": "4", "value": 1},
-              {"name": "5", "value": 1},
-              {"name": "6", "value": 1}
-            ]
-          }
-        ]
-      },
-      {
-        "name": "박찬혁",
-        "children": [
-          {
-            "name": "하나",
-            "children": [
-              {"name": "둘", "value": 1},
-              {"name": "셋", "value": 1},
-              {"name": "넷", "value": 1}
-            ]
-          }
-        ]
-      },
-      {
-        "name": "두루",
-        "children": [
-          {
-            "name": "10",
-            "children": [
-              {"name": "11", "value": 1},
-              {"name": "22", "value": 1},
-              {"name": "33", "value": 1},
-              {"name": "44", "value": 1}
-            ]
-          },
-          {
-            "name": "12",
-            "children": [
-              {"name": "1234", "value": 1},
-              {"name": "1324", "value": 1},
-              {"name": "1234", "value": 1}
-            ]
-          },
-          {
-            "name": "13244",
-            "children": [
-              {"name": "ㅇ나나", "value": 1},
-              {"name": "떡볶이", "value": 1},
-              {"name": "싫어", "value": 1}
-            ]
-          },
-          {
-            "name": "13244",
-            "children": [
-              {"name": "ㅇ나나", "value": 1},
-              {"name": "떡볶이", "value": 1},
-              {"name": "싫어", "value": 1}
-            ]
-          },        {
-            "name": "13244",
-            "children": [
-              {"name": "ㅇ나나", "value": 1},
-              {"name": "떡볶이", "value": 1},
-              {"name": "싫어", "value": 1}
-            ]
-          },        {
-            "name": "13244",
-            "children": [
-              {"name": "ㅇ나나", "value": 1},
-              {"name": "떡볶이", "value": 1},
-              {"name": "싫어", "value": 1}
-            ]
-          },        {
-            "name": "13244",
-            "children": [
-              {"name": "ㅇ나나", "value": 1},
-              {"name": "떡볶이", "value": 1},
-              {"name": "싫어", "value": 1}
-            ]
-          },        {
-            "name": "13244",
-            "children": [
-              {"name": "ㅇ나나", "value": 1},
-              {"name": "떡볶이", "value": 1},
-              {"name": "싫어", "value": 1}
-            ]
-          },        {
-            "name": "13244",
-            "children": [
-              {"name": "ㅇ나나", "value": 1},
-              {"name": "떡볶이", "value": 1},
-              {"name": "싫어", "value": 1}
-            ]
-          },{
-            "name": "13244",
-            "children": [
-              {"name": "ㅇ나나", "value": 1},
-              {"name": "떡볶이", "value": 1},
-              {"name": "싫어", "value": 1}
-            ]
-          }
-        ]
-      }
-    ]
-  };
+  "name": "엠시스",
+  "children": [
+    {
+      "name": "그림그리기모임",
+      "color": "red",
+      "children": [
+        {
+          "name": "황재찬",
+          "children": [
+            {"name": "고영찬", "value": 100},
+            {"name": "박찬혁", "value": 1},
+            {"name": "1아무개", "value": 1},
+            {"name": "2아무개", "value": 1}
+          ]
+        }
+        , 
+        {
+          "name": "아무개",
+          "children": [
+            {"name": "고영찬", "value": 100},
+            {"name": "박찬혁", "value": 1},
+            {"name": "아무개", "value": 1},
+            {"name": "아무개2", "value": 1}
+          ]
+        }
+      ]
+    }
+    ,
+    {
+      "name": "알고리즘 스터디",
+      "color": "blue",
+      "children": [
+        {"name": "고영찬", "value": 100},
+        {"name": "박찬혁", "value": 1},
+        {"name": "1저시기", "value": 1},
+        {"name": "2머시기", "value": 1}
+      ]
+    },
+    {
+      "name": "객설팀",
+      "color": "green",
+      "children": [
+        {
+          "name": "파시오네",
+          "children": [
+            {"name": "황재찬", "value": 100},
+            {"name": "고영찬", "value": 1},
+            {"name": "박찬혁", "value": 1},
+          ]
+        },
+        {
+          "name": "조서김",
+          "children": [
+            {"name": "조아무개", "value": 100},
+            {"name": "아무개", "value": 1},
+            {"name": "휴학", "value": 1},
+          ]
+        }
+      ]
+    },
+    {
+      "name": "저시기 모임",
+      "color": "purple",
+      "children": [
+        {
+          "name": "저시기 모임 1",
+          "children": [
+            {"name": "아무개", "value": 100},
+            {"name": "아무개2", "value": 1},
+            {"name": "아무개3", "value": 1},
+            {"name": "아무개4", "value": 1}
+          ]
+        },
+        {
+          "name": "저시기 모임 2",
+          "children": [
+            {"name": "아무개", "value": 1},
+            {"name": "아무개1", "value": 1},
+            {"name": "아무개2", "value": 1}
+          ]
+        }
+      ]
+    }
+  ]
+};
+
+const colors = {
+  "red": "#ff0000", // 빨강색
+  "blue": "#0000ff", // 파랑색
+  "green": "#00ff00", // 초록색
+  "yellow": "#ffff00", // 노랑색
+  "purple": "#800080" // 보라색
+};
+
 const width = 928;
 const height = width;
 const cx = width * 0.5; // adjust as needed to fit
 const cy = height * 0.54; // adjust as needed to fit
 const radius = Math.min(width, height) / 2 - 80;
    
-
-
-// Create a radial cluster layout. The layout’s first dimension (x)
-// is the angle, while the second (y) is the radius.
 const tree = d3.cluster()
 .size([2 * Math.PI, radius])
 .separation((a, b) => (a.parent == b.parent ? 1 : 2) / a.depth);
@@ -137,6 +109,11 @@ const tree = d3.cluster()
 const root = tree(d3.hierarchy(data)
 .sort((a, b) => d3.ascending(a.data.name, b.data.name)));
 
+function getColor(d) {
+  while (d.depth > 1) d = d.parent;
+  return colors[d.data.color] || "#999";
+}
+
 // Creates the SVG container.
 const svg = d3.create("svg")
 .attr("width", width)
@@ -144,20 +121,20 @@ const svg = d3.create("svg")
 .attr("viewBox", [-cx, -cy, width, height])
 .attr("style", "width: 100%; height: auto; font: 10px sans-serif;");
 
-// Append links.
+// 링크 연결.
 svg.append("g")
 .attr("fill", "none")
-.attr("stroke", "#555")
 .attr("stroke-opacity", 0.4)
 .attr("stroke-width", 1.5)
 .selectAll()
 .data(root.links())
 .join("path")
-.attr("d", d3.linkRadial()
-  .angle(d => d.x)
-  .radius(d => d.y));
+  .attr("d", d3.linkRadial()
+    .angle(d => d.x)
+    .radius(d => d.y))
+  .attr("stroke", d => getColor(d.target));
 
-// Append nodes.
+// 노드 삽입.
 svg.append("g")
 .selectAll()
 .data(root.descendants())
@@ -182,5 +159,4 @@ svg.append("g")
 .attr("fill", "currentColor")
 .text(d => d.data.name);
 
-// Append the SVG element.
 container.append(svg.node());

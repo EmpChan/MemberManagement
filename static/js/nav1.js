@@ -2,16 +2,17 @@
 document.getElementById('down_arrow').style.transform = 'rotate(180deg)';
 var settings_more=true;
 
-document.getElementById("nav2_scal").style.display='none';
-
-home = document.getElementById("container");
+home = document.getElementById("main_home");
 if(home){
+    document.getElementById("nav2_scal").style.display='none';
     document.getElementById('btn_home').style.backgroundColor = 'aliceblue';
 }
 setup = document.getElementById("setupMain");
 if(setup){
     document.getElementById('setting').style.backgroundColor = 'aliceblue';
 }
+
+//이 부분 나중에 더 추가해야함..
 
 
 document.getElementById('down_arrow').addEventListener('click', function() {
@@ -66,5 +67,32 @@ linkLevelManage.addEventListener('click', function() {
 });
 
 linkManage.addEventListener('click', function() {
+    window.location.href = '/linkList';
+});
+
+
+var maname_t = document.getElementById("usr_manage_t");
+var objectRegister = document.getElementById("object_num_manage_t");
+var objectList = document.getElementById("object_manage_t");
+var linkLevelList = document.getElementById("link_level_manage_t");
+var linkList = document.getElementById("link_manage_t");
+
+maname_t.addEventListener('click', function() {
+    window.location.href = '/manage';
+});
+
+objectRegister.addEventListener('click', function() {
+    window.location.href = '/objectRegister';
+});
+
+objectList.addEventListener('click', function() {
+    window.location.href = '/objectList';
+});
+
+linkLevelList.addEventListener('click', function() {
+    window.location.href = '/linkLevelList';
+});
+
+linkList.addEventListener('click', function() {
     window.location.href = '/linkList';
 });

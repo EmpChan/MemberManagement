@@ -1,3 +1,15 @@
-.main_home{
+#main_home {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 76vw;
+    height: 100vh;
+}
+#container {
+    width: 90%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
