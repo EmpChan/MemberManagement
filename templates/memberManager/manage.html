@@ -1,9 +1,10 @@
+{% extends 'navVertical.html' %}
+
 <!DOCTYPE html>
 <html>
 <head>
     {% load static %}
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/manage.css' %}">
 	<title>회원 관리</title>
 </head>
 <style>
@@ -13,39 +14,10 @@
 </style>
 
 <body>
-<!-- 삭제 모달  -->
-<div id="delectModar" class="modar-bk">
-	<div class="modar-wrap delect-md">
-		<div class="modar-header">
-			<p>삭제</p>
-			<div onclick="" class="close-btn"><img src="/static/img/close-icon.png" alt=""></div>
-		</div>	
-		<div class="modar-con">
-			<h2>선택한 회원을 삭제하시겠습니까?</h2>
-			<div class="mdbtn-wrap">
-				<button id="cancelBtn" onclick="">취소</button>
-				<button id="delectBtn">삭제</button>
-			</div>
-		</div>
-	</div>
-</div>
-
-<!-- 저장 모달  -->
-<div id="saveModar" class="modar-bk">
-	<div class="modar-wrap save-md">
-		<div class="modar-header">
-			<p>확인</p>
-			<div onclick="" class="close-btn"><img src="/static/img/close-icon.png" alt=""></div>
-		</div>	
-		<div class="modar-con">
-			<h2>선택한 회원의 저장이 완료되었습니다.</h2>
-			<div class="mdbtn-wrap">
-				<button class="okBtn" onclick="">확인</button>
-			</div>
-		</div>
-	</div>
-</div>
-
+    {% block content %}
+	{% if is_autenticated %}
+	gogo
+	{% endif %}
     <div class="main">
         <div class="container">            
             <div class="list-con">
@@ -292,5 +264,39 @@
             </div>
         </div>
     </div>
+
+    <!-- 삭제 모달  -->
+    <div id="delectModar" class="modar-bk">
+        <div class="modar-wrap delect-md">
+            <div class="modar-header">
+                <p>삭제</p>
+                <div onclick="" class="close-btn"><img src="/static/img/close-icon.png" alt=""></div>
+            </div>	
+            <div class="modar-con">
+                <h2>선택한 회원을 삭제하시겠습니까?</h2>
+                <div class="mdbtn-wrap">
+                    <button id="cancelBtn" onclick="">취소</button>
+                    <button id="delectBtn">삭제</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 저장 모달  -->
+    <div id="saveModar" class="modar-bk">
+        <div class="modar-wrap save-md">
+            <div class="modar-header">
+                <p>확인</p>
+                <div onclick="" class="close-btn"><img src="/static/img/close-icon.png" alt=""></div>
+            </div>	
+            <div class="modar-con">
+                <h2>선택한 회원의 저장이 완료되었습니다.</h2>
+                <div class="mdbtn-wrap">
+                    <button class="okBtn" onclick="">확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
 </body>
 </html>

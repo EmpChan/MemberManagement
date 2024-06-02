@@ -1,13 +1,12 @@
+{% extends 'navVertical.html' %}
+
 <!DOCTYPE html>
 <html>
 <head>
 	{% load static %}
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>오브젝트 등록</title>
-	
-	<link href="{% static 'css/default.css' %}" rel="stylesheet" type="text/css" >
-	<link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css" >
-	
+		
 	<style>
 		#horizontal-tab{
 			width: 82px;
@@ -15,7 +14,7 @@
 		.list-con{
 			min-height:738px;
 		}
-	/* 등록 */
+		/* 등록 */
 		.objr-table{
 			height: 442px;
 			font-size: 16px !important;
@@ -147,88 +146,85 @@
 </head>
 
 <body>
-<!-- 사이드 바 -->
-<c:import url="/image/main/getSideBar.do" />
-<div class="main">
-	<div class="container">
-		<!-- 헤더 -->
-		<c:import url="/image/main/getHeader.do" />
+	{% block content %}
+	{% if is_autenticated %}
+	gogo
+	{% endif %}
+	<div class="main">
+		<div class="container">
+			<div class="list-con">
+				<ul class="sublist-tab">
+					<li class="moving-tab" id="horizontal-tab"></li>
+					<li class="sl-st" onclick="sublistTab(0)" style="margin-right:25px;">
+						<a href="/objectList">오브젝트 목록</a>
+					</li>
+					<li class="sl-st" onclick="sublistTab(1)">
+						<a href="/objectBatch">일괄등록 목록</a>
+					</li>
+				</ul>
+				<div class="table-list">
+					<div class="tbtop-con">
+						<h3>오브젝트 등록</h3>
+					</div>
+					<div class="table-wrap">
+						<table class="common-table objr-table">
+							<colgroup>
+								<col width="35%"/>
+								<col width="65%"/>
+							</colgroup>
+							<thead>
+								<tr>
+									<th><span>이미지</span></th>
+									<th><span>오브젝트</span></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<div style="border-right:1px solid #C7CDD8">
+											<input type="file" id="imgUpload" class="img-upload" accept="image/*" onchange="realUpload(this)">
+											<label type="button" class="img-regist" for="imgUpload">
+												<img id="img-regist" src="/static/img/img-regist.png" alt="">
+											</label>
+											<p class="rgbtn-txt">클릭하여 이미지를 등록해주세요</p>
+										</div>
+									</td>
+									<td class="obji-wrap">
+										<ul class="obj-inf">
+											<li>
+												<div class="inf-tbox">이름</div>
+												<input type="text">
+											</li>
+											<li>
+												<div class="inf-tbox">성별</div>
+												<select>
+													<option value=""></option>
+												</select>
+											</li>
+											<li>
+												<div class="inf-tbox">소속</div>
+												<input type="text">
+											</li>
+											<li>
+												<div class="inf-tbox">주소</div>
+												<input type="text">
+											</li>
+										</ul>
+									</td>     
+								</tr>
+							</tbody>
+						</table>
+					</div>
 
-		<!-- 네비게이션 바 -->
-		<c:import url="/image/main/getMainNav.do" />
-
-		<div class="list-con">
-			<ul class="sublist-tab">
-			    <li class="moving-tab" id="horizontal-tab"></li>
-			    <li class="sl-st" onclick="sublistTab(0)" style="margin-right:25px;">
-					<a href="<c:url value='/image/main/getObjectList.do' />">오브젝트 목록</a>
-				</li>
-				<li class="sl-st" onclick="sublistTab(1)">
-					<a href="<c:url value='/image/main/getObjectBatch.do' />">일괄등록 목록</a>
-				</li>
-			</ul>
-			<div class="table-list">
-				<div class="tbtop-con">
-					<h3>오브젝트 등록</h3>
-				</div>
-				<div class="table-wrap">
-					<table class="common-table objr-table">
-						<colgroup>
-							<col width="35%"/>
-							<col width="65%"/>
-						</colgroup>
-						<thead>
-							<tr>
-								<th><span>이미지</span></th>
-								<th><span>오브젝트</span></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>
-									<div style="border-right:1px solid #C7CDD8">
-										<input type="file" id="imgUpload" class="img-upload" accept="image/*" onchange="realUpload(this)">
-										<label type="button" class="img-regist" for="imgUpload">
-											<img id="img-regist" src="/static/img/img-regist.png" alt="">
-										</label>
-										<p class="rgbtn-txt">클릭하여 이미지를 등록해주세요</p>
-									</div>
-								</td>
-								<td class="obji-wrap">
-									<ul class="obj-inf">
-										<li>
-											<div class="inf-tbox">이름</div>
-											<input type="text">
-										</li>
-										<li>
-											<div class="inf-tbox">성별</div>
-											<select>
-												<option value=""></option>
-											</select>
-										</li>
-										<li>
-											<div class="inf-tbox">소속</div>
-											<input type="text">
-										</li>
-										<li>
-											<div class="inf-tbox">주소</div>
-											<input type="text">
-										</li>
-									</ul>
-								</td>     
-							</tr>
-						</tbody>
-					</table>
-				</div>
-
-				<!-- 하단버튼 -->
-				<div class="btn-wrap">
-					<button type="button" class="main-btn common-btn">저장</button>
+					<!-- 하단버튼 -->
+					<div class="btn-wrap">
+						<button type="button" class="main-btn common-btn">저장</button>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
+	{% endblock %}
 </body>
 </html>
 
