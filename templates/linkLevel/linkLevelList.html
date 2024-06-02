@@ -1,3 +1,5 @@
+{% extends 'navVertical.html' %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,9 +7,9 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>링크 레벨 관리</title>
 	
-	<link href="{% static 'css/default.css' %}" rel="stylesheet" type="text/css" >
-	<link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css" >
+	{% block css %}
 	<link href="{% static 'css/pickr.css' %}" rel="stylesheet" type="text/css" >
+	{% endblock %}
 
 	<script>
 
@@ -15,8 +17,8 @@
 		
 		/* colorpickr */
 		const pickrContainer = document.querySelector('.pickr-container');
-	const themeContainer = document.querySelector('.theme-container');
-	const themes = [
+		const themeContainer = document.querySelector('.theme-container');
+		const themes = [
 	    [
 	        'classic',
 	        {
@@ -180,7 +182,11 @@
 	</style>
 
 <body>
-<!-- 레벨 추가 모달 -->
+	{% block content %}
+	{% if is_autenticated %}
+	gogo
+	{% endif %}
+	<!-- 레벨 추가 모달 -->
 	<div id="levelaModar" class="modar-bk">
 		<div class="modar-wrap level-md">
 			<div class="modar-header">
@@ -214,7 +220,7 @@
 		</div>
 	</div>
 
-<!-- 레벨 수정 모달 -->
+	<!-- 레벨 수정 모달 -->
 	<div id="levelrModar" class="modar-bk">
 		<div class="modar-wrap lev-retouch">
 			<div class="modar-header">
@@ -255,9 +261,9 @@
 			</div>
 			
 		</div>
-	</div> --%>
+	</div>
 
-<!-- 비활성화  -->
+	<!-- 비활성화  -->
 	<div id="disabledModar" class="modar-bk">
 		<div class="modar-wrap disabled-md">
 			<div class="modar-header">
@@ -274,22 +280,14 @@
 		</div>
 	</div>
 
-<!-- 사이드 바 -->
-<c:import url="/image/main/getSideBar.do" />
+	<!-- 사이드 바 -->
     <div class="main">
         <div class="container">
-            <!-- 헤더 -->
-			<c:import url="/image/main/getHeader.do" />
-            
-            <!-- 네비게이션 바 -->
-			<c:import url="/image/main/getMainNav.do" />
-            
-            
             <div class="list-con">
                 <ul class="sublist-tab">
                     <li class="moving-tab" id="horizontal-tab"></li>
                     <li class="sl-st on" onclick="sublistTab(0)" style="margin-right:25px;">
-                        <a href="#">링크 레벨 목록</a>
+                        <a>링크 레벨 목록</a>
                     </li>
                 </ul>
                 <div class="table-list">
@@ -445,6 +443,7 @@
             </div>
         </div>
     </div>
+	{% endblock %}
 </body>
 </html>
 

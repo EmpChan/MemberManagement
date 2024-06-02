@@ -5,6 +5,9 @@
 <head>
 	{% load static %}
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	{% block css %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/setupMain.css' %}">
+	{% endblock %}
 </head>
 <body>
 	{% block content %}
@@ -66,8 +69,7 @@
             </div> 
         </div>
     </div>
-	
-{% endblock %}
+	{% endblock %}
 </body>
 
 </html>

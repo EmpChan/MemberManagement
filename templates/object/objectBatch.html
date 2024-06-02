@@ -7,9 +7,6 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>오브젝트 일괄등록</title>
 	
-	<link href="{% static 'css/default.css' %}" rel="stylesheet" type="text/css" >
-	<link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css" >
-	
 	<style>
 		#horizontal-tab{
 			width: 82px;
@@ -210,10 +207,10 @@
 				<ul class="sublist-tab">
 					<li class="moving-tab" id="horizontal-tab"></li>
 					<li class="sl-st" onclick="sublistTab(0)" style="margin-right:25px;">
-						<a href="<c:url value='/image/main/getObjectList.do' />">오브젝트 목록</a>
+						<a href="/objectList">오브젝트 목록</a>
 					</li>
 					<li class="sl-st" onclick="sublistTab(1)">
-						<a href="<c:url value='/image/main/getObjectBatch.do' />">일괄등록 목록</a>
+						<a href="/objectBatch">일괄등록 목록</a>
 					</li>
 				</ul>
 				<div class="table-list">
