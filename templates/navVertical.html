@@ -3,88 +3,87 @@
 <head>
 	{% load static %}
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css" >
     <link href="{% static 'css/default.css' %}" rel="stylesheet" type="text/css" >
 	<link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css" >
     {% block css %}{% endblock %}
     <style>
         #nav_name {
-    background-color: #2B72FF;
-    width: 100%;
-    height: 8%;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-}
-#nav_name p{
-    color: white;
-    font-size: large;
-}
-.nav_btn {
-    overflow-y: scroll;
-    padding: 7%;
-    background-color: white;
-}
-.nav_btn > div{
-    display: flex;
-    height: 5%;
-    border-radius: 5px;
-    margin-top: 10px;
-}
-#btn_home{
-    text-align: left;
-}
-img{
-    width: 30px;
-    height: 30px;
-    margin: 10px;
-}
-.settings{
-    display: flex;
-    padding: 10px;
-    padding-left: 45px;
-}
-.settings > div {
-    display: flex;
-    height: 5%;
-    border-radius: 5px;
-    margin-top: 10px;
-}
-#down_arrow{
-    border-radius: 5px;
-    background-color: white;
-    margin-left: auto;
-}
-.settings.hidden {
-    display: none;
-}
-body {
-    background-color: #F4F6FA;
-}
-#nav2_scal{
-    margin-top: 2%;
-    width: 96%;
-    margin-left: 2%;
-    background-color: white;
-    border-radius: 5px;
-    display: flex;
-    box-shadow: 0px 0px 10px rgba(28,66,142, 15%);
-}
-.settings_top{
-    background-color: white;
-    display: inline;
-    border-radius: 3px;
-    margin-top: 4px;
-    margin-bottom: 4px;
-    margin-left: 5px;
-    margin-right: 5px;
-}
-.settings_top p{
-    padding: 20px;
-    font-size: 22px;
-    display: inline;
-}
+            background-color: #2B72FF;
+            width: 100%;
+            height: 8%;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+        #nav_name p{
+            color: white;
+            font-size: large;
+        }
+        .nav_btn {
+            overflow-y: scroll;
+            padding: 7%;
+            background-color: white;
+        }
+        .nav_btn > div{
+            display: flex;
+            height: 5%;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        #btn_home{
+            text-align: left;
+        }
+        img{
+            width: 30px;
+            height: 30px;
+            margin: 10px;
+        }
+        .settings{
+            display: flex;
+            padding: 10px;
+            padding-left: 45px;
+        }
+        .settings > div {
+            display: flex;
+            height: 5%;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        #down_arrow{
+            border-radius: 5px;
+            background-color: white;
+            margin-left: auto;
+        }
+        .settings.hidden {
+            display: none;
+        }
+        body {
+            background-color: #F4F6FA;
+        }
+        #nav2_scal{
+            margin-top: 2%;
+            width: 96%;
+            margin-left: 2%;
+            background-color: white;
+            border-radius: 5px;
+            display: flex;
+            box-shadow: 0px 0px 10px rgba(28,66,142, 15%);
+        }
+        .settings_top{
+            background-color: white;
+            display: inline;
+            border-radius: 3px;
+            margin-top: 4px;
+            margin-bottom: 4px;
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+        .settings_top p{
+            padding: 20px;
+            font-size: 22px;
+            display: inline;
+        }
     </style>
 </head>
 
@@ -107,19 +106,19 @@ body {
             </div>              
             <!--설정 내비 하위 설정들-->
             <div id="usr_manage" class="settings">
-                <p id ="no"></p><strong>회원 관리</strong></p>
+                <p></p><strong>회원 관리</strong></p>
             </div>
             <div id="object_num_manage" class="settings">
-                <p id ="no"></p><strong>오브젝트 항목 관리</strong></p>
+                <p></p><strong>오브젝트 항목 관리</strong></p>
             </div>
             <div id="object_manage" class="settings">
-                <p id ="no"></p><strong>오브젝트 관리</strong></p>
+                <p></p><strong>오브젝트 관리</strong></p>
             </div>
             <div id="link_level_manage" class="settings">
-                <p id ="no"></p><strong>링크 레벨 관리</strong></p>
+                <p></p><strong>링크 레벨 관리</strong></p>
             </div>
             <div id="link_manage" class="settings">
-                <p id ="no"></p><strong>링크 관리</strong></p>
+                <p></p><strong>링크 관리</strong></p>
             </div>
         </div>
     </div>
@@ -145,6 +144,7 @@ body {
     </div>
 </body>
 <script src="static/js/nav1.js"></script>
-<script src="js/jquery-3.7.0.js"></script>
-<script src="js/jquery-3.7.0.min.js"></script>
+<script src="static/js/jquery-3.7.0.js"></script>
+<script src="static/js/jquery-3.7.0.min.js"></script>
+{% block js %}{% endblock %}
 </html>
