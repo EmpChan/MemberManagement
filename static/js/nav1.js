@@ -11,6 +11,31 @@ setup = document.getElementById("setupMain");
 if(setup){
     document.getElementById('setting').style.backgroundColor = 'aliceblue';
 }
+manage = document.getElementById("manage.html");
+if(manage){
+    document.getElementById('usr_manage').style.backgroundColor = 'aliceblue';
+    document.getElementById('usr_manage_t').style.backgroundColor = 'aliceblue';
+}
+objectRegister = document.getElementById("objectRegister.html");
+if(objectRegister){
+    document.getElementById('object_num_manage_t').style.backgroundColor = 'aliceblue';
+    document.getElementById('object_num_manage').style.backgroundColor = 'aliceblue';
+}
+object_manage = document.getElementById("objectList.html");
+if(object_manage){
+    document.getElementById('object_manage').style.backgroundColor = 'aliceblue';
+    document.getElementById('object_manage_t').style.backgroundColor = 'aliceblue';
+}
+linkLevelList = document.getElementById("linkLevelList.html");
+if(linkLevelList){
+    document.getElementById('link_level_manage').style.backgroundColor = 'aliceblue';
+    document.getElementById('link_level_manage_t').style.backgroundColor = 'aliceblue';
+}
+linkList = document.getElementById("linkList.html");
+if(linkList){
+    document.getElementById('link_manage').style.backgroundColor = 'aliceblue';
+    document.getElementById('link_manage_t').style.backgroundColor = 'aliceblue';
+}
 
 //이 부분 나중에 더 추가해야함..
 
