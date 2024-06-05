@@ -9,178 +9,9 @@
 	
 	{% block css %}
 	<link href="{% static 'css/pickr.css' %}" rel="stylesheet" type="text/css" >
+	<link href="{% static 'css/linkLevelList.css' %}" rel="stylesheet" type="text/css" >
 	{% endblock %}
-
-	<script>
-
-	$(function(){
-		
-		/* colorpickr */
-		const pickrContainer = document.querySelector('.pickr-container');
-		const themeContainer = document.querySelector('.theme-container');
-		const themes = [
-	    [
-	        'classic',
-	        {
-	            swatches: [
-	                'rgba(244, 67, 54, 1)',
-	                'rgba(233, 30, 99, 0.95)',
-	                'rgba(156, 39, 176, 0.9)',
-	                'rgba(103, 58, 183, 0.85)',
-	                'rgba(63, 81, 181, 0.8)',
-	                'rgba(33, 150, 243, 0.75)',
-	                'rgba(3, 169, 244, 0.7)',
-	                'rgba(0, 188, 212, 0.7)',
-	                'rgba(0, 150, 136, 0.75)',
-	                'rgba(76, 175, 80, 0.8)',
-	                'rgba(139, 195, 74, 0.85)',
-	                'rgba(205, 220, 57, 0.9)',
-	                'rgba(255, 235, 59, 0.95)',
-	                'rgba(255, 193, 7, 1)'
-	            ],
-
-	            components: {
-	                preview: true,
-	                opacity: true,
-	                hue: true,
-
-	                interaction: {
-	                    hex: true,
-	                    rgba: true,
-	                    hsva: true,
-	                    input: true,
-	                    clear: true,
-	                    save: true
-	                }
-	            }
-	        }
-	    ],
-	];
-
-	const buttons = [];
-	let pickr = null;
-
-	for (const [theme, config] of themes) {
-	    const button = document.createElement('button');
-	    button.innerHTML = theme;
-	    buttons.push(button);
-
-	    button.addEventListener('click', () => {
-	        const el = document.createElement('p');
-	        pickrContainer.appendChild(el);
-
-	        // Delete previous instance
-	        if (pickr) {
-	            pickr.destroyAndRemove();
-	        }
-
-	        // Apply active class
-	        for (const btn of buttons) {
-	            btn.classList[btn === button ? 'add' : 'remove']('active');
-	        }
-
-	        // Create fresh instance
-	        pickr = new Pickr(Object.assign({
-	            el, theme,
-	            default: '#42445a'
-	        }, config));
-
-	        // Set events
-	        pickr.on('init', instance => {
-	            console.log('Event: "init"', instance);
-	        }).on('hide', instance => {
-	            console.log('Event: "hide"', instance);
-	        }).on('show', (color, instance) => {
-	            console.log('Event: "show"', color, instance);
-	        }).on('save', (color, instance) => {
-	            console.log('Event: "save"', color, instance);
-	        }).on('clear', instance => {
-	            console.log('Event: "clear"', instance);
-	        }).on('change', (color, source, instance) => {
-	            console.log('Event: "change"', color, source, instance);
-	        }).on('changestop', (source, instance) => {
-	            console.log('Event: "changestop"', source, instance);
-	        }).on('cancel', instance => {
-	            console.log('cancel', pickr.getColor().toRGBA().toString(0));
-	        }).on('swatchselect', (color, instance) => {
-	            console.log('Event: "swatchselect"', color, instance);
-	        });
-	    });
-
-	    themeContainer.appendChild(button);
-	}
-
-	buttons[0].click();
-		
-	});
-	
-	 function levelAdd() {
-		document.getElementById("levelaModar").style.display="block";
-	}
-	function closeModal() {
-		document.getElementById("levelaModar").style.display="none";
-	}
-	
-	 function levelRetouch() {
-			document.getElementById("levelrModar").style.display="block";
-	}
-		function closeModal2() {
-			document.getElementById("levelrModar").style.display="none";
-	}
-	
-	/* 비활성화 모달창 */
-	 function disabledBtn(){
-		 document.getElementById("disabledModar").style.display="block";
-	 }
-	 function closeModal3() {
-			document.getElementById("disabledModar").style.display="none";
-	}
-	
-	</script>
-
 </head>
-
-	<style>
-	#horizontal-tab{
-		width:86px !important;
-	}
-	.colorBox{
-		width:80%;
-		height:24px;
-		border:1px solid #C7CDD8;
-		border-radius:4px;
-		padding:3px;
-		margin:0 auto;
-		background:#fff;
-	}
-	.colorBox>.lineColor{
-		width:100%;
-		height:100%;
-		background:#A06EE6;
-		border-radius:2px;
-	}
-	.colorBox>.lineColor2{
-		background:#536FFF;
-	}
-	.colorBox>.lineColor3{
-		background:#00D285;
-	}
-	.levelName{
-	    width: 100%;
-	    height: 32px;
-	    border-radius: 4px;
-	    border: 1px solid #C7CDD8;
-	    padding: 0 10px;
-	}
-	.lev-retouch .inputList>li select{
-		width: 100%;
-	    height: 32px;
-	    padding: 0 10px;
-	    border: 1px solid #C7CDD8;
-	    border-radius: 4px;
-	}
-	</style>
-
 <body>
 	{% block content %}
 	{% if is_autenticated %}
@@ -225,7 +56,7 @@
 		<div class="modar-wrap lev-retouch">
 			<div class="modar-header">
 				<p>레벨 수정</p>
-				<div onclick="closeModal2();" class="close-btn"><img src="/static/img/close-icon.png" alt=""></div>
+				<div onclick="closeModal2();" class="close-btn"><img src="{% static 'img/close-icon.png' %}" alt=""></div>
 			</div>
 			<div class="modar-con2">
 				<h2>레벨 수정</h2>
@@ -334,7 +165,7 @@
                                     <td>#A06EE6</td> 
                                     <td>N</td>   
                                 </tr>
-                                <tr>
+                                <tr onclick="levelRetouch();">
                                     <td><input type="checkbox" name="selectBox"></td>
                                     <td>1</td>
                                     <td>LEVER 1</td>                                   
@@ -346,7 +177,7 @@
                                     <td>#A06EE6</td> 
                                     <td>N</td>   
                                 </tr>
-                                <tr>
+                                <tr onclick="levelRetouch();">
                                     <td><input type="checkbox" name="selectBox"></td>
                                     <td>1</td>
                                     <td>LEVER 1</td>                                   
@@ -358,7 +189,7 @@
                                     <td>#A06EE6</td> 
                                     <td>N</td>   
                                 </tr>
-                               <tr>
+                               <tr onclick="levelRetouch();">
                                     <td><input type="checkbox" name="selectBox"></td>
                                     <td>1</td>
                                     <td>LEVER 1</td>                                   
@@ -368,7 +199,7 @@
                                     <td>#A06EE6</td> 
                                     <td>N</td>   
                                 </tr>
-                                <tr>
+                                <tr onclick="levelRetouch();">
                                     <td><input type="checkbox" name="selectBox"></td>
                                     <td>1</td>
                                     <td>LEVER 1</td>                                   
@@ -378,7 +209,7 @@
                                     <td>#A06EE6</td> 
                                     <td>N</td>   
                                 </tr>
-                                <tr>
+                                <tr onclick="levelRetouch();">
                                     <td><input type="checkbox" name="selectBox"></td>
                                     <td>1</td>
                                     <td>LEVER 1</td>                                   
@@ -388,7 +219,7 @@
                                     <td>#A06EE6</td> 
                                     <td>N</td>   
                                 </tr>
-                                <tr>
+                                <tr onclick="levelRetouch();">
                                     <td><input type="checkbox" name="selectBox"></td>
                                     <td>1</td>
                                     <td>LEVER 1</td>                                   
@@ -398,7 +229,7 @@
                                     <td>#A06EE6</td> 
                                     <td>N</td>   
                                 </tr>
-                                <tr>
+                                <tr onclick="levelRetouch();">
                                     <td><input type="checkbox" name="selectBox"></td>
                                     <td>1</td>
                                     <td>LEVER 1</td>                                   
@@ -408,7 +239,7 @@
                                     <td>#A06EE6</td> 
                                     <td>N</td>   
                                 </tr>
-                                <tr>
+                                <tr onclick="levelRetouch();">
                                     <td><input type="checkbox" name="selectBox"></td>
                                     <td>1</td>
                                     <td>LEVER 1</td>                                   
@@ -418,7 +249,7 @@
                                     <td>#A06EE6</td> 
                                     <td>N</td>   
                                 </tr>
-                                <tr class="radius-tr">
+                                <tr class="radius-tr" onclick="levelRetouch();">
                                     <td><input type="checkbox" name="selectBox"></td>
                                     <td>1</td>
                                     <td>LEVER 1</td>                                   
@@ -445,27 +276,7 @@
     </div>
 	{% endblock %}
 </body>
+{% block js %}
+<script src="{% static 'js/linkLevelList.js' %}"></script>
+{% endblock %}
 </html>
-
-<script>
-
-$(function(){
-	selectTap(3);
-	$('.setting > .tab-menu').addClass("on");
-	$('.sideSubtab4').addClass("on");
-});
-
-$(window).on('load', function(){
-	$('.setting > .setting-sub').css("display","block");
-});
-	
-function selectAll(selectAll)  {
-	  const checkboxes 
-	       = document.getElementsByName('selectBox');
-	  
-	  checkboxes.forEach((checkbox) => {
-	    checkbox.checked = selectAll.checked;
-	  })
-	};	
-	
-</script>

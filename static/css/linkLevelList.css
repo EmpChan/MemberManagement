@@ -1,0 +1,38 @@
+#horizontal-tab{
+    width:86px !important;
+}
+.colorBox{
+    width:80%;
+    height:24px;
+    border:1px solid #C7CDD8;
+    border-radius:4px;
+    padding:3px;
+    margin:0 auto;
+    background:#fff;
+}
+.colorBox>.lineColor{
+    width:100%;
+    height:100%;
+    background:#A06EE6;
+    border-radius:2px;
+}
+.colorBox>.lineColor2{
+    background:#536FFF;
+}
+.colorBox>.lineColor3{
+    background:#00D285;
+}
+.levelName{
+    width: 100%;
+    height: 32px;
+    border-radius: 4px;
+    border: 1px solid #C7CDD8;
+    padding: 0 10px;
+}
+.lev-retouch .inputList>li select{
+    width: 100%;
+    height: 32px;
+    padding: 0 10px;
+    border: 1px solid #C7CDD8;
+    border-radius: 4px;
+}
