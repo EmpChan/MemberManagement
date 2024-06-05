@@ -5,16 +5,10 @@
 <head>
 	{% load static %}
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>오브젝트 등록</title>
-	
 	{% block css %}
 	<link href="{% static 'css/objectView.css' %}" rel="stylesheet" type="text/css" >
 	{% endblock %}
-
-	
-	<script>
-		
-	</script>
+	<title>오브젝트 등록</title>
 </head>
 
 <body>
@@ -22,6 +16,7 @@
 	{% if is_autenticated %}
 	gogo
 	{% endif %}
+	<p id="objectView.html"></p>
 	<div class="main">
 		<div class="container">
 			<div class="list-con">

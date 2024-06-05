@@ -1,0 +1,16 @@
+#horizontal-tab{
+    width: 82px;
+    left:108px !important;
+}
+.fail-red{
+    color:#FF524E;
+    cursor:pointer;
+}
+.rightSort{
+    justify-content:flex-end !important;
+    padding-top:24px;
+}
+
+#successModar .noc{
+    color:#2B72FF;
+}

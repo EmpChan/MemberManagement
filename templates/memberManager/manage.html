@@ -5,19 +5,18 @@
 <head>
     {% load static %}
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    {% block css %}
+	<link href="{% static 'css/manage.css' %}" rel="stylesheet" type="text/css" >
+	{% endblock %}
 	<title>회원 관리</title>
-<style>
-    #horizontal-tab{
-        width: 132px;
-    }
-</style>
+
 </head>
 <body>
     {% block content %}
 	{% if is_autenticated %}
 	gogo
 	{% endif %}
-    <div id="manage.html"></div>
+    <p id="manage.html"></p>
     <div class="main">
         <div class="container">            
             <div class="list-con">
