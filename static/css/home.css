@@ -1,10 +1,14 @@
+body {
+    background-color: #F4F6FA;
+}
 #main_home {
     display: flex;
-    width: 77vw;
+    width: 79vw;
     height: 85vh;
     padding-top: 5%;
 }
 #home_search_object{
+    margin-left: 2%;
     margin-right: 2%;
     background-color: white;
     width: 20%;
@@ -12,9 +16,18 @@
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(28,66,142, 15%);
 }
+#search_block{
+    background-color: #2B72FF;
+    height: 50px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 #container {
     background-color: white;
-    width: 77%;
+    width: 75%;
     height: 90vh;
     border-radius: 10px;
     display: flex;
