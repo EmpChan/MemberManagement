@@ -1,113 +1,22 @@
-<!DOCTYPE html>
 {% extends 'navVertical.html' %}
-{% block content %}
+
+<!DOCTYPE html>
 <html>
 <head>
 	{% load static %}
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	{% block css %}
+	<link href="{% static 'css/objectBatch.css' %}" rel="stylesheet" type="text/css" >
+	{% endblock %}
 	<title>오브젝트 일괄등록</title>
-	
-	<style>
-		#horizontal-tab{
-			width: 82px;
-			left:108px !important;
-		}
-		.fail-red{
-			color:#FF524E;
-			cursor:pointer;
-		}
-		.rightSort{
-			justify-content:flex-end !important;
-			padding-top:24px;
-		}
-		
-		
-		#successModar .noc{
-			color:#2B72FF;
-		}
-	</style>
-	
-	<script>
-		$(function(){
-			selectTap(2);
-			sublistTab(1);
-			$('.setting > .tab-menu').addClass("on");
-			$('.sideSubtab3').addClass("on");
-		
-			// 인풋박스안에 파일이름 넣기
-			var uploadFile = $('.file-box .realFile');
-			uploadFile.on('change', function () {
-			    var filename = "";
-			    if (window.FileReader) {
-			        filename = $(this)[0].files[0].name;
-			    } else {
-			        filename = $(this).val().split('/').pop().split('\\').pop();
-			    }
-			    $(this).siblings('.upload-name').val(filename);
-			});     
-		
-		
-		
-		});
-		
-		$(window).on('load', function(){
-			$('.setting > .setting-sub').css("display","block");
-		});
-			
-			
-		function sublistTab(num){
-			var menuLength = $(".sl-st").length;
-			
-			for(var i = 0; i < menuLength; i++){
-				if(i == num){
-					$(".sl-st:eq("+i+")").addClass("on");
-				}
-				else{
-					$(".sl-st:eq("+i+")").removeClass("on");
-				}
-			}
-		}
-		
-		/* 탭메뉴 클릭시 메뉴바 라인 슬라이드 이동 */
-		$(document).on("click", ".sl-st", function(e) {
-			var horizontalUnderLine = document.getElementById("horizontal-tab");
-			horizontalUnderLine.style.left = e.currentTarget.offsetLeft + "px";
-			horizontalUnderLine.style.width = e.currentTarget.offsetWidth + "px";
-			horizontalUnderLine.style.top = e.currentTarget.offsetTop + e.currentTarget.offsetHeight + 6 + "px" ;
-		});
-		
-		function batchMd() {
-			document.getElementById("batchModar").style.display="block";
-		}
-		
-		function closeModal() {
-			document.getElementById("batchModar").style.display="none";
-		}
-		
-		function delModal() {
-			document.getElementById("delectModar").style.display="block";
-		}
-		function closeModal2() {
-			document.getElementById("delectModar").style.display="none";
-		}
-		
-		function uploadFail() {
-			document.getElementById("upfailModar").style.display="block";
-		}
-		function closeModal3() {
-			document.getElementById("upfailModar").style.display="none";
-		}
-		
-		function uploadSuc() {
-			document.getElementById("successModar").style.display="block";
-		}
-		function closeModal4() {
-			document.getElementById("successModar").style.display="none";
-		}
-</script>
 </head>
 <body>
+	{% block content %}
+	{% if is_autenticated %}
+	gogo
+	{% endif %}
 	<!-- 일괄 등록 모달 -->
+	<p id="objectBatch.html"></p>
 	<div id="batchModar" class="modar-bk">
 		<div class="modar-wrap batch-md">
 			<div class="modar-header">
@@ -175,7 +84,6 @@
 		</div>
 	</div>
 	
-	
 	<!-- 업로드 성공 모달  -->
 	<div id="successModar" class="modar-bk">
 		<div class="modar-wrap success-md">
@@ -192,17 +100,9 @@
 			</div>
 		</div>
 	</div>
-	<!-- 사이드 바 -->
-	<c:import url="/image/main/getSideBar.do" />
+
 	<div class="main">
 		<div class="container">
-			<!-- 헤더 -->
-			<c:import url="/image/main/getHeader.do" />
-	
-			<!-- 네비게이션 바 -->
-			<c:import url="/image/main/getMainNav.do" />
-	
-	
 			<div class="list-con">
 				<ul class="sublist-tab">
 					<li class="moving-tab" id="horizontal-tab"></li>
@@ -238,7 +138,7 @@
 	      
 							<thead>
 								<tr>
-									<th><span class="th-check"><input type="checkbox"></span></th>
+									<th><span class="th-check"><input type="checkbox" name="selectBox" onclick="selectAll(this)"></span></th>
 									<th><span>번호</span></th>
 									<th><span>엑셀파일명</span></th>
 									<th><span>처리요청 건수</span></th>
@@ -250,7 +150,7 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td><input type="checkbox"></td>
+									<td><input type="checkbox" name="selectBox"></td>
 									<td>1</td>
 									<td>일괄등록_파일A.xlsx</td>                                   
 									<td>9</td>                                    
@@ -260,7 +160,7 @@
 									<td onclick="uploadSuc();">성공</td>   
 								</tr>
 								<tr>
-									<td><input type="checkbox"></td>
+									<td><input type="checkbox" name="selectBox"></td>
 									<td>1</td>
 									<td>일괄등록_파일A.xlsx</td>                                   
 									<td>9</td>                                    
@@ -270,7 +170,7 @@
 									<td class="fail-red" onclick="uploadFail();">실패</td>   
 								</tr>
 								<tr>
-									<td><input type="checkbox"></td>
+									<td><input type="checkbox" name="selectBox"></td>
 									<td>1</td>
 									<td>일괄등록_파일A.xlsx</td>                                   
 									<td>9</td>                                    
@@ -280,7 +180,7 @@
 									<td>성공</td>   
 								</tr>
 								<tr>
-									<td><input type="checkbox"></td>
+									<td><input type="checkbox" name="selectBox"></td>
 									<td>1</td>
 									<td>일괄등록_파일A.xlsx</td>                                   
 									<td>9</td>                                    
@@ -290,7 +190,7 @@
 									<td>성공</td>   
 								</tr>
 								<tr>
-									<td><input type="checkbox"></td>
+									<td><input type="checkbox" name="selectBox"></td>
 									<td>1</td>
 									<td>일괄등록_파일A.xlsx</td>                                   
 									<td>9</td>                                    
@@ -300,7 +200,7 @@
 									<td>성공</td>   
 								</tr>
 								<tr>
-									<td><input type="checkbox"></td>
+									<td><input type="checkbox" name="selectBox"></td>
 									<td>1</td>
 									<td>일괄등록_파일A.xlsx</td>                                   
 									<td>9</td>                                    
@@ -310,7 +210,7 @@
 									<td>성공</td>   
 								</tr>
 								<tr>
-									<td><input type="checkbox"></td>
+									<td><input type="checkbox" name="selectBox"></td>
 									<td>1</td>
 									<td>일괄등록_파일A.xlsx</td>                                   
 									<td>9</td>                                    
@@ -320,7 +220,7 @@
 									<td>성공</td>   
 								</tr>
 								<tr>
-									<td><input type="checkbox"></td>
+									<td><input type="checkbox" name="selectBox"></td>
 									<td>1</td>
 									<td>일괄등록_파일A.xlsx</td>                                   
 									<td>9</td>                                    
@@ -330,7 +230,7 @@
 									<td>성공</td>   
 								</tr>
 								<tr>
-									<td><input type="checkbox"></td>
+									<td><input type="checkbox" name="selectBox"></td>
 									<td>1</td>
 									<td>일괄등록_파일A.xlsx</td>                                   
 									<td>9</td>                                    
@@ -340,7 +240,7 @@
 									<td>성공</td>   
 								</tr>
 								<tr class="radius-tr">
-									<td><input type="checkbox"></td>
+									<td><input type="checkbox" name="selectBox"></td>
 									<td>1</td>
 									<td>일괄등록_파일A.xlsx</td>                                   
 									<td>9</td>                                    
@@ -365,6 +265,9 @@
 			</div>
 		</div>
 	</div>
+	{% endblock %}
 </body>
-</html>
+{% block js %}
+<script src="{% static 'js/objectBatch.js' %}"></script>
 {% endblock %}
+</html>

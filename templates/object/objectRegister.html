@@ -5,152 +5,17 @@
 <head>
 	{% load static %}
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	{% block css %}
+	<link href="{% static 'css/objectRegister.css' %}" rel="stylesheet" type="text/css" >
+	{% endblock %}
 	<title>오브젝트 등록</title>
-		
-	<style>
-		#horizontal-tab{
-			width: 82px;
-		}
-		.list-con{
-			min-height:738px;
-		}
-		/* 등록 */
-		.objr-table{
-			height: 442px;
-			font-size: 16px !important;
-		}
-	 
-		.img-upload{
-			display: none;
-		} 
-		
-		.img-regist{
-			display: inline-block;
-			position: relative;
-			width: 250px;
-			height: 250px;
-			/* border-radius: 50%;
-			background: #fafafa; */
-			border: none;
-			margin-bottom: 20px;
-			cursor: pointer;
-		}
-	
-		.img-regist > img{
-			position: absolute;
-			width: 100%;
-			height: 100%;
-			object-fit: contain;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%,-50%);
-			/* border-radius: 50%; */
-		}
-	
-		.rgbtn-txt{
-			font-weight: 500;
-			font-size: 16px;
-		}
-		
-		.obji-wrap{
-			display: flex;
-			height: 100%;
-			justify-content: center;
-			align-items: center;
-		}
-	
-		.obj-inf{
-			width: 80%;
-		}
-	
-		.obj-inf>li{
-			display: flex;
-			column-gap: 20px;
-			margin-bottom: 30px;
-		}
-		
-		.obj-inf>li:last-child{
-			margin: 0;
-		}
-		
-		.obj-inf>li > .inf-tbox{
-			width: 160px;
-			height:40px;
-			line-height: 40px;
-			background: #F4F6FA;
-			font-weight: 500;
-			border-radius: 4px;
-		}
-		
-		.obj-inf > li > input{
-			width: 75%;
-			outline: none;
-			border: 1px solid #C7CDD8;
-			border-radius: 4px;
-			padding: 0 10px;
-		}
-		
-		.obj-inf > li > select{
-			height: 40px !important;
-		}
-	</style>
-
-	<script>
-		$(function(){
-			selectTap(2);
-			sublistTab(0);
-			$('.setting > .tab-menu').addClass("on");
-			$('.sideSubtab3').addClass("on");
-		});
-		
-		$(window).on('load', function(){
-			$('.setting > .setting-sub').css("display","block");
-		});
-			
-		
-		// input 클릭시 이미지 미리보기
-		
-		function realUpload(input){
-			var reader = new FileReader();
-		  
-			reader.onload = function(e){
-				$('#img-regist').attr('src', e.target.result);
-			}
-			
-			reader.readAsDataURL(input.files[0]);
-		}
-		
-		
-			function sublistTab(num){
-				var menuLength = $(".sl-st").length;
-				
-				for(var i = 0; i < menuLength; i++){
-					if(i == num){
-						$(".sl-st:eq("+i+")").addClass("on");
-					}
-					else{
-						$(".sl-st:eq("+i+")").removeClass("on");
-					}
-				} 
-			}
-		
-			/* 탭메뉴 클릭시 메뉴바 라인 슬라이드 이동 */
-			
-			$(document).on("click", ".sl-st", function(e) {
-				var horizontalUnderLine = document.getElementById("horizontal-tab");
-				horizontalUnderLine.style.left = e.currentTarget.offsetLeft + "px";
-				horizontalUnderLine.style.width = e.currentTarget.offsetWidth + "px";
-				horizontalUnderLine.style.top = e.currentTarget.offsetTop + e.currentTarget.offsetHeight + 6 + "px" ;
-			});
-	</script>
 </head>
-
 <body>
 	{% block content %}
 	{% if is_autenticated %}
 	gogo
 	{% endif %}
-	<p id = "objectRegister.html"></p>
+	<p id="objectRegister.html"></p>
 	<div class="main">
 		<div class="container">
 			<div class="list-con">
@@ -227,5 +92,8 @@
 	</div>
 	{% endblock %}
 </body>
+{% block js %}
+<script src="{% static 'js/objectRegister.js' %}"></script>
+{% endblock %}
 </html>
 
