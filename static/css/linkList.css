@@ -86,7 +86,7 @@
     border-radius:6px 6px 0 0;
     text-align:center;
     background:#2B72FF;
-    padding:10.5px 0;
+    padding:0;
     color:#fff;
     font-weight:600;
 }
@@ -103,7 +103,11 @@
     cursor:pointer;
 }
 .obj-header > .reset-btn > img{
+    position: relative;
+    top:-9px;
+    left: -9px;
     width:100%;
+    height: 100%;
 }
 .obj-serch{
     position:relative;
