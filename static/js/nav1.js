@@ -16,6 +16,9 @@ if(manage){
     document.getElementById('usr_manage').style.backgroundColor = 'aliceblue';
     document.getElementById('usr_manage_t').style.backgroundColor = 'aliceblue';
 }
+//objectItemList = getElementById('objectItemList.html');
+//if(objectItemList){
+//}
 objectRegister = document.getElementById("objectRegister.html");
 if(objectRegister){
     document.getElementById('object_manage').style.backgroundColor = 'aliceblue';
