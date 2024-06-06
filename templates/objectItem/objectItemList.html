@@ -1,3 +1,4 @@
+{% extends 'navVertical.html' %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,7 @@
 	
 	<link href="{% static 'css/default.css' %}" rel="stylesheet" type="text/css" >
 	<link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css" >
+	{% block content %}
 	
 	<style>
 		#horizontal-tab{
@@ -421,6 +423,6 @@
 			</div>
 		</div>
 	</div>
-	
+	{% endblock %}
 </body>
 </html>

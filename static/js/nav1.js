@@ -18,8 +18,8 @@ if(manage){
 }
 objectRegister = document.getElementById("objectRegister.html");
 if(objectRegister){
-    document.getElementById('object_num_manage_t').style.backgroundColor = 'aliceblue';
-    document.getElementById('object_num_manage').style.backgroundColor = 'aliceblue';
+    document.getElementById('object_manage').style.backgroundColor = 'aliceblue';
+    document.getElementById('object_manage_t').style.backgroundColor = 'aliceblue';
 }
 object_manage = document.getElementById("objectList.html");
 if(object_manage){
@@ -80,7 +80,7 @@ usrManage.addEventListener('click', function() {
 });
 
 objectNumManage.addEventListener('click', function() {
-    window.location.href = '/objectRegister';
+    window.location.href = '/objectItemList';
 });
 
 objectManage.addEventListener('click', function() {
