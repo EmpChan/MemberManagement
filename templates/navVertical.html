@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-	{% load static %}
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="{% static 'css/default.css' %}" rel="stylesheet" type="text/css" >
-	<link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css" >
+    {% load static %}
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="{% static 'css/default.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css">
     {% block css %}{% endblock %}
     <style>
+        body{
+            background-color: #F4F6FA;
+        }
         #nav_name {
             background-color: #2B72FF;
             width: 100%;
@@ -16,30 +19,29 @@
             justify-content: center;
             align-items: center;
         }
-        #nav_name p{
+        #nav_name p {
             color: white;
             font-size: large;
         }
         .nav_btn {
-            overflow-y: scroll;
             padding: 7%;
             background-color: white;
         }
-        .nav_btn > div{
+        .nav_btn > div {
             display: flex;
             height: 5%;
             border-radius: 5px;
             margin-top: 10px;
         }
-        #btn_home{
+        #btn_home {
             text-align: left;
         }
-        img{
+        img {
             width: 30px;
             height: 30px;
             margin: 10px;
         }
-        .settings{
+        .settings {
             display: flex;
             padding: 10px;
             padding-left: 45px;
@@ -50,7 +52,7 @@
             border-radius: 5px;
             margin-top: 10px;
         }
-        #down_arrow{
+        #down_arrow {
             border-radius: 5px;
             background-color: white;
             margin-left: auto;
@@ -58,19 +60,16 @@
         .settings.hidden {
             display: none;
         }
-        body {
-            background-color: #F4F6FA;
-        }
-        #nav2_scal{
+        #nav2_scal {
             margin-top: 2%;
-            width: 96%;
+            width: auto;
             margin-left: 2%;
             background-color: white;
             border-radius: 5px;
             display: flex;
-            box-shadow: 0px 0px 10px rgba(28,66,142, 15%);
+            box-shadow: 0px 0px 10px rgba(28, 66, 142, 15%);
         }
-        .settings_top{
+        .settings_top {
             background-color: white;
             display: inline;
             border-radius: 3px;
@@ -79,50 +78,49 @@
             margin-left: 5px;
             margin-right: 5px;
         }
-        .settings_top p{
+        .settings_top p {
             padding: 20px;
             font-size: 22px;
             display: inline;
         }
     </style>
 </head>
-
 <body>
-    <div style="float:left;width:20%; height:99vh; box-shadow: 0px 0px 10px rgba(28,66,142, 15%);background-color: white;">
+    <div style="float: left; width: 20%; height: 99vh; box-shadow: 0px 0px 10px rgba(28, 66, 142, 15%); background-color: white;">
         <div id="nav_name">
             <p>Member Web Management</p>
         </div>
         <div class="nav_btn">
             <!--홈 네비-->
             <div id="btn_home">
-                <img src="static/img/home.png">
-                <p id ="no"style="align-self: center;"><strong>HOME</strong></p>
+                <img src="{% static 'img/home.png' %}">
+                <p style="align-self: center;"><strong>HOME</strong></p>
             </div>
             <!--설정 네비-->
             <div id="setting" style="justify-content: space-between;">
-                <img src="static/img/settings.png">
+                <img src="{% static 'img/settings.png' %}">
                 <p id="btn_settings" style="align-self: center;"><strong>설정관리</strong></p>
-                <img src="static/img/down-arrow.png" id="down_arrow">
-            </div>              
+                <img src="{% static 'img/down-arrow.png' %}" id="down_arrow">
+            </div>
             <!--설정 내비 하위 설정들-->
             <div id="usr_manage" class="settings">
-                <p></p><strong>회원 관리</strong></p>
+                <p><strong>회원 관리</strong></p>
             </div>
             <div id="object_num_manage" class="settings">
-                <p></p><strong>오브젝트 항목 관리</strong></p>
+                <p><strong>오브젝트 항목 관리</strong></p>
             </div>
             <div id="object_manage" class="settings">
-                <p></p><strong>오브젝트 관리</strong></p>
+                <p><strong>오브젝트 관리</strong></p>
             </div>
             <div id="link_level_manage" class="settings">
-                <p></p><strong>링크 레벨 관리</strong></p>
+                <p><strong>링크 레벨 관리</strong></p>
             </div>
             <div id="link_manage" class="settings">
-                <p></p><strong>링크 관리</strong></p>
+                <p><strong>링크 관리</strong></p>
             </div>
         </div>
     </div>
-    <div style="float:right;width:80%;">
+    <div style="float: right; width: 80%; height: 100vh;">
         <div id="nav2_scal">
             <div id="usr_manage_t" class="settings_top">
                 <p><strong>회원 관리</strong></p>
@@ -140,11 +138,11 @@
                 <p><strong>링크 관리</strong></p>
             </div>
         </div>
-    {% block content %}{% endblock %}
+        {% block content %}{% endblock %}
     </div>
+    <script src="{% static 'js/nav1.js' %}"></script>
+    <script src="{% static 'js/jquery-3.7.0.js' %}"></script>
+    <script src="{% static 'js/jquery-3.7.0.min.js' %}"></script>
+    {% block js %}{% endblock %}
 </body>
-<script src="static/js/nav1.js"></script>
-<script src="static/js/jquery-3.7.0.js"></script>
-<script src="static/js/jquery-3.7.0.min.js"></script>
-{% block js %}{% endblock %}
 </html>

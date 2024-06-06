@@ -110,7 +110,7 @@ maname_t.addEventListener('click', function() {
 });
 
 objectRegister.addEventListener('click', function() {
-    window.location.href = '/objectRegister';
+    window.location.href = '/objectItemList';
 });
 
 objectList.addEventListener('click', function() {

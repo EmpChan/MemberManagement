@@ -1,15 +1,17 @@
 {% extends 'navVertical.html' %}
-{% block content %}
 <!DOCTYPE html>
 <html>
     <head>
         {% load static %}
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+        {% block css %}
         <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+        {% endblock %}
         <title>회원 관리</title>
     </head>
     <body>
+        {% block content %}
         <div id="main_home">    
         <div id="home_search_object">
             <div id = "search_block">
@@ -27,6 +29,6 @@
         <div id="container"></div>
         </div>
         <script src="static/js/home.js" type="module"></script>
+        {% endblock %}
     </body>
 </html>
-{% endblock %}
