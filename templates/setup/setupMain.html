@@ -1,16 +1,102 @@
 {% extends 'navVertical.html' %}
-
+{% block content %}
 <!DOCTYPE html>
 <html>
 <head>
 	{% load static %}
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	{% block css %}
-	<link rel="stylesheet" type="text/css" href="{% static 'css/setupMain.css' %}">
-	{% endblock %}
+	<style>
+		body {
+    background-color: #F4F6FA;
+}
+.gnb>li>a.on>img{
+rotate:0deg !important;
+}
+.setupCon{
+display:flex;
+justify-content: space-between;
+}
+.setupWrap{
+margin-top:10px;
+}
+.toptitBox{
+display:flex;
+height:120px;
+width:400px;
+margin: 20px;
+justify-content: space-between;
+align-items: center;
+padding:0 30px;
+box-shadow: 0px 0px 10px rgba(28,66,142, 15%);
+background: #fff;
+border-radius:6px;
+font-size:15px;
+font-weight:800;
+}
+.toptitBox > .left-icon{
+display:flex;
+align-items:center;
+gap:10px;
+}
+.toptitBox > .left-icon > img{
+width:40px;
+height:40px;
+}
+.toptitBox > .left-icon > h1{
+font-weight:800;
+}
+.toptitBox > p{
+display:flex;
+align-items:flex-end;
+margin-bottom:14px;
+}
+.toptitBox > p > .num-case{
+display:inline-block;
+height:60px;
+font-size:56px;
+color:#2B72FF;
+margin-right:4px;
+}
+.setupList{
+width:400px;
+height:554px;
+box-shadow: 0px 0px 10px rgba(28,66,142, 15%);
+background: #fff;
+border-radius:6px;
+padding:20px;
+margin-top:28px;
+margin: 20px;
+}
+.setupList > .list-titBox{
+width:100%;
+background: #F4F6FA;
+border-radius: 6px;
+padding: 15.5px 0;
+font-size:18px;
+font-weight:800;
+text-align:center;
+}
+.setupList > .dataList{
+max-height:442px;
+overflow-y:auto;
+margin-top:20px;
+}
+.setupList > .dataList > li{
+height:44px;
+line-height:44px;
+text-align:center;
+border-bottom:1px solid #D7DCE5;
+
+}
+.setupList > .dataList > li:first-child{
+border-top:1px solid #D7DCE5;
+}
+.setupList > .dataList > li:nth-child(even){
+background:#F4F6FA;
+}
+	</style>
 </head>
 <body>
-	{% block content %}
 	{% if is_autenticated %}
 	gogo
 	{% endif %}
