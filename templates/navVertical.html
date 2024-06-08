@@ -83,6 +83,12 @@
             font-size: 22px;
             display: inline;
         }
+        .logout{
+            margin-top:10px;
+            margin-right:20px;
+            font-size:20px;
+            float:right;
+        }
     </style>
 </head>
 <body>
@@ -106,12 +112,6 @@
             <div id="usr_manage" class="settings">
                 <p><strong>회원 관리</strong></p>
             </div>
-            <div id="object_num_manage" class="settings">
-                <p><strong>오브젝트 항목 관리</strong></p>
-            </div>
-            <div id="object_manage" class="settings">
-                <p><strong>오브젝트 관리</strong></p>
-            </div>
             <div id="link_level_manage" class="settings">
                 <p><strong>링크 레벨 관리</strong></p>
             </div>
@@ -120,16 +120,14 @@
             </div>
         </div>
     </div>
+    <div class="logout">
+        <a>{{user.username}}님 환영합니다.</a>
+        <button class="logout-btn"> 로그아웃</button>
+    </div>
     <div style="float: right; width: 80%; height: 100vh;">
         <div id="nav2_scal">
             <div id="usr_manage_t" class="settings_top">
                 <p><strong>회원 관리</strong></p>
-            </div>
-            <div id="object_num_manage_t" class="settings_top">
-                <p><strong>오브젝트 항목 관리</strong></p>
-            </div>
-            <div id="object_manage_t" class="settings_top">
-                <p><strong>오브젝트 관리</strong></p>
             </div>
             <div id="link_level_manage_t" class="settings_top">
                 <p><strong>링크 레벨 관리</strong></p>
