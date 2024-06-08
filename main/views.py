@@ -10,31 +10,6 @@ def manage(request):
         return redirect("login:login")
     return render(request, "memberManager/manage.html")
 
-def objectBatch(request):
-    if not request.user.is_authenticated:
-        return redirect("login:login")
-    return render(request, "object/objectBatch.html")
-
-def objectList(request):
-    if not request.user.is_authenticated:
-        return redirect("login:login")
-    return render(request, "object/objectList.html")
-
-def objectRegister(request):
-    if not request.user.is_authenticated:
-        return redirect("login:login")
-    return render(request, "object/objectRegister.html")
-
-def objectView(request):
-    if not request.user.is_authenticated:
-        return redirect("login:login")
-    return render(request, "object/objectView.html")
-
-def objectItemList(request):
-    if not request.user.is_authenticated:
-        return redirect("login:login")
-    return render(request, "objectItem/objectItemList.html")
-
 def linkList(request):
     if not request.user.is_authenticated:
         return redirect("login:login")

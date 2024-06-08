@@ -16,19 +16,6 @@ if(manage){
     document.getElementById('usr_manage').style.backgroundColor = 'aliceblue';
     document.getElementById('usr_manage_t').style.backgroundColor = 'aliceblue';
 }
-//objectItemList = getElementById('objectItemList.html');
-//if(objectItemList){
-//}
-objectRegister = document.getElementById("objectRegister.html");
-if(objectRegister){
-    document.getElementById('object_manage').style.backgroundColor = 'aliceblue';
-    document.getElementById('object_manage_t').style.backgroundColor = 'aliceblue';
-}
-object_manage = document.getElementById("objectList.html");
-if(object_manage){
-    document.getElementById('object_manage').style.backgroundColor = 'aliceblue';
-    document.getElementById('object_manage_t').style.backgroundColor = 'aliceblue';
-}
 linkLevelList = document.getElementById("linkLevelList.html");
 if(linkLevelList){
     document.getElementById('link_level_manage').style.backgroundColor = 'aliceblue';
@@ -65,8 +52,6 @@ document.getElementById('down_arrow').addEventListener('click', function() {
 var btnHome = document.getElementById('btn_home');
 var btnSettings = document.getElementById('btn_settings');
 var usrManage = document.getElementById('usr_manage');
-var objectNumManage = document.getElementById('object_num_manage');
-var objectManage = document.getElementById('object_manage');
 var linkLevelManage = document.getElementById('link_level_manage');
 var linkManage = document.getElementById('link_manage');
 
@@ -82,14 +67,6 @@ usrManage.addEventListener('click', function() {
     window.location.href = '/manage';
 });
 
-objectNumManage.addEventListener('click', function() {
-    window.location.href = '/objectItemList';
-});
-
-objectManage.addEventListener('click', function() {
-    window.location.href = '/objectList';
-});
-
 linkLevelManage.addEventListener('click', function() {
     window.location.href = '/linkLevelList';
 });
@@ -100,21 +77,11 @@ linkManage.addEventListener('click', function() {
 
 
 var maname_t = document.getElementById("usr_manage_t");
-var objectRegister = document.getElementById("object_num_manage_t");
-var objectList = document.getElementById("object_manage_t");
 var linkLevelList = document.getElementById("link_level_manage_t");
 var linkList = document.getElementById("link_manage_t");
 
 maname_t.addEventListener('click', function() {
     window.location.href = '/manage';
-});
-
-objectRegister.addEventListener('click', function() {
-    window.location.href = '/objectItemList';
-});
-
-objectList.addEventListener('click', function() {
-    window.location.href = '/objectList';
 });
 
 linkLevelList.addEventListener('click', function() {
