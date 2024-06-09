@@ -74,16 +74,18 @@
 								</tr>
 							</thead>
 							<tbody>
+								{% for member in members %}
 								<tr onclick="location.href='/objectView'">
 									<td><input type="checkbox" name="selectBox"></td>
-									<td>1</td>
-									<td>Ironman</td>                                   
-									<td>남성</td>                                    
-									<td>2024042000</td> 
-									<td>The school of computer science</td> 
-									<td>2024-01-01</td> 
-									<td>N</td>   
+									<td>{{forloop.counter}}</td>
+									<td>{{member.name}}</td>                                   
+									<td>{{member.gender}}</td>                                    
+									<td>{{member.studentID}}</td> 
+									<td>{{member.department}}</td> 
+									<td>{{member.created_at}}</td> 
+									<td>{{member.notSchool}}</td>   
 								</tr>
+								{% endfor %}
 							</tbody>
 						</table>
 					</div>

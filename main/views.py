@@ -12,7 +12,6 @@ def manage(request):
         return redirect("login:login")
     userList = User.objects.all()
     attribute ={}
-    
     attribute['users'] = userList
 
     return render(request, "memberManager/manage.html", attribute)
@@ -30,17 +29,26 @@ def linkLevelList(request):
 def objectView(request):
     if not request.user.is_authenticated:
         return redirect("login:login")
-    return render(request, "object/objectView.html")
+    memberList = Member.objects.all()
+    attribute = {}
+    attribute['members'] = memberList
+    return render(request, "object/objectView.html",attribute)
 
 def objectList(request):
     if not request.user.is_authenticated:
         return redirect("login:login")
-    return render(request, "object/objectList.html")
+    memberList = Member.objects.all()
+    attribute = {}
+    attribute['members'] = memberList
+    return render(request, "object/objectList.html",attribute)
 
 def objectRegister(request):
     if not request.user.is_authenticated:
         return redirect("login:login")
-    return render(request, "object/objectRegister.html")
+    memberList = Member.objects.all()
+    attribute = {}
+    attribute['members'] = memberList
+    return render(request, "object/objectRegister.html",attribute)
 
 def setupMain(request):
     if not request.user.is_authenticated:
