@@ -1,4 +1,6 @@
 from django.shortcuts import render,redirect
+from django.contrib.auth.models import User
+from .models import Member
 
 def home(request):
     if not request.user.is_authenticated:
@@ -8,7 +10,12 @@ def home(request):
 def manage(request):
     if not request.user.is_authenticated:
         return redirect("login:login")
-    return render(request, "memberManager/manage.html")
+    userList = User.objects.all()
+    attribute ={}
+    
+    attribute['users'] = userList
+
+    return render(request, "memberManager/manage.html", attribute)
 
 def linkList(request):
     if not request.user.is_authenticated:
