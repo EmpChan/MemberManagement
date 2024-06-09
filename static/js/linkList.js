@@ -1,5 +1,4 @@
 $(function(){
-    selectTap(4);
     $('.setting > .tab-menu').addClass("on");
     $('.sideSubtab5').addClass("on");
     
@@ -12,26 +11,6 @@ $(function(){
         }
     });	
     
-    
-    /* 연관 오브젝트 */
-    $("#belongAll").on('click',function(){
-        if($(".relate1").find("input[name='drag-chk']").prop("checked")){
-            /* 전체선택시 disabled를 제외한 모든 체크박스 선택 */
-            $(".relate1").find("input[name='drag-chk']:not(:disabled)").prop("checked", false);
-        }else{
-            $(".relate1").find("input[name='drag-chk']:not(:disabled)").prop("checked", true);
-        }
-    });	
-    
-    /* 동일 기준 오브젝트 */
-    $("#groupAll").on('click',function(){
-        if($(".relate2").find("input[name='drag-chk']").prop("checked")){
-            /* 전체선택시 disabled를 제외한 모든 체크박스 선택 */
-            $(".relate2").find("input[name='drag-chk']:not(:disabled)").prop("checked", false);
-        }else{
-            $(".relate2").find("input[name='drag-chk']:not(:disabled)").prop("checked", true);
-        }
-    });	
     
     /* 연결 오브젝트1 */
     $("#levelAll").on('click',function(){
@@ -90,3 +69,45 @@ function warnPop(){
 function closeModal2() {
     document.getElementById("warnModar").style.display="none";
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    var objLeftWrap = document.getElementById('object_list');
+    var levels = document.getElementById('levels');
+
+    // Initialize Sortable for objLeft-wrap
+    Sortable.create(objLeftWrap, {
+        group: {
+            name: 'shared',
+            pull: 'clone',  // Allow items to be cloned from this list
+          // Do not allow items to be put into this list
+        },
+        animation: 150,
+        draggable: '.dragBox',
+        onEnd: function (evt) {
+            // Handle item move
+            console.log('Item moved from', evt.from, 'to', evt.to);
+        },
+        sort: false  // Disable sorting within objLeft-wrap
+    });
+
+    // Initialize Sortable for each level-box
+    document.querySelectorAll('.level-box').forEach(function (levelBox) {
+        Sortable.create(levelBox.querySelector('.drop-box'), {
+            group: 'shared',
+            animation: 150,
+            draggable: '.dragBox',
+            onEnd: function (evt) {
+                console.log('Item moved from', evt.from, 'to', evt.to);
+                // Check if the item is moved to objLeftWrap area
+                console.log(objLeftWrap);
+                if (evt.to === objLeftWrap) {
+                    // Remove the moved item
+                    evt.item.remove();
+                    console.log('Item removed from levels');
+                }
+            }
+        });
+    });
+});
+
+
