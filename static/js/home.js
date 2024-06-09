@@ -1,7 +1,7 @@
 
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
-const data = {
+const testdata = {
   "name": "엠시스",
   "children": [
     {
@@ -173,4 +173,4 @@ function draw(data){
   container.append(svg.node());
 }
 
-draw(data);
+draw(testdata);
