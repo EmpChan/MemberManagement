@@ -66,20 +66,20 @@
                         </table>
                         <div class="pagenation">
 							<ul style="margin:15px; display:flex; justify-content:center; list-style: none; font-size: 20px;">
-								{% if members.has_previous %}
-								<li style="margin:5px;"><a style="text-decoration:none; color: #2B72FF;" href="?page={{members.previous_page_number}}">&#10094;</a></li>
+								{% if users.has_previous %}
+								<li style="margin:5px;"><a style="text-decoration:none; color: #2B72FF;" href="?page={{users.previous_page_number}}">&#10094;</a></li>
 								{% endif %}
 
-								{% for page in members.paginator.page_range %}
-								{% if page == members.number %}
+								{% for page in users.paginator.page_range %}
+								{% if page == users.number %}
 									<li style="margin:5px;"><a style="text-decoration:none; color: white; background-color: #2B72FF; padding:5px; border-radius:5px" href="?page={{page}}">{{page}}</a></li>
 								{% else %}
 									<li style="margin:5px;"><a style="text-decoration:none; color: #2B72FF;" href="?page={{page}}">{{page}}</a></li>
 								{% endif %}
 								{% endfor %}
 
-								{% if members.has_next %}
-								<li style="margin:5px;"><a style="text-decoration:none; color: #2B72FF;" href="?page={{members.next_page_number}}">&#10095;</a></li>
+								{% if users.has_next %}
+								<li style="margin:5px;"><a style="text-decoration:none; color: #2B72FF;" href="?page={{users.next_page_number}}">&#10095;</a></li>
 								{% endif %}
 
 							</ul>
