@@ -88,9 +88,23 @@
 								{% endfor %}
 							</tbody>
 						</table>
-					</div>
-					<div class="pagenation">
-						<img src="/static/img/test-pn.png" alt="">
+						<div class="pagination">
+							<span class="step-links">
+								{% if members.has_previous %}
+									<a href="?page=1">&laquo; 처음</a>
+									<a href="?page={{ members.previous_page_number }}">이전</a>
+								{% endif %}
+								
+								<span class="current">
+									페이지 {{ members.number }} / {{ members.paginator.num_pages }}
+								</span>
+								
+								{% if members.has_next %}
+									<a href="?page={{ members.next_page_number }}">다음</a>
+									<a href="?page={{ members.paginator.num_pages }}">마지막 &raquo;</a>
+								{% endif %}
+							</span>
+						</div>
 					</div>
 		
 					<!-- 하단버튼 -->
@@ -108,4 +122,3 @@
 <script src="{% static 'js/objectList.js' %}"></script>
 {% endblock %}
 </html>
-
