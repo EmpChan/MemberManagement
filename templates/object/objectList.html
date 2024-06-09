@@ -88,7 +88,27 @@
 								{% endfor %}
 							</tbody>
 						</table>
-						<div class="pagination">
+						<div>
+							<ul style="margin:15px; display:flex; justify-content:center; list-style: none; font-size: 20px;">
+								{% if members.has_previous %}
+								<li style="margin:5px;"><a style="text-decoration:none; color: #2B72FF;" href="?page={{members.previous_page_number}}">&#10094;</a></li>
+								{% endif %}
+
+								{% for page in members.paginator.page_range %}
+								{% if page == members.number %}
+									<li style="margin:5px;"><a style="text-decoration:none; color: white; background-color: #2B72FF; padding:5px; border-radius:5px" href="?page={{page}}">{{page}}</a></li>
+								{% else %}
+									<li style="margin:5px;"><a style="text-decoration:none; color: #2B72FF;" href="?page={{page}}">{{page}}</a></li>
+								{% endif %}
+								{% endfor %}
+
+								{% if members.has_next %}
+								<li style="margin:5px;"><a style="text-decoration:none; color: #2B72FF;" href="?page={{members.next_page_number}}">&#10095;</a></li>
+								{% endif %}
+
+							</ul>
+						</div>
+						<!--<div class="pagination">
 							<span class="step-links">
 								{% if members.has_previous %}
 									<a href="?page=1">&laquo; 처음</a>
@@ -104,7 +124,7 @@
 									<a href="?page={{ members.paginator.num_pages }}">마지막 &raquo;</a>
 								{% endif %}
 							</span>
-						</div>
+						</div>-->
 					</div>
 		
 					<!-- 하단버튼 -->

@@ -1,5 +1,5 @@
 $(function(){
-    selectTap(0);
+    //selectTap(0);
     $('.setting > .tab-menu').addClass("on");
     $('.sideSubtab1').addClass("on");
 });
