@@ -67,6 +67,7 @@ document.getElementById('down_arrow').addEventListener('click', function() {
 var btnHome = document.getElementById('btn_home');
 var btnSettings = document.getElementById('btn_settings');
 var usrManage = document.getElementById('usr_manage');
+var objectManage = document.getElementById('object_manage');
 var linkLevelManage = document.getElementById('link_level_manage');
 var linkManage = document.getElementById('link_manage');
 
@@ -82,6 +83,10 @@ usrManage.addEventListener('click', function() {
     window.location.href = '/manage';
 });
 
+objectManage.addEventListener('click', function(){
+    window.location.href = '/objectList';
+});
+
 linkLevelManage.addEventListener('click', function() {
     window.location.href = '/linkLevelList';
 });
@@ -92,11 +97,16 @@ linkManage.addEventListener('click', function() {
 
 
 var maname_t = document.getElementById("usr_manage_t");
+var objectManage_T = document.getElementById("object_manage_t");
 var linkLevelList = document.getElementById("link_level_manage_t");
 var linkList = document.getElementById("link_manage_t");
 
 maname_t.addEventListener('click', function() {
     window.location.href = '/manage';
+});
+
+objectManage_T.addEventListener('click', function(){
+    window.location.href = '/objectList';
 });
 
 linkLevelList.addEventListener('click', function() {

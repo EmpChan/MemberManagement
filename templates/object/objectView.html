@@ -1,0 +1,92 @@
+{% extends 'navVertical.html' %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	{% load static %}
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	{% block css %}
+	<link href="{% static 'css/objectView.css' %}" rel="stylesheet" type="text/css" >
+	{% endblock %}
+	<title>오브젝트 등록</title>
+</head>
+
+<body>
+	{% block content %}
+	<p id="objectView.html"></p>
+	<div class="main">
+		<div class="container">
+			<div class="list-con">
+				<form action="{% url 'mainpages:objectView' %}", mthod="POST">
+					<ul class="sublist-tab">
+						<li class="moving-tab" id="horizontal-tab"></li>
+						<li class="sl-st" onclick="sublistTab(0)" style="margin-right:25px;">
+							<a href="/objectList">오브젝트 목록</a>
+						</li>
+					</ul>
+					<div class="table-list">
+						<div class="tbtop-con">
+							<h3>오브젝트 수정</h3>
+						</div>
+						<div class="table-wrap">
+							<table class="common-table objr-table">
+								<colgroup>
+									<col width="65%"/>
+								</colgroup>
+								<thead>
+									<tr>
+										<th><span>오브젝트</span></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="obji-wrap">
+											<ul class="obj-inf">
+												<li>
+													<div class="inf-tbox">이름</div>
+													<input type="text">
+												</li>
+												<li>
+													<div class="inf-tbox">전공</div>
+													<input type="text">
+												</li>
+												<li>
+													<div class="inf-tbox">학번</div>
+													<input type="text">
+												</li>
+												<li>
+													<div class="inf-tbox">성별</div>
+													<select>
+														<option value="">남성</option>
+														<option value="">여성</option>
+													</select>
+												</li>
+												<li>
+													<div class="inf-tbox">휴학 여부</div>
+													<select>
+														<option value="">Y</option>
+														<option value="">N</option>
+													</select>
+												</li>
+											</ul>
+										</td>     
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<!-- 하단버튼 -->
+						<div class="btn-wrap">
+							<button type="submit" class="main-btn common-btn">저장</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endblock %}
+</body>
+{% block js %}
+<script src="{% static 'js/objectView.js' %}"></script>
+{% endblock %}
+</html>

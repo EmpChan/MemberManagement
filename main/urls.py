@@ -10,4 +10,7 @@ urlpatterns = [
     path('linkList', linkList, name = "linkList"),
     path('linkLevelList', linkLevelList, name = "linkLevelList"),
     path('setupMain', setupMain, name = "setupMain"),
+    path('objectList', objectList, name="objectList"),
+    path('objectView', objectView, name="objectView"),
+    path('objectRegister', objectRegister, name="objectRegister"),
 ]
