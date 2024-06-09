@@ -17,60 +17,68 @@
 		<div class="container">
 			<div class="list-con">
 				<form action="{% url 'mainpages:objectRegister' %}", method="POST">
+					{% csrf_token %}
 					<ul class="sublist-tab">
 						<li class="moving-tab" id="horizontal-tab"></li>
 						<li class="sl-st" onclick="sublistTab(0)" style="margin-right:25px;">
 							<a href="/objectList">오브젝트 목록</a>
 						</li>
 					</ul>
-					<div class="table-list">
-						<div class="tbtop-con">
-							<h3>오브젝트 등록</h3>
-						</div>
-						<div class="table-wrap">
-							<table class="common-table objr-table">
-								<colgroup>
-									<col width="100%"/>
-								</colgroup>
-								<thead>
-									<tr>
-										<th><span>오브젝트</span></th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
+					<form action = "{% url 'mainpages:objectRegister' %}" method = "POST">
+						<div class="table-list">
+							<div class="tbtop-con">
+								<h3>오브젝트 등록</h3>
+							</div>
+							<div class="table-wrap">
+								<table class="common-table objr-table">
+									<colgroup>
+										<col width="100%"/>
+									</colgroup>
+									<thead>
+										<tr>
+											<th><span>오브젝트</span></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
 
-										<td class="obji-wrap">
-											<ul class="obj-inf">
-												<li>
-													<div class="inf-tbox">이름</div>
-													<input type="text">
-												</li>
-												<li>
-													<div class="inf-tbox">성별</div>
-													<select>
-														<option value=""></option>
-													</select>
-												</li>
-												<li>
-													<div class="inf-tbox">소속</div>
-													<input type="text">
-												</li>
-												<li>
-													<div class="inf-tbox">주소</div>
-													<input type="text">
-												</li>
-											</ul>
-										</td>     
-									</tr>
-								</tbody>
-							</table>
-						</div>
+											<td class="obji-wrap">
+												<ul class="obj-inf">
+													<li>
+														<div class="inf-tbox">이름</div>
+														<input type="text" placeholder="이름을 입력해주세요" name="username" id ="username">
+													</li>
+													<li>
+														<div class="inf-tbox">성별</div>
+														<input type="text" placeholder="성별을 입력해주세요" name="gender" id ="gender">
+													</li>
+													<li>
+														<div class="inf-tbox">학번</div>
+														<input type="text" placeholder="학번을 입력해주세요" name="studentID" id ="studentID">
+													</li>
+													<li>
+														<div class="inf-tbox">전공</div>
+														<input type="text" placeholder="전공을 입력해주세요" name="department" id ="department">
+													</li>
+													<li>
+														<div class="inf-tbox">휴학 여부</div>
+														<select name = "notSchool" id="notSchool">
+															<option value ="False">No</option>
+															<option value ="True">Yes</option>
+														</select>
+													</li>
+												</ul>
+											</td>     
+										</tr>
+									</tbody>
+								</table>
+							</div>
 
-						<!-- 하단버튼 -->
-						<div class="btn-wrap">
-							<button type="submit" class="main-btn common-btn">저장</button>
-						</div>
+							<!-- 하단버튼 -->
+							<div class="btn-wrap">
+								<button type="submit" class="main-btn common-btn">저장</button>
+							</div>
+						</form>
 					</div>
 				</form>
 			</div>

@@ -2,7 +2,7 @@ from django.db import models
 
 class Member(models.Model):
     name = models.CharField(max_length=20)
-    createrd_at = models.DateField().auto_now_add
+    createrd_at = models.DateField(auto_now_add=True)
     gender = models.CharField(max_length=20)
     parent = models.CharField(max_length=20)
     department = models.CharField(max_length=50)

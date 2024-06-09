@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from .models import Member
+from time import timezone
 
 def home(request):
     if not request.user.is_authenticated:
@@ -45,10 +46,21 @@ def objectList(request):
 def objectRegister(request):
     if not request.user.is_authenticated:
         return redirect("login:login")
-    memberList = Member.objects.all()
-    attribute = {}
-    attribute['members'] = memberList
-    return render(request, "object/objectRegister.html",attribute)
+    if request.method!='POST':
+        return render(request, "object/objectRegister.html")
+    newMember = Member()
+    newMember.name = request.POST['username']
+    newMember.gender = request.POST['gender']
+    newMember.department = request.POST['department']
+    newMember.studentID = request.POST['studentID']
+    if(request.POST['notSchool'] == False):
+        newMember.notSchool = False
+    else:
+        newMember.notSchool = True
+    newMember.save()
+    print(newMember)
+
+    return render(request, "object/objectRegister.html")
 
 def setupMain(request):
     if not request.user.is_authenticated:

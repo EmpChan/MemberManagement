@@ -47,3 +47,9 @@ function disabledBtn(){
 function closeModal2() {
     document.getElementById("disabledModar").style.display="none";
 }
+
+var objectRegister = document.getElementById("object_register");
+
+objectRegister.addEventListener('click', function(){
+    window.location.href = '/objectRegister';
+});
