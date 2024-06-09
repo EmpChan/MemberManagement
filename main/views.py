@@ -7,7 +7,8 @@ from time import timezone
 def home(request):
     if not request.user.is_authenticated:
         return redirect("login:login")
-    return render(request,"home/home.html")
+    
+    return render(request,"home/home.html",attributes)
 
 def manage(request):
     if not request.user.is_authenticated:
@@ -47,7 +48,7 @@ def objectView(request):
     memberList = Member.objects.all()
     attribute = {}
     attribute['members'] = memberList
-    return render(request, "object/objectView.html",attribute)
+    return render(request, "object/objectView.html")
 
 def objectList(request):
     if not request.user.is_authenticated:
@@ -91,4 +92,9 @@ def objectRegister(request):
 def setupMain(request):
     if not request.user.is_authenticated:
         return redirect("login:login")
-    return render(request, "setup/setupMain.html")
+    userList = User.objects.all()
+    userlen = len(userList)
+    attributes = {}
+    attributes['userList'] = userList
+    attributes['userSize'] = userlen
+    return render(request, "setup/setupMain.html",attributes)

@@ -107,13 +107,14 @@
             				<img src="/static/img/member-icon.png" alt="">
             				<h1>가입 회원</h1>
             			</div>
-            			<p><span class="num-case">2</span>건</p>
+            			<p><span class="num-case">{{userSize}}</span>건</p>
             		</div>
             		<div class="setupList">
             			<div class="list-titBox">최근 가입 요청 회원</div>
             			<ul class="dataList">
-                            <li>test</li>
-            				<li>test</li>
+                            {% for user in userList %}
+            				<li>{{user.username}}</li>
+							{% endfor %}
             			</ul>
             		</div>
             	</div>
