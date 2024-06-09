@@ -29,25 +29,40 @@ if(linkList){
 
 //이 부분 나중에 더 추가해야함..
 
+document.addEventListener('DOMContentLoaded', function() {
+    var more_setting = document.getElementById('more_setting');
+    more_setting.classList.add('visible'); // 페이지 로드 시 보이도록 설정
+});
 
+// 기존 이벤트 리스너에 애니메이션 적용
 document.getElementById('down_arrow').addEventListener('click', function() {
-    if(settings_more){
+    if (settings_more) {
         document.getElementById('down_arrow').style.transform = 'rotate(0deg)';
         var settingsElements = document.getElementsByClassName('settings');
         for (var i = 0; i < settingsElements.length; i++) {
             settingsElements[i].classList.toggle('hidden');
         }
-        settings_more=false;
-    }
-    else{
+        settings_more = false;
+    } else {
         document.getElementById('down_arrow').style.transform = 'rotate(180deg)';
         var settingsElements = document.getElementsByClassName('settings');
         for (var i = 0; i < settingsElements.length; i++) {
             settingsElements[i].classList.remove('hidden');
         }
-        settings_more=true;
+        settings_more = true;
+    }
+
+    // nav2_scal 애니메이션 제어
+    var more_setting = document.getElementById('more_setting');
+    if (more_setting.classList.contains('visible')) {
+        more_setting.classList.remove('visible');
+    } else {
+        more_setting.classList.add('visible');
     }
 });
+
+
+
 
 var btnHome = document.getElementById('btn_home');
 var btnSettings = document.getElementById('btn_settings');

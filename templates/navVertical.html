@@ -52,13 +52,32 @@
             border-radius: 5px;
             margin-top: 10px;
         }
+        .settings:hover {
+            background-color: aliceblue; /* hover 시 배경색 변경 */
+            transition: background-color 0.3s ease; /* 배경색 변경 애니메이션 추가 */
+        }
+        #setting:hover {
+            background-color: aliceblue; /* hover 시 배경색 변경 */
+            transition: background-color 0.3s ease; /* 배경색 변경 애니메이션 추가 */
+        }
+        #btn_home:hover {
+            background-color: aliceblue; /* hover 시 배경색 변경 */
+            transition: background-color 0.3s ease; /* 배경색 변경 애니메이션 추가 */
+        }
+        #more_setting{
+            display: block;
+            overflow: hidden;
+            max-height: 0; /* 기본적으로 숨겨진 상태 */
+            transition: max-height 0.5s ease; /* 애니메이션 추가 */
+        }
+        #more_setting.visible {
+            max-height: 500px; /* 최대 높이 설정, 필요에 따라 조정 */
+        }
         #down_arrow {
             border-radius: 5px;
             background-color: white;
             margin-left: auto;
-        }
-        .settings.hidden {
-            display: none;
+            transition: transform 0.3s ease; 
         }
         #nav2_scal {
             margin-top: 2%;
@@ -77,6 +96,10 @@
             margin-bottom: 4px;
             margin-left: 5px;
             margin-right: 5px;
+        }
+        .settings_top:hover {
+            background-color: aliceblue; /* hover 시 배경색 변경 */
+            transition: background-color 0.3s ease; /* 배경색 변경 애니메이션 추가 */
         }
         .settings_top p {
             padding: 20px;
@@ -109,14 +132,16 @@
                 <img src="{% static 'img/down-arrow.png' %}" id="down_arrow">
             </div>
             <!--설정 내비 하위 설정들-->
-            <div id="usr_manage" class="settings">
-                <p><strong>회원 관리</strong></p>
-            </div>
-            <div id="link_level_manage" class="settings">
-                <p><strong>링크 레벨 관리</strong></p>
-            </div>
-            <div id="link_manage" class="settings">
-                <p><strong>링크 관리</strong></p>
+            <div id = "more_setting">
+                <div id="usr_manage" class="settings">
+                    <p><strong>회원 관리</strong></p>
+                </div>
+                <div id="link_level_manage" class="settings">
+                    <p><strong>링크 레벨 관리</strong></p>
+                </div>
+                <div id="link_manage" class="settings">
+                    <p><strong>링크 관리</strong></p>
+                </div>
             </div>
         </div>
     </div>

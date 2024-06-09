@@ -1,13 +1,6 @@
 
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
-
-const container = document.getElementById('container');
-const width = container.clientWidth*1.3;
-const height = container.clientHeight*1.3;
-const cx = width * 0.5;
-const cy = height * 0.5;
-const radius = Math.min(width, height) / 2 - 80;
 const data = {
   "name": "엠시스",
   "children": [
@@ -95,82 +88,89 @@ const data = {
   ]
 };
 
-const colors = {
-  "red": "#ff0000", // 빨강색
-  "blue": "#0000ff", // 파랑색
-  "green": "#00ff00", // 초록색
-  "yellow": "#ffff00", // 노랑색
-  "purple": "#800080" // 보라색
-};
+function draw(data){
+  const container = document.getElementById('container');
+  const width = container.clientWidth*1.3;
+  const height = container.clientHeight*1.3;
+  const cx = width * 0.5;
+  const cy = height * 0.5;
+  const radius = Math.min(width, height) / 2 - 80;
 
-// const width = 928;
-// const height = width;
-// const cx = width * 0.5; // adjust as needed to fit
-// const cy = height * 0.54; // adjust as needed to fit
-// const radius = Math.min(width, height) / 2 - 80;
-  
-const tree = d3.cluster()
-.size([2 * Math.PI, radius])
-.separation((a, b) => (a.parent == b.parent ? 1 : 2) / a.depth);
+  const colors = {
+    "red": "#ff0000", // 빨강색
+    "blue": "#0000ff", // 파랑색
+    "green": "#00ff00", // 초록색
+    "yellow": "#ffff00", // 노랑색
+    "purple": "#800080" // 보라색
+  };
+    
+  const tree = d3.cluster()
+  .size([2 * Math.PI, radius])
+  .separation((a, b) => (a.parent == b.parent ? 1 : 2) / a.depth);
 
-// Sort the tree and apply the layout.
-const root = tree(d3.hierarchy(data)
-.sort((a, b) => d3.ascending(a.data.name, b.data.name)));
+  const root = tree(d3.hierarchy(data)
+  .sort((a, b) => d3.ascending(a.data.name, b.data.name)));
 
-function getColor(d) {
-  while (d.depth > 1) d = d.parent;
-  return colors[d.data.color] || "#999";
+  function getColor(d) {
+    while (d.depth > 1) d = d.parent;
+    return colors[d.data.color] || "#999";
+  }
+
+  const svg = d3.create("svg")
+  .attr("width", width)
+  .attr("height", height)
+  .attr("viewBox", [-cx, -cy, width, height]);
+
+  const g = svg.append("g");
+
+  // 링크 연결.
+  g.append("g")
+  .attr("fill", "none")
+  .attr("stroke-opacity", 0.4)
+  .attr("stroke-width", 1.5)
+  .selectAll()
+  .data(root.links())
+  .join("path")
+    .attr("d", d3.linkRadial()
+      .angle(d => d.x)
+      .radius(d => d.y))
+    .attr("stroke", d => getColor(d.target));
+
+  // 노드 삽입.
+  g.append("g")
+  .selectAll()
+  .data(root.descendants())
+  .join("circle")
+  .attr("transform", d => `rotate(${d.x * 180 / Math.PI - 90}) translate(${d.y},0)`)
+  .attr("fill", d => d.children ? "#555" : "#999")
+  .attr("r", 2.5);
+
+  g.append("g")
+  .attr("stroke-linejoin", "round")
+  .attr("stroke-width", 3)
+  .selectAll()
+  .data(root.descendants())
+  .join("text")
+  .attr("transform", d => `rotate(${d.x * 180 / Math.PI - 90}) translate(${d.y},0) rotate(${d.x >= Math.PI ? 180 : 0})`)
+  .attr("dy", "0.31em")
+  .attr("x", d => d.x < Math.PI === !d.children ? 6 : -6)
+  .attr("text-anchor", d => d.x < Math.PI === !d.children ? "start" : "end")
+  .attr("paint-order", "stroke")
+  .attr("stroke", "white")
+  .attr("fill", "currentColor")
+  .text(d => d.data.name);
+
+
+  //줌 이벤트 추가
+  const zoom = d3.zoom()
+  .scaleExtent([0.5, 5])
+  .on("zoom", (event) => {
+    g.attr("transform", event.transform);
+  });
+
+  svg.call(zoom);
+
+  container.append(svg.node());
 }
 
-const zoom = d3.zoom()
-.scaleExtent([0.5, 5])
-.on("zoom", (event) => {
-  svg.attr("transform", event.transform);
-});
-
-// Creates the SVG container.
-const svg = d3.create("svg")
-.attr("width", width)
-.attr("height", height)
-.attr("viewBox", [-cx, -cy, width, height])
-.call(zoom);
-
-// 링크 연결.
-svg.append("g")
-.attr("fill", "none")
-.attr("stroke-opacity", 0.4)
-.attr("stroke-width", 1.5)
-.selectAll()
-.data(root.links())
-.join("path")
-  .attr("d", d3.linkRadial()
-    .angle(d => d.x)
-    .radius(d => d.y))
-  .attr("stroke", d => getColor(d.target));
-
-// 노드 삽입.
-svg.append("g")
-.selectAll()
-.data(root.descendants())
-.join("circle")
-.attr("transform", d => `rotate(${d.x * 180 / Math.PI - 90}) translate(${d.y},0)`)
-.attr("fill", d => d.children ? "#555" : "#999")
-.attr("r", 2.5);
-
-// Append labels.
-svg.append("g")
-.attr("stroke-linejoin", "round")
-.attr("stroke-width", 3)
-.selectAll()
-.data(root.descendants())
-.join("text")
-.attr("transform", d => `rotate(${d.x * 180 / Math.PI - 90}) translate(${d.y},0) rotate(${d.x >= Math.PI ? 180 : 0})`)
-.attr("dy", "0.31em")
-.attr("x", d => d.x < Math.PI === !d.children ? 6 : -6)
-.attr("text-anchor", d => d.x < Math.PI === !d.children ? "start" : "end")
-.attr("paint-order", "stroke")
-.attr("stroke", "white")
-.attr("fill", "currentColor")
-.text(d => d.data.name);
-
-container.append(svg.node());
+draw(data);
