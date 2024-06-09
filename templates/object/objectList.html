@@ -88,7 +88,7 @@
 								{% endfor %}
 							</tbody>
 						</table>
-						<div>
+						<div class="pagenation">
 							<ul style="margin:15px; display:flex; justify-content:center; list-style: none; font-size: 20px;">
 								{% if members.has_previous %}
 								<li style="margin:5px;"><a style="text-decoration:none; color: #2B72FF;" href="?page={{members.previous_page_number}}">&#10094;</a></li>
@@ -112,7 +112,7 @@
 		
 					<!-- 하단버튼 -->
 					<div class="btn-wrap">
-						<button type="button" class="sub-btn common-btn" id="object_register" style="background-color : blue;color:white" id="levelAll">등록</button>
+						<button type="button" class="sub-btn common-btn" id="object_register" style="background-color : #2B72FF; color:white" id="levelAll">등록</button>
 						<button type="button" class="sub-btn common-btn" onclick="disabledBtn();">비활성화</button>
 					</div>
 				</div>
