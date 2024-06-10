@@ -30,4 +30,17 @@ function saveModal() {
 }
 function closeModal2() {
     document.getElementById("saveModar").style.display="none";
-}	
+}
+
+function search() {
+    const query = document.getElementById('searchInput').value;
+    const url = new URL(window.location.href);
+    url.searchParams.set('query', query);
+    window.location.href = url.toString();
+}
+
+document.getElementById('searchInput').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        search();
+    }
+});

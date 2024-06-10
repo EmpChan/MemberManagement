@@ -30,10 +30,8 @@
                      <div class="tbtop-con">
                         <h3>가입 및 승인 권한 관리</h3>
                         <div class="serch-box">
-                            <form action="{% url 'mainpages:manage' %}" method="GET">
-                                <input type="text" name="query" placeholder="검색어를 입력하세요." value="{{ query }}">
-                                <button type="submit">검색</button>
-                            </form>
+                            <input type="text" id="searchInput" placeholder="검색어를 입력하세요." value="{{ query }}">
+                            <button type="button" onclick="search()">검색</button>
                         </div>
                      </div>
                      <div class="table-wrap">
