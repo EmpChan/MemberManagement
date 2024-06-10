@@ -44,20 +44,48 @@ def linkList(request):
 def linkLevelList(request):
     if not request.user.is_authenticated:
         return redirect("login:login")
-    groupList = Member.objects.filter(gender="GROUP")
-    if not request.method == 'POST':
-        return render(request, "linkLevel/linkLevelList.html",{"groupList" : groupList})
+    
+    query = request.GET.get('query', '')
+    if query:
+        groupList = Member.objects.filter(name__icontains=query)
+    else:
+        groupList = Member.objects.all()
+        
+    groupList = groupList.filter(gender="GROUP")
+    
+    if request.method == 'POST':
+        try:
+            newMember = Member(
+                name=request.POST['groupName'],
+                gender="GROUP",
+                studentID="GROUP",
+                department="GROUP",
+                type=1
+            )
+            newMember.save()
+        except Exception as e:
+            print(e)  # 오류 메시지 출력
+            return render(request, "linkLevel/linkLevelList.html", {
+                "groupList": groupList,
+                "query": query,
+                "error_message": "그룹 추가 중 오류가 발생했습니다."
+            })
+        
+    paginator = Paginator(groupList, 10)  # 페이지당 10개의 아이템을 보여주도록 설정
+
+    page = request.GET.get('page', 1)  # URL의 'page' 파라미터 값을 가져오거나, 없으면 1로 설정
+
     try:
-        newMember = Member()
-        newMember.name = request.POST['groupName']
-        newMember.gender = "GROUP"
-        newMember.studentID = "GROUP"
-        newMember.department = "GROUP"
-        newMember.type = 1
-        newMember.save()
-    except:
-        print(newMember)
-    return redirect("mainpages:linkLevelList")
+        groupList = paginator.page(page)
+    except PageNotAnInteger:
+        # 페이지 번호가 정수가 아닐 경우, 첫 번째 페이지를 보여줌
+        groupList = paginator.page(1)
+    except EmptyPage:
+        # 페이지 범위를 벗어난 경우, 마지막 페이지를 보여줌
+        groupList = paginator.page(paginator.num_pages)
+        
+    attribute = {'groupList': groupList, 'query': query}
+    return render(request, "linkLevel/linkLevelList.html", attribute)
 
 def objectView(request,id):
     if not request.user.is_authenticated:

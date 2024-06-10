@@ -79,9 +79,9 @@
                         <h3>링크 레벨 목록</h3>
                         <div class="rsh-sort">
                         	<div class="serch-box">
-	                            <input type="text" placeholder="검색어를 입력하세요.">
+	                            <input type="text" id="searchInput" placeholder="검색어를 입력하세요." value="{{ query }}">
+            					<button type="button" onclick="search()">검색</button>
 	                        </div>
-	                        <button type="button" class="main-btn" onclick="levelAdd();">그룹 추가</button>
                         </div>
                      </div>
                      <div class="table-wrap">
@@ -111,11 +111,29 @@
                         </table>
                      </div>
                      <div class="pagenation">
-                     	<img src="/static/img/test-pn.png" alt="">
-                     </div>
+                        <ul style="margin:15px; display:flex; justify-content:center; list-style: none; font-size: 20px;">
+                            {% if groupList.has_previous %}
+                            <li style="margin:5px;"><a style="text-decoration:none; color: #2B72FF;" href="?page={{groupList.previous_page_number}}">&#10094;</a></li>
+                            {% endif %}
+
+                            {% for page in groupList.paginator.page_range %}
+                            {% if page == groupList.number %}
+                                <li style="margin:5px;"><a style="text-decoration:none; color: white; background-color: #2B72FF; padding:5px; border-radius:5px" href="?page={{page}}">{{page}}</a></li>
+                            {% else %}
+                                <li style="margin:5px;"><a style="text-decoration:none; color: #2B72FF;" href="?page={{page}}">{{page}}</a></li>
+                            {% endif %}
+                            {% endfor %}
+
+                            {% if groupList.has_next %}
+                            <li style="margin:5px;"><a style="text-decoration:none; color: #2B72FF;" href="?page={{groupList.next_page_number}}">&#10095;</a></li>
+                            {% endif %}
+
+                        </ul>
+                    </div>
                      
                      <!-- 하단버튼 -->
                      <div class="btn-wrap">
+                        <button type="button" class="sub-btn common-btn" style="background-color : #2B72FF; color:white" onclick="levelAdd();">그룹 추가</button>
                      	<button type="button" class="sub-btn common-btn" onclick="disabledBtn();">삭제</button>
                      </div>
                     </form>

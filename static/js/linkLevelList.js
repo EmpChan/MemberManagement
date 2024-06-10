@@ -138,4 +138,17 @@ function selectAll(selectAll) {
 	checkboxes.forEach((checkbox) => {
 	    checkbox.checked = selectAll.checked;
 	})
-};	
+};
+
+function search() {
+    const query = document.getElementById('searchInput').value;
+    const url = new URL(window.location.href);
+    url.searchParams.set('query', query);
+    window.location.href = url.toString();
+}
+
+document.getElementById('searchInput').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        search();
+    }
+});
