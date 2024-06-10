@@ -82,7 +82,7 @@
 							<tbody>
 								{% for member in members %}
 								<tr>
-									<td><input type="checkbox" name="selectBox" value="{{forloop.counter0}}"></td>
+									<td><input type="checkbox" name="selectBox" value="{{member.id}}"></td>
 									<td onclick="location.href='/objectView/{{member.id}}'">{{forloop.counter}}</td>
 									<td onclick="location.href='/objectView/{{member.id}}'">{{member.name}}</td>                                   
 									<td onclick="location.href='/objectView/{{member.id}}'">{{member.gender}}</td>                                    

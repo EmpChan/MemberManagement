@@ -133,12 +133,9 @@ def deleteGroup(request):
         return redirect("login:login")
     if not request.method=="POST":
         return redirect("mainpages:linkLevelList")
-    memberList = list(Member.objects.filter(gender="GROUP"))
     checkBox = request.POST.getlist('selectBox')
-    print(memberList)
     for i in checkBox:
-        memberList[int(i)].delete()
-
+        get_object_or_404(Member,id=int(i)).delete()
     return redirect("mainpages:linkLevelList")
 
 def deleteMember(request):
@@ -146,12 +143,9 @@ def deleteMember(request):
         return redirect("login:login")
     if not request.method=="POST":
         return redirect("mainpages:objectList")
-    memberList = Member.objects.exclude(gender__icontains="GROUP")
     checkBox = request.POST.getlist('selectBox')
-    print(memberList)
     for i in checkBox:
-        memberList[int(i)].delete()
-
+        get_object_or_404(Member,id=int(i)).delete()
     return redirect("mainpages:objectList")
 
 def setupMain(request):

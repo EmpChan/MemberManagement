@@ -8,6 +8,15 @@
 		{% block css %}
 		<link href="{% static 'css/linkList.css' %}" rel="stylesheet" type="text/css" >
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+		<style>
+			.dragBox{
+    background: #fff;
+    border-radius: 3px;
+	width: 100%;
+    height: 16px;
+    border: 1px solid #C7CDD8;
+			}
+		</style>
 		{% endblock %}
 		<title>링크 관리</title>
 	</head>
@@ -19,35 +28,28 @@
 		<p id="linkList.html"></p>
 		<div class="main">
 			<div class="container">
-				<h2 class="linkmag-tit">링크 목록</h2>
-				<div id="magContainer">
-					<ul id="objLeft-wrap" class="objLeft-wrap">
+				<div id="magContainer" style="margin-top: 30px;">
+					<ul id="objLeft-wrap" class="objLeft-wrap" style="height: 79.3vh;">
 						<li class="obj-header" style="position:relative; width:100%; height:40px; border-radius:6px 6px 0 0; background:#2b72ff; color:#fff; font-weight:600;">
 							<p style="text-align:center; line-height:39px; color:#fff;">오브젝트</p>
 							<div class="reset-btn"><img src="/static/img/reset-icon.png" alt=""></div>
 						</li>
-						<li class="obj-serch">
+						<!-- <li class="obj-serch">
 							<input type="text" placeholder="검색어를 입력하세요.">
 							<p></p>
-						</li>
-						<li class="dad-wrap" id = "object_list">
+						</li> -->
+						<li class="dad-wrap" id = "object_list" style="height: 85%;">
 							<div class="dragBox" draggable="true">
-								<input type="checkbox" class="drag-chk" id="drag01" name="drag-chk">
 								<label for="drag01" class="drag-list">테스트1 / 체크</label>
 							</div>
 							<div class="dragBox" draggable="true">
-								<input type="checkbox" class="drag-chk" id="drag02" name="drag-chk">
 								<label for="drag02" class="drag-list">테스트2 / 체크</label>
 							</div>
 							<div class="dragBox" draggable="true">
-								<input type="checkbox" class="drag-chk" id="drag03" name="drag-chk">
 								<label for="drag03" class="drag-list">테스트3 / 체크</label>
 							</div>
 						</li>
-						<li class="obj-btnbox">
-							<button type="button" class="all-select" id="selectAll">전체선택</button>
-							<button type="button" class="delect">삭제</button>
-						</li>
+
 						<li style="padding-top: 10px; padding-left: 10px;">
 							<div class="top-start">
 								<button type="button" class="saveBtn" style="width: 96%;">저장</button>

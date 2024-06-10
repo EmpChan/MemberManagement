@@ -102,7 +102,7 @@
                             <tbody>
                                 {% for group in groupList %}
                                 <tr onclick="levelRetouch();">
-                                    <td><input type="checkbox" id = "{{forloop.counter0}}box"name="selectBox" value="{{forloop.counter0}}"></td>
+                                    <td><input type="checkbox" id = "{{forloop.counter0}}box"name="selectBox" value="{{group.id}}"></td>
                                     <td>{{forloop.counter}}</td>
                                     <td>{{group.name}}</td>                                   
                                 </tr>
