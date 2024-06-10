@@ -13,13 +13,17 @@ def home(request):
 def manage(request):
     if not request.user.is_authenticated:
         return redirect("login:login")
-    userList = User.objects.all()
-    # attribute ={}
-    # attribute['users'] = userList
+    
+    query = request.GET.get('query', '')
+    if query:
+        userList = User.objects.filter(username__icontains=query)
+    else:
+        userList = User.objects.all()
+
     paginator = Paginator(userList, 10)  # 페이지당 10개의 아이템을 보여주도록 설정
 
     page = request.GET.get('page', 1)  # URL의 'page' 파라미터 값을 가져오거나, 없으면 1로 설정
-
+    
     try:
         userList = paginator.page(page)
     except PageNotAnInteger:
@@ -29,7 +33,7 @@ def manage(request):
         # 페이지 범위를 벗어난 경우, 마지막 페이지를 보여줌
         userList = paginator.page(paginator.num_pages)
 
-    attribute = {'users': userList}
+    attribute = {'users': userList, 'query': query}
     return render(request, "memberManager/manage.html", attribute)
 
 def linkList(request):
@@ -79,8 +83,16 @@ def objectView(request,id):
 def objectList(request):
     if not request.user.is_authenticated:
         return redirect("login:login")
-    memberList = Member.objects.exclude(gender__icontains="GROUP")
-    paginator = Paginator(memberList, 10)  # 페이지당 10개의 아이템을 보여주도록 설정
+    
+    query = request.GET.get('query', '')
+    if query:
+        members = Member.objects.filter(name__icontains=query)
+    else:
+        members = Member.objects.all()
+        
+    members = members.exclude(gender__icontains="GROUP")
+    
+    paginator = Paginator(members, 10)  # 페이지당 10개의 아이템을 보여주도록 설정
 
     page = request.GET.get('page', 1)  # URL의 'page' 파라미터 값을 가져오거나, 없으면 1로 설정
 
@@ -92,8 +104,8 @@ def objectList(request):
     except EmptyPage:
         # 페이지 범위를 벗어난 경우, 마지막 페이지를 보여줌
         members = paginator.page(paginator.num_pages)
-    attribute ={}
-    attribute['members']= members
+        
+    attribute = {'members': members, 'query': query}
     return render(request, "object/objectList.html", attribute)
 
 def objectRegister(request):

@@ -29,6 +29,7 @@
 					<button type = "submit" id="delectBtn">삭제</button>
 				</div>
 			</div>
+			</form>
 		</div>
 	</div>
 
@@ -46,7 +47,10 @@
 						<h3>오브젝트 목록</h3>
 						<div class="rsh-sort">
 							<div class="serch-box">
-								<input type="text" placeholder="검색어를 입력하세요.">
+								<form action="{% url 'mainpages:objectList' %}" method="GET">
+									<input type="text" name="query" placeholder="검색어를 입력하세요." value="{{ query }}">
+                                	<button type="submit">검색</button>
+								</form>
 							</div>
 						</div>
 					</div>
