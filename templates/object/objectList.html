@@ -29,6 +29,7 @@
 					<button type = "submit" id="delectBtn">삭제</button>
 				</div>
 			</div>
+			</form>
 		</div>
 	</div>
 
@@ -48,7 +49,7 @@
 							<div class="serch-box">
 								<form action="{% url 'mainpages:objectList' %}" method="GET">
 									<input type="text" name="query" placeholder="검색어를 입력하세요." value="{{ query }}">
-									<button type="submit">검색</button>
+                                	<button type="submit">검색</button>
 								</form>
 							</div>
 						</div>

@@ -86,13 +86,13 @@ def objectList(request):
     
     query = request.GET.get('query', '')
     if query:
-        memberList = Member.objects.filter(name__icontains=query)
+        members = Member.objects.filter(name__icontains=query)
     else:
-        memberList = Member.objects.all()
+        members = Member.objects.all()
         
-    memberList = Member.objects.exclude(gender__icontains="GROUP")
+    members = members.exclude(gender__icontains="GROUP")
     
-    paginator = Paginator(memberList, 10)  # 페이지당 10개의 아이템을 보여주도록 설정
+    paginator = Paginator(members, 10)  # 페이지당 10개의 아이템을 보여주도록 설정
 
     page = request.GET.get('page', 1)  # URL의 'page' 파라미터 값을 가져오거나, 없으면 1로 설정
 
@@ -104,9 +104,8 @@ def objectList(request):
     except EmptyPage:
         # 페이지 범위를 벗어난 경우, 마지막 페이지를 보여줌
         members = paginator.page(paginator.num_pages)
-    attribute ={}
-    attribute['members']= members
-    attribute['query']= query
+        
+    attribute = {'members': members, 'query': query}
     return render(request, "object/objectList.html", attribute)
 
 def objectRegister(request):
