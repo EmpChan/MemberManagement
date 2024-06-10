@@ -8,7 +8,7 @@ def home(request):
     if not request.user.is_authenticated:
         return redirect("login:login")
     
-    return render(request,"home/home.html",attributes)
+    return render(request,"home/home.html")
 
 def manage(request):
     if not request.user.is_authenticated:
