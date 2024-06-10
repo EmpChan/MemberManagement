@@ -18,7 +18,7 @@
 		<div class="modar-wrap disabled-md">
 			<div class="modar-header">
 				<p>비활성화</p>
-				<div onclick="closeModal2();" class="close-btn"><img src="/static/img/close-icon.png" alt=""></div>
+				<div onclick="closeModal2();" class="close-btn"><img src="/static/img/close-icon.png" alt="" class="delete_x"></div>
 			</div>	
 			<form action = "{% url 'mainpages:deleteMember' %}" method="POST">
 			{% csrf_token %}
