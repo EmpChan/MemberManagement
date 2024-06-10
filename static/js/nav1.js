@@ -16,6 +16,11 @@ if(setup){
     document.getElementById('object_manage').style.backgroundColor = 'aliceblue';
     document.getElementById('object_manage_t').style.backgroundColor = 'aliceblue';
 }
+setup2 = document.getElementById("objectRegister.html");
+if(setup2){
+    document.getElementById('object_manage').style.backgroundColor = 'aliceblue';
+    document.getElementById('object_manage_t').style.backgroundColor = 'aliceblue';
+}
 manage = document.getElementById("manage.html");
 if(manage){
     document.getElementById('usr_manage').style.backgroundColor = 'aliceblue';
