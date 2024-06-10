@@ -4,7 +4,7 @@ class Member(models.Model):
     name = models.CharField(max_length=20) # name PK
     createrd_at = models.DateField(auto_now_add=True)
     gender = models.CharField(max_length=20)
-    parent = models.CharField(max_length=20) # FK 
+    parent = models.ForeignKey('self', on_delete=models.CASCADE, related_name='over', null=True, blank=True)
     department = models.CharField(max_length=50)
     studentID = models.CharField(max_length=50)
     type = models.BooleanField(default=0)# 1이면 그룹임
