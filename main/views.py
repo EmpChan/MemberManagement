@@ -83,7 +83,15 @@ def objectView(request,id):
 def objectList(request):
     if not request.user.is_authenticated:
         return redirect("login:login")
+    
+    query = request.GET.get('query', '')
+    if query:
+        memberList = Member.objects.filter(name__icontains=query)
+    else:
+        memberList = Member.objects.all()
+        
     memberList = Member.objects.exclude(gender__icontains="GROUP")
+    
     paginator = Paginator(memberList, 10)  # 페이지당 10개의 아이템을 보여주도록 설정
 
     page = request.GET.get('page', 1)  # URL의 'page' 파라미터 값을 가져오거나, 없으면 1로 설정
@@ -98,6 +106,7 @@ def objectList(request):
         members = paginator.page(paginator.num_pages)
     attribute ={}
     attribute['members']= members
+    attribute['query']= query
     return render(request, "object/objectList.html", attribute)
 
 def objectRegister(request):
