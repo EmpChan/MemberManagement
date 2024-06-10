@@ -20,11 +20,13 @@
 				<p>비활성화</p>
 				<div onclick="closeModal2();" class="close-btn"><img src="/static/img/close-icon.png" alt=""></div>
 			</div>	
+			<form action = "{% url 'mainpages:deleteMember' %}" method="POST">
+			{% csrf_token %}
 			<div class="modar-con">
-				<h2 style="margin-bottom:20px;">모든 오브젝트에서 해당 필드가 비활성화 됩니다.<br>계속하시겠습니까?</h2>
+				<h2 style="margin-bottom:20px;">선택한 모든 오브젝트가 삭제됩니다.<br>계속하시겠습니까?</h2>
 				<div class="mdbtn-wrap">
 					<button onclick="closeModal2();" id="cancelBtn">취소</button>
-					<button id="delectBtn">삭제</button>
+					<button type = "submit" id="delectBtn">삭제</button>
 				</div>
 			</div>
 		</div>
@@ -73,17 +75,18 @@
 									<th><span>휴학 여부</span></th>
 								</tr>
 							</thead>
+							
 							<tbody>
 								{% for member in members %}
-								<tr onclick="location.href='/objectView'">
-									<td><input type="checkbox" name="selectBox"></td>
-									<td>{{forloop.counter}}</td>
-									<td>{{member.name}}</td>                                   
-									<td>{{member.gender}}</td>                                    
-									<td>{{member.studentID}}</td> 
-									<td>{{member.department}}</td> 
-									<td>{{member.created_at}}</td> 
-									<td>{{member.notSchool}}</td>   
+								<tr>
+									<td><input type="checkbox" name="selectBox" value="{{forloop.counter0}}"></td>
+									<td onclick="location.href='/objectView/{{member.id}}'">{{forloop.counter}}</td>
+									<td onclick="location.href='/objectView/{{member.id}}'">{{member.name}}</td>                                   
+									<td onclick="location.href='/objectView/{{member.id}}'">{{member.gender}}</td>                                    
+									<td onclick="location.href='/objectView/{{member.id}}'">{{member.studentID}}</td> 
+									<td onclick="location.href='/objectView/{{member.id}}'">{{member.department}}</td> 
+									<td onclick="location.href='/objectView/{{member.id}}'">{{member.createrd_at}}</td> 
+									<td onclick="location.href='/objectView/{{member.id}}'">{{member.notSchool}}</td>   
 								</tr>
 								{% endfor %}
 							</tbody>
@@ -113,8 +116,9 @@
 					<!-- 하단버튼 -->
 					<div class="btn-wrap">
 						<button type="button" class="sub-btn common-btn" id="object_register" style="background-color : #2B72FF; color:white" id="levelAll">등록</button>
-						<button type="button" class="sub-btn common-btn" onclick="disabledBtn();">비활성화</button>
+						<button type="button" class="sub-btn common-btn" onclick="disabledBtn();">삭제</button>
 					</div>
+				</form>
 				</div>
 			</div>
 		</div>
