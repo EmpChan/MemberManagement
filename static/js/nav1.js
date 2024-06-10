@@ -11,6 +11,11 @@ setup = document.getElementById("setupMain");
 if(setup){
     document.getElementById('setting').style.backgroundColor = 'aliceblue';
 }
+setup = document.getElementById("objectList.html");
+if(setup){
+    document.getElementById('object_manage').style.backgroundColor = 'aliceblue';
+    document.getElementById('object_manage_t').style.backgroundColor = 'aliceblue';
+}
 manage = document.getElementById("manage.html");
 if(manage){
     document.getElementById('usr_manage').style.backgroundColor = 'aliceblue';
