@@ -505,7 +505,7 @@ nav{
     font-size: 24px;
     font-weight: 800;
 }
-.table-list .tbtop-con .serch-box>input{
+.table-list .tbtop-con .serch-box>form>input{
     height: 40px;
     width: 368px;
     border: 1px solid #C7CDD8;
@@ -516,6 +516,24 @@ nav{
     color: #373F57;
     
 }
+
+.table-list .tbtop-con .serch-box>form>button{
+    border: 1px solid #2B72FF;
+    color: #2B72FF;
+    width: 60px;
+    height: 40px;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 4px;
+    transition: all .2s;
+    margin-left: 7px;
+}
+
+.table-list .tbtop-con .serch-box>form>button:hover{
+    background: #2B72FF;
+    color: #EFF5FF;
+}
+
 .table-list .tbtop-con .serch-box{
     position: relative;
 }
@@ -531,8 +549,7 @@ nav{
     right: 10px;
 }
 .table-wrap{
-   
-   
+    
 }
 .common-table{
     width: 100%;
