@@ -22,80 +22,30 @@
 	<div id="levelaModar" class="modar-bk">
 		<div class="modar-wrap level-md">
 			<div class="modar-header">
-				<p>레벨 추가</p>
+				<p>그룹 추가</p>
 				<div onclick="closeModal();" class="close-btn"><img src="/static/img/close-icon.png" alt=""></div>
 			</div>
 			<div class="modar-con2">
-				<h2>레벨 추가</h2>
-				<div class="iputWrap">
-					<ul class="inputList">
-						<li>
-							<p>링크 레벨 이름</p>
-							<input type="text" class="levelName" placeholder="링크 그룹명을 입력하세요.">
-						</li>
-					</ul>
-					<ul class="inputList">
-						<li>
-							<p>라인 색상( Tap it )</p>
-							<div class="pickr-wrap">
-								<div class="theme-container"></div>
-								<div class="pickr-container"></div>
-							</div>
-						</li>
-					</ul>
-				</div>
-				<div class="mdbtn-wrap rightSort">
-					<button id="saveBtn">저장</button>
-				</div>
+                <form action="{% url 'mainpages:linkLevelList' %}" method ="POST">
+                    {% csrf_token %}
+                    <h2>그룹 추가</h2>
+                    <div class="iputWrap">
+                        <ul class="inputList">
+                            <li>
+                                <p>그룹 이름</p>
+                                <input type="text" class="levelName" id="groupName" name = "groupName" placeholder="링크 그룹명을 입력하세요.">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mdbtn-wrap rightSort">
+                        <button id="saveBtn" type="submit">저장</button>
+                    </div>
+                </form>
 			</div>
 			
 		</div>
 	</div>
-
-	<!-- 레벨 수정 모달 -->
-	<div id="levelrModar" class="modar-bk">
-		<div class="modar-wrap lev-retouch">
-			<div class="modar-header">
-				<p>레벨 수정</p>
-				<div onclick="closeModal2();" class="close-btn"><img src="static/img/close-icon.png" alt=""></div>
-			</div>
-			<div class="modar-con2">
-				<h2>레벨 수정</h2>
-				<div class="iputWrap">
-					<ul class="inputList">
-						<li>
-							<p>링크 레벨 이름</p>
-							<input type="text" class="levelName" placeholder="링크 그룹명을 입력하세요.">
-						</li>
-					</ul>
-					<ul class="inputList">
-						<li>
-							<p>라인 색상( Tap it )</p>
-							<div class="pickr-wrap">
-								<div class="theme-container"></div>
-								<div class="pickr-container"></div>
-							</div>
-						</li>
-					</ul>
-					<ul class="inputList">
-						<li>
-							<p>활성화 여부 선택</p>
-							<select>
-								<option>Y</option>
-								<option>N</option>
-							</select>
-						</li>
-					</ul>
-				</div>
-				<div class="mdbtn-wrap rightSort">
-					<button id="saveBtn">저장</button>
-				</div>
-			</div>
-			
-		</div>
-	</div>
-
-	<!-- 비활성화  -->
+    <form action="{% url 'mainpages:deleteGroup' %}", method="POST">
 	<div id="disabledModar" class="modar-bk">
 		<div class="modar-wrap disabled-md">
 			<div class="modar-header">
@@ -103,11 +53,13 @@
 				<div onclick="closeModal3();" class="close-btn"><img src="/static/img/close-icon.png" alt=""></div>
 			</div>	
 			<div class="modar-con">
-				<h2 style="margin-bottom:20px;">모든 오브젝트에서 해당 필드가 비활성화 됩니다.<br>계속하시겠습니까?</h2>
-				<div class="mdbtn-wrap">
-					<button onclick="closeModal3();" id="cancelBtn">취소</button>
-					<button id="delectBtn">삭제</button>
-				</div>
+                
+                    {% csrf_token %}
+                    <h2 style="margin-bottom:20px;">선택한 모든 그룹이 삭제됩니다.<br>계속하시겠습니까?</h2>
+                    <div class="mdbtn-wrap">
+                        <button onclick="closeModal3();" id="cancelBtn">취소</button>
+                        <button id="delectBtn">삭제</button>
+                    </div>
 			</div>
 		</div>
 	</div>
@@ -129,7 +81,7 @@
                         	<div class="serch-box">
 	                            <input type="text" placeholder="검색어를 입력하세요.">
 	                        </div>
-	                        <button type="button" class="main-btn" onclick="levelAdd();">레벨 추가</button>
+	                        <button type="button" class="main-btn" onclick="levelAdd();">그룹 추가</button>
                         </div>
                      </div>
                      <div class="table-wrap">
@@ -138,128 +90,23 @@
                             	<col width="7%"/>
                             	<col width="7%"/>
                             	<col width="25%"/>
-                            	<col width="28%"/>
-                            	<col width="18%"/>
-                            	<col width="15%"/>
                             </colgroup>
                             
                             <thead>
                                  <tr>
                                     <th><span class="th-check"><input type="checkbox" name="selectBox" onclick="selectAll(this)"></span></th>
                                     <th><span>번호</span></th>
-                                    <th><span>링크 레벨 이름</span></th>
-                                    <th><span>라인 색상</span></th>
-                                    <th><span>색상 코드</span></th>
-                                    <th><span>활성화 여부</span></th>
+                                    <th><span>그룹 이름</span></th>
                                  </tr>
                             </thead>
                             <tbody>
+                                {% for group in groupList %}
                                 <tr onclick="levelRetouch();">
-                                    <td><input type="checkbox" name="selectBox"></td>
-                                    <td>1</td>
-                                    <td>LEVEL 1</td>                                   
-                                    <td>
-                                    	<div class="colorBox">
-                                    		<div class="lineColor"></div>
-                                    	</div>
-                                    </td>                                    
-                                    <td>#A06EE6</td> 
-                                    <td>N</td>   
+                                    <td><input type="checkbox" id = "{{forloop.counter0}}box"name="selectBox" value="{{forloop.counter0}}"></td>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{group.name}}</td>                                   
                                 </tr>
-                                <tr onclick="levelRetouch();">
-                                    <td><input type="checkbox" name="selectBox"></td>
-                                    <td>1</td>
-                                    <td>LEVEL 1</td>                                   
-                                    <td>
-                                    	<div class="colorBox">
-                                    		<div class="lineColor lineColor2"></div>
-                                    	</div>
-                                    </td>                                    
-                                    <td>#A06EE6</td> 
-                                    <td>N</td>   
-                                </tr>
-                                <tr onclick="levelRetouch();">
-                                    <td><input type="checkbox" name="selectBox"></td>
-                                    <td>1</td>
-                                    <td>LEVEL 1</td>                                   
-                                    <td>
-                                    	<div class="colorBox">
-                                    		<div class="lineColor lineColor3"></div>
-                                    	</div>
-                                    </td>                                    
-                                    <td>#A06EE6</td> 
-                                    <td>N</td>   
-                                </tr>
-                               <tr onclick="levelRetouch();">
-                                    <td><input type="checkbox" name="selectBox"></td>
-                                    <td>1</td>
-                                    <td>LEVEL 1</td>                                   
-                                    <td>
-                                    	<div class="colorBox"></div>
-                                    </td>                                    
-                                    <td>#A06EE6</td> 
-                                    <td>N</td>   
-                                </tr>
-                                <tr onclick="levelRetouch();">
-                                    <td><input type="checkbox" name="selectBox"></td>
-                                    <td>1</td>
-                                    <td>LEVEL 1</td>                                   
-                                    <td>
-                                    	<div class="colorBox"></div>
-                                    </td>                                    
-                                    <td>#A06EE6</td> 
-                                    <td>N</td>   
-                                </tr>
-                                <tr onclick="levelRetouch();">
-                                    <td><input type="checkbox" name="selectBox"></td>
-                                    <td>1</td>
-                                    <td>LEVEL 1</td>                                   
-                                    <td>
-                                    	<div class="colorBox"></div>
-                                    </td>                                    
-                                    <td>#A06EE6</td> 
-                                    <td>N</td>   
-                                </tr>
-                                <tr onclick="levelRetouch();">
-                                    <td><input type="checkbox" name="selectBox"></td>
-                                    <td>1</td>
-                                    <td>LEVEL 1</td>                                   
-                                    <td>
-                                    	<div class="colorBox"></div>
-                                    </td>                                    
-                                    <td>#A06EE6</td> 
-                                    <td>N</td>   
-                                </tr>
-                                <tr onclick="levelRetouch();">
-                                    <td><input type="checkbox" name="selectBox"></td>
-                                    <td>1</td>
-                                    <td>LEVEL 1</td>                                   
-                                    <td>
-                                    	<div class="colorBox"></div>
-                                    </td>                                    
-                                    <td>#A06EE6</td> 
-                                    <td>N</td>   
-                                </tr>
-                                <tr onclick="levelRetouch();">
-                                    <td><input type="checkbox" name="selectBox"></td>
-                                    <td>1</td>
-                                    <td>LEVEL 1</td>                                   
-                                    <td>
-                                    	<div class="colorBox"></div>
-                                    </td>                                    
-                                    <td>#A06EE6</td> 
-                                    <td>N</td>   
-                                </tr>
-                                <tr class="radius-tr" onclick="levelRetouch();">
-                                    <td><input type="checkbox" name="selectBox"></td>
-                                    <td>1</td>
-                                    <td>LEVEL 1</td>                                   
-                                    <td>
-                                    	<div class="colorBox"></div>
-                                    </td>                                    
-                                    <td>#A06EE6</td> 
-                                    <td>N</td>   
-                                </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                      </div>
@@ -269,8 +116,9 @@
                      
                      <!-- 하단버튼 -->
                      <div class="btn-wrap">
-                     	<button type="button" class="sub-btn common-btn" onclick="disabledBtn();">비활성화</button>
+                     	<button type="button" class="sub-btn common-btn" onclick="disabledBtn();">삭제</button>
                      </div>
+                    </form>
                 </div>
             </div>
         </div>

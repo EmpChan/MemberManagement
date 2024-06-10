@@ -11,6 +11,8 @@ urlpatterns = [
     path('linkLevelList', linkLevelList, name = "linkLevelList"),
     path('setupMain', setupMain, name = "setupMain"),
     path('objectList', objectList, name="objectList"),
-    path('objectView', objectView, name="objectView"),
+    path('objectView/<int:id>', objectView, name="objectView"),
     path('objectRegister', objectRegister, name="objectRegister"),
+    path('deleteGroup',deleteGroup , name = "deleteGroup"),
+    path('deleteMember', deleteMember, name="deleteMember"),
 ]

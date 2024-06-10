@@ -17,7 +17,8 @@
 	<div class="main">
 		<div class="container">
 			<div class="list-con">
-				<form action="{% url 'mainpages:objectView' %}", mthod="POST">
+				<form action="{% url 'mainpages:objectView' object.id %}", method="POST">
+					{% csrf_token %}
 					<ul class="sublist-tab">
 						<li class="moving-tab" id="horizontal-tab"></li>
 						<li class="sl-st" onclick="sublistTab(0)" style="margin-right:25px;">
@@ -44,30 +45,28 @@
 											<ul class="obj-inf">
 												<li>
 													<div class="inf-tbox">이름</div>
-													<input type="text">
+													<input type="text" name = "username" id = "username" value="{{object.name}}">
 												</li>
 												<li>
 													<div class="inf-tbox">전공</div>
-													<input type="text">
+													<input type="text" name = "department" id = "department" value="{{object.department}}">
 												</li>
 												<li>
 													<div class="inf-tbox">학번</div>
-													<input type="text">
+													<input type="text" name = "studentID" id = "studentID" value="{{object.studentID}}">
 												</li>
 												<li>
 													<div class="inf-tbox">성별</div>
-													<select>
-														<option value="">남성</option>
-														<option value="">여성</option>
-													</select>
+													<input type="text" name = "gender" id = "gender" value="{{object.gender}}">
 												</li>
 												<li>
 													<div class="inf-tbox">휴학 여부</div>
-													<select>
-														<option value="">Y</option>
-														<option value="">N</option>
+													<select name = "notSchool" id ="notSchool" value="{{object.notScholl}}">
+														<option value="Yes">Yes</option>
+														<option value="No">No</option>
 													</select>
 												</li>
+												
 											</ul>
 										</td>     
 									</tr>
