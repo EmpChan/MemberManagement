@@ -183,4 +183,17 @@ def setupMain(request):
     attributes = {}
     attributes['userList'] = userList
     attributes['userSize'] = userlen
+
+    query = request.GET.get('query', '')
+    if query:
+        groupList = Member.objects.filter(name__icontains=query)
+    else:
+        groupList = Member.objects.all()
+        
+    groupList = groupList.filter(gender="GROUP")
+
+    grouplen = len(groupList)
+    attributes['groupList'] = groupList
+    attributes['groupSize'] = grouplen
+
     return render(request, "setup/setupMain.html",attributes)
