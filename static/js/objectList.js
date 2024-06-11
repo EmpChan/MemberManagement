@@ -1,16 +1,3 @@
-function sublistTab(num){
-    var menuLength = $(".sl-st").length;
-
-    for(var i = 0; i < menuLength; i++){
-        if(i == num){
-            $(".sl-st:eq("+i+")").addClass("on");
-        }
-        else{
-            $(".sl-st:eq("+i+")").removeClass("on");
-        }
-    }
-}
-
 function selectAll(selectAll)  {
     const checkboxes = document.getElementsByName('selectBox');
         
