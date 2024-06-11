@@ -48,6 +48,7 @@ function search() {
 
 document.getElementById('searchInput').addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
+        e.preventDefault();
         search();
     }
 });
