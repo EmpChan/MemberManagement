@@ -38,14 +38,12 @@
                         <table class="common-table retouch-table">
                             <colgroup>
                             	<col width="7%"/>
+                            	<col width="14%"/>
                             	<col width="7%"/>
-                            	<col width="24%"/>
-                            	<col width="24%"/>
-                            	<col width="16%"/>
+                            	<col width="50%"/>
                             </colgroup>
                             <thead>
                                  <tr>
-                                    <th><span class="th-check"><input type="checkbox" name="selectBox" onclick=""></span></th>
                                     <th><span>번호</span></th>
                                     <th><span>아이디</span></th>
                                     <th><span>고유번호</span></th>
@@ -55,7 +53,6 @@
                             <tbody>
                                 {% for i in users %}
                                 <tr>
-                                    <td><input type="checkbox" name="selectBox"></td>
                                     <td>{{ forloop.counter }}</td>
                                     
                                     <td>{{i.username}}</td>                                   
