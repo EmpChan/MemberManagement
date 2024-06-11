@@ -140,13 +140,14 @@
             				<img src="/static/img/link-icon.png" alt="">
             				<h1>링크</h1>
             			</div>
-            			<p><span class="num-case">2</span>건</p>
+            			<p><span class="num-case">{{groupSize}}</span>건</p>
             		</div>
             		<div class="setupList">
             			<div class="list-titBox">최근 등록한 링크 그룹</div>
             			<ul class="dataList">
-                            <li>test</li>
-            				<li>test</li>
+							{% for user in groupList %}
+            				<li>{{user.name}}</li>
+							{% endfor %}
             			</ul>
             		</div>
             	</div>
