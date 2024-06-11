@@ -19,17 +19,6 @@ function disabledBtn(){
 function closeModal3() {
     document.getElementById("disabledModar").style.display="none";
 }
-
-
-// $(function(){
-// 	selectTap(3);
-// 	$('.setting > .tab-menu').addClass("on");
-// 	$('.sideSubtab4').addClass("on");
-// });
-
-// $(window).on('load', function(){
-// 	$('.setting > .setting-sub').css("display","block");
-// });
 	
 function selectAll(selectAll) {
 	const checkboxes = document.getElementsByName('selectBox');
