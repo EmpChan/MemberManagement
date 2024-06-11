@@ -1,13 +1,3 @@
-$(function(){
-    //selectTap(0);
-    $('.setting > .tab-menu').addClass("on");
-    $('.sideSubtab1').addClass("on");
-});
-
-$(window).on('load', function(){
-    $('.setting > .setting-sub').css("display","block");
-});
-
 function selectAll(selectAll) {
     const checkboxes = document.getElementsByName('selectBox');
       

@@ -170,8 +170,8 @@
         {% block content %}{% endblock %}
     </div>
     <script src="{% static 'js/nav1.js' %}"></script>
-    <script src="{% static 'js/jquery-3.7.0.js' %}"></script>
-    <script src="{% static 'js/jquery-3.7.0.min.js' %}"></script>
+    {% comment %} <script src="{% static 'js/jquery-3.7.0.js' %}"></script>
+    <script src="{% static 'js/jquery-3.7.0.min.js' %}"></script> {% endcomment %}
     {% block js %}{% endblock %}
 </body>
 </html>
