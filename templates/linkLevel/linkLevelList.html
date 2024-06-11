@@ -5,7 +5,7 @@
 <head>
 	{% load static %}
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>링크 레벨 관리</title>
+	<title>그룹 관리</title>
 	
 	{% block css %}
 	<link href="{% static 'css/pickr.css' %}" rel="stylesheet" type="text/css" >
@@ -71,12 +71,12 @@
                 <ul class="sublist-tab">
                     <li class="moving-tab" id="horizontal-tab"></li>
                     <li class="sl-st on" onclick="sublistTab(0)" style="margin-right:25px;">
-                        <a>링크 레벨 목록</a>
+                        <a>그룹 레벨 목록</a>
                     </li>
                 </ul>
                 <div class="table-list">
                      <div class="tbtop-con">
-                        <h3>링크 레벨 목록</h3>
+                        <h3>그룹 레벨 목록</h3>
                         <div class="rsh-sort">
                         	<div class="serch-box">
 	                            <input type="text" id="searchInput" placeholder="검색어를 입력하세요." value="{{ query }}">
