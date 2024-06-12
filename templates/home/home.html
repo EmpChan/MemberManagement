@@ -18,11 +18,9 @@
             <p style="color: white;"><strong>그룹</strong></p></div>
             <div>
                 <ul class="dataList">
-                    <li>엠시스</li>
-                    <li>test1</li>
-                    <li>test2</li>
-                    <li>test3</li>
-                    <li>test4</li>
+                {% for group in groupList %}
+                    <li>{{group.name}}</li>
+                {% endfor %}
                 </ul>
             </div>
         </div>

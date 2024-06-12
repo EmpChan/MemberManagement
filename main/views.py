@@ -7,8 +7,9 @@ from time import timezone
 def home(request):
     if not request.user.is_authenticated:
         return redirect("login:login")
+    groupList = Member.objects.filter(gender="GROUP")
     
-    return render(request,"home/home.html")
+    return render(request,"home/home.html",{"groupList":groupList})
 
 def manage(request):
     if not request.user.is_authenticated:
