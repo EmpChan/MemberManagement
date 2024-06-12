@@ -82,7 +82,7 @@ var linkLevelManage = document.getElementById('link_level_manage');
 var linkManage = document.getElementById('link_manage');
 
 btnHome.addEventListener('click', function() {
-    window.location.href = '/';
+    window.location.href = '/home/none';
 });
 
 btnSettings.addEventListener('click', function() {

@@ -4,7 +4,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Member
 from time import timezone
 
-def home(request):
+def home(request,root):
     if not request.user.is_authenticated:
         return redirect("login:login")
     groupList = Member.objects.filter(gender="GROUP")
