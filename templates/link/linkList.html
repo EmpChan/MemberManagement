@@ -24,6 +24,7 @@
 		{% block content %}
 		<p id="linkList.html"></p>
 		<div class="main">
+			<form action="{% url 'mainpages:linkList' %}" method ="POST"></form>
 			<div class="container">
 				<div id="magContainer" style="margin-top: 30px;">
 					<ul id="objLeft-wrap" class="objLeft-wrap" style="height: 79.3vh;">
@@ -35,22 +36,23 @@
 							<input type="text" placeholder="검색어를 입력하세요.">
 							<p></p>
 						</li> -->
+						
 						<li class="dad-wrap" id = "object_list" style="height: 85%;">
 							{% for group in groupList %}
-							<div class="dragBox" draggable="true">
-								<label for="drag01" class="drag-list">{{group.name}} / 그룹</label>
+							<div class="dragBox" draggable="true" style="text-align:center">
+								<label for="drag01" class="drag-list">{{group.name}}<br>그룹</label>
 							</div>
 							{% endfor %}
 							{% for member in memberList %}
-							<div class="dragBox" draggable="true">
-								<label for="drag01" class="drag-list">{{member.name}} / 사람</label>
+							<div class="dragBox" draggable="true" style="text-align:center">
+								<label for="drag01" class="drag-list">{{member.name}}<br>사람</label>
 							</div>
 							{% endfor %}
 						</li>
 
 						<li style="padding-top: 10px; padding-left: 10px;">
 							<div class="top-start">
-								<button type="button" class="saveBtn" style="width: 96%;">저장</button>
+								<button type="submit" class="saveBtn" style="width: 96%;">저장</button>
 							</div>
 						</li>
 					</ul>
@@ -94,6 +96,7 @@
 									</div>
 								</li>
 								<!-- More levels... -->
+							</form>
 							</ul>
 						</div>
 					</div>

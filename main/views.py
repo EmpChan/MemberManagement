@@ -4,6 +4,9 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Member
 from time import timezone
 
+def gohome(request):
+    return redirect("login:login")
+
 def home(request,root):
     if not request.user.is_authenticated:
         return redirect("login:login")
@@ -96,7 +99,6 @@ def objectView(request,id):
     objec = get_object_or_404(Member, id=id)
     attribute = {'object':objec}
     if not request.method=="POST":
-        print("흠")
         return render(request, "object/objectView.html", attribute)
     objec.name= request.POST['username']
     objec.department = request.POST['department']
@@ -106,7 +108,6 @@ def objectView(request,id):
         objec.notSchool = True
     else:
         objec.notSchool = False
-    print("캬")
     objec.save()
     return redirect("mainpages:objectList")
 

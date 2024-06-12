@@ -5,6 +5,7 @@ from main.views import *
 app_name="mainpages"
 
 urlpatterns = [
+    path('',gohome,name = "gohome"),
     path('home/<str:root>', home, name = "home"),
     path('manage', manage, name = "manage"),
     path('linkList', linkList, name = "linkList"),
