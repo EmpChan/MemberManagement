@@ -5,58 +5,12 @@ const testdata = {
   "name": "엠시스",
   "children": [
     {
-      "name": "그룹 A",
-      "children": [
-        {
-          "name": "황재찬",
-          "children": [
-            {"name": "고영찬", "value": 100},
-            {"name": "박찬혁", "value": 1},
-          ]
-        }
-        , 
-        {
-          "name": "아무개",
-          "children": [
-            {"name": "B", "value": 100},
-            {"name": "A", "value": 1},
-            {"name": "아무개", "value": 1},
-            {"name": "아무개2", "value": 1}
-          ]
-        }
-      ]
+      "name": "pchuk",
     }
     ,
     {
-      "name": "그룹 B",
-      "children": [
-        {"name": "고영찬", "value": 100},
-        {"name": "박찬혁", "value": 1},
-        {"name": "A", "value": 1},
-        {"name": "B", "value": 1}
-      ]
-    },
-    {
-      "name": "그룹 C",
-      "children": [
-        {
-          "name": "A",
-          "children": [
-            {"name": "B", "value": 100},
-            {"name": "B1", "value": 1},
-            {"name": "B2", "value": 1},
-          ]
-        },
-        {
-          "name": "C",
-          "children": [
-            {"name": "c1", "value": 100},
-            {"name": "c2", "value": 1},
-            {"name": "c3", "value": 1},
-          ]
-        }
-      ]
-    },
+      "name": "청주새콤주먹",
+    }
   ]
 };
 
@@ -163,6 +117,6 @@ function draw(data) {
   container.append(svg.node());
 }
 
-function testdata(){
+document.getElementById('test').addEventListener('click', function(){
   draw(testdata);
-}
+});
