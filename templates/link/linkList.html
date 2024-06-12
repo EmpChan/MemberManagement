@@ -21,9 +21,6 @@
 		<title>링크 관리</title>
 	</head>
 	<body>
-		{% if is_authenticated %}
-		gogo
-		{% endif %}
 		{% block content %}
 		<p id="linkList.html"></p>
 		<div class="main">
@@ -39,15 +36,16 @@
 							<p></p>
 						</li> -->
 						<li class="dad-wrap" id = "object_list" style="height: 85%;">
+							{% for group in groupList %}
 							<div class="dragBox" draggable="true">
-								<label for="drag01" class="drag-list">테스트1 / 체크</label>
+								<label for="drag01" class="drag-list">{{group.name}} / 그룹</label>
 							</div>
+							{% endfor %}
+							{% for member in memberList %}
 							<div class="dragBox" draggable="true">
-								<label for="drag02" class="drag-list">테스트2 / 체크</label>
+								<label for="drag01" class="drag-list">{{member.name}} / 사람</label>
 							</div>
-							<div class="dragBox" draggable="true">
-								<label for="drag03" class="drag-list">테스트3 / 체크</label>
-							</div>
+							{% endfor %}
 						</li>
 
 						<li style="padding-top: 10px; padding-left: 10px;">

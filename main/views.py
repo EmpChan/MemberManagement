@@ -40,7 +40,9 @@ def manage(request):
 def linkList(request):
     if not request.user.is_authenticated:
         return redirect("login:login")
-    return render(request, "link/linkList.html")
+    groupList = Member.objects.filter(gender="GROUP")
+    memberList = Member.objects.exclude(gender__icontains="GROUP")
+    return render(request, "link/linkList.html",{"memberList":memberList,"groupList":groupList})
 
 def linkLevelList(request):
     if not request.user.is_authenticated:
