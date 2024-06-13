@@ -45,8 +45,17 @@ def linkList(request):
         return redirect("login:login")
     groupList = Member.objects.filter(gender="GROUP")
     memberList = Member.objects.exclude(gender__icontains="GROUP")
-    if request.method == "POST":
-        print(dict(request.POST))
+    if not request.method == "POST":
+        print("흠")
+        return render(request, "link/linkList.html",{"memberList":memberList,"groupList":groupList})
+    parent = [i.strip('"그룹사람') for i in request.POST['parent'].strip("[]").split(",")]
+    pid = get_object_or_404(Member, name = parent[0])
+    child = [i.strip('"그룹사람') for i in request.POST['child'].strip("[]").split(",")]
+    for i in child:
+        obj = get_object_or_404(Member, name=i)
+        obj.parent = pid
+    for i in child:
+        print(obj.parent.name)
     return render(request, "link/linkList.html",{"memberList":memberList,"groupList":groupList})
 
 def linkLevelList(request):
