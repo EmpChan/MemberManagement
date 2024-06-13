@@ -41,12 +41,12 @@
 						<li class="dad-wrap" id = "object_list" style="height: 85%;">
 							{% for group in groupList %}
 							<div class="dragBox" draggable="true">
-								<p for="drag01" class="drag-list">{{group.name}} / 그룹</p>
+								<p for="drag01" class="drag-list"style="text-align:center">{{group.name}}<br>그룹</p>
 							</div>
 							{% endfor %}
 							{% for member in memberList %}
 							<div class="dragBox" draggable="true">
-								<p for="drag01" class="drag-list">{{member.name}} / 사람</p>
+								<p for="drag01" class="drag-list" style="text-align:center">{{member.name}}<br>사람</p>
 							</div>
 							{% endfor %}
 						</li>
