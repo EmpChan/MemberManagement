@@ -30,7 +30,7 @@
 					<ul id="objLeft-wrap" class="objLeft-wrap" style="height: 79.3vh;">
 						<li class="obj-header" style="position:relative; width:100%; height:40px; border-radius:6px 6px 0 0; background:#2b72ff; color:#fff; font-weight:600;">
 							<p style="text-align:center; line-height:39px; color:#fff;">오브젝트</p>
-							<div class="reset-btn"><img src="/static/img/reset-icon.png" alt=""></div>
+							<div class="reset-btn" id ="re"><img src="/static/img/reset-icon.png" alt=""></div>
 						</li>
 						<!-- <li class="obj-serch">
 							<input type="text" placeholder="검색어를 입력하세요.">
@@ -39,20 +39,20 @@
 						
 						<li class="dad-wrap" id = "object_list" style="height: 85%;">
 							{% for group in groupList %}
-							<div class="dragBox" draggable="true" style="text-align:center">
-								<label for="drag01" class="drag-list">{{group.name}}<br>그룹</label>
+							<div class="dragBox" draggable="true">
+								<p for="drag01" class="drag-list">{{group.name}} / 그룹</p>
 							</div>
 							{% endfor %}
 							{% for member in memberList %}
-							<div class="dragBox" draggable="true" style="text-align:center">
-								<label for="drag01" class="drag-list">{{member.name}}<br>사람</label>
+							<div class="dragBox" draggable="true">
+								<p for="drag01" class="drag-list">{{member.name}} / 사람</p>
 							</div>
 							{% endfor %}
 						</li>
 
 						<li style="padding-top: 10px; padding-left: 10px;">
 							<div class="top-start">
-								<button type="submit" class="saveBtn" style="width: 96%;">저장</button>
+								<button type="button" class="saveBtn" style="width: 96%;" id ="link_save">저장</button>
 							</div>
 						</li>
 					</ul>
@@ -68,9 +68,8 @@
 									<div class="folder-list" style="padding-top: 10px; height: 62vh;">
 										<div style="padding:0 10px 10px 10px;">
 											<ul class="under-wrap"style="height: 60vh;">
-												<li class="drop-box" style="height: 58vh;">
+												<li class="drop-box" style="height: 58vh;" id ="parent">
 								
-													<!-- More dragBox items... -->
 												</li>
 											</ul>
 										</div>
@@ -84,12 +83,8 @@
 									<div class="folder-list" style="padding-top: 10px; height: 62vh;">
 										<div style="padding:0 10px 10px 10px;">
 											<ul class="under-wrap"style="height: 60vh;">
-												<li class="drop-box" style="height: 58vh;">
-													<!-- <div class="dragBox" draggable="true">
-														<input type="checkbox" class="drag-chk" id="drag00" name="drag-chk">
-														<label for="drag00" class="drag-list">테스트0 / 체크</label>
-													</div> -->
-													<!-- More dragBox items... -->
+												<li class="drop-box" style="height: 58vh;" id = "childe">
+		
 												</li>
 											</ul>
 										</div>

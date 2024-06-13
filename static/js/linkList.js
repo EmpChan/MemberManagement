@@ -1,4 +1,4 @@
- function warnPop(){
+function warnPop(){
     document.getElementById("warnModar").style.display="block";
 }
 function closeModal2() {
@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
         onEnd: function (evt) {
             // Handle item move
             console.log('Item moved from', evt.from, 'to', evt.to);
+
         },
         sort: false  // Disable sorting within objLeft-wrap
     });
@@ -44,5 +45,46 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+
+document.getElementById("link_save").addEventListener('click', function () {
+    var parentElement = document.getElementById("parent");
+    var dragBoxesp = parentElement.getElementsByClassName("dragBox");
+    var parentData = [];
+
+    for (var i = 0; i < dragBoxesp.length; i++) {
+        var dragBoxp = dragBoxesp[i];
+        var pgroupName = dragBoxp.querySelector("p.drag-list").textContent;
+        parentData.push(pgroupName);
+       // console.log(pgroupName);
+    }
+
+    //console.log('하위');
+
+    var childElement = document.getElementById("childe");
+    var dragBoxesc = childElement.getElementsByClassName("dragBox");
+    var childData = [];
+
+    for (var i = 0; i < dragBoxesc.length; i++) {
+        var dragBoxc = dragBoxesc[i];
+        var cgroupName = dragBoxc.querySelector("p.drag-list").textContent;
+        childData.push(cgroupName);
+        //console.log(cgroupName);
+    }
+
+    var data = {
+        parent: parentData,
+        child: childData
+    };
+
+    var jsonData = JSON.stringify(data);
+    console.log(jsonData);
+
+});
+
+document.getElementById('re').addEventListener('click', function(){
+    location.reload();
+});
+
 
 
