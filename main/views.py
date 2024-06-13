@@ -11,24 +11,39 @@ def gohome(request):
 
 def getData(root):
     try:
+        # root를 부모로 가지는 Member 객체들을 가져옵니다.
         members = list(Member.objects.filter(parent=root))
     except:
-        return {'name':root,"value":1}
-    for i in range(len(members)):
-        if(members[i].type==1):
-            members[i]=getData(members[i].name)
-        else:
-            members[i] = {'name':members[i].name,"value":1}
-    print(members)
-    return members
+        # 멤버를 가져오는 데 실패할 경우 처리합니다. 예: 자식이 없을 때
+        return {'name': root}
+    
+    children = []
+    for member in members:
+            child_data = getData(member.name)
+            if child_data:
+                children.append({
+                    'name': member.name,
+                    'children': child_data
+                })
+            else:
+                children.append({
+                    'name': member.name
+                }) 
 
-def home(request,root):
+    
+    return children
+
+def home(request, root):
     if not request.user.is_authenticated:
         return redirect("login:login")
+
     groupList = Member.objects.filter(gender="GROUP")
     graphData = getData(root)
-    graphData_json = json.dumps(graphData)
-    return render(request,"home/home.html",{"groupList":groupList,"graphData":graphData_json,"root":root})
+    graphData_json = json.dumps({
+        "name": root,
+        "children": graphData
+    })
+    return render(request, "home/home.html", {"groupList": groupList, "graphData": graphData_json, "root": root})
 
 def manage(request):
     if not request.user.is_authenticated:

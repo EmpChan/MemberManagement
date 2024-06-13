@@ -13,21 +13,9 @@
             console.log('Test Data:', JSON.stringify(graphData, null, 2));
 
             if(root!=="none"){
-                if (Array.isArray(graphData) && graphData.length === 0) {
-                    const testData = {
-                    name: root
-                    }; 
-                    window.testData = testData;
-                } else {
-                    const testData = {
-                    name: root,
-                    children: graphData
-                    }; 
-                    window.testData = testData;
-                }
-
-                console.log('Test Data:', JSON.stringify(testData, null, 2));
-            }   
+                    window.testData = graphData;
+            }
+          
         </script>
         {% endblock %}
         <title>회원 관리</title>
