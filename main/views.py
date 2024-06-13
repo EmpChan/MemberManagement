@@ -192,7 +192,7 @@ def objectRegister(request):
     newMember.gender = request.POST['gender']
     newMember.department = request.POST['department']
     newMember.studentID = request.POST['studentID']
-    if(request.POST['notSchool'] == False):
+    if(request.POST['notSchool'] == "False"):
         newMember.notSchool = False
     else:
         newMember.notSchool = True
