@@ -4,15 +4,29 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Member
 from time import timezone
 
+
 def gohome(request):
     return redirect("login:login")
+
+def getData(root):
+    try:
+        members = list(Member.objects.filter(parent=root))
+    except:
+        return {'name':root,"value":1}
+    for i in range(len(members)):
+        if(members[i].type==1):
+            members[i]=getData(members[i].name)
+        else:
+            members[i] = {'name':members[i].name,"value":1}
+    print(members)
+    return members
 
 def home(request,root):
     if not request.user.is_authenticated:
         return redirect("login:login")
     groupList = Member.objects.filter(gender="GROUP")
-    
-    return render(request,"home/home.html",{"groupList":groupList})
+    graphData = getData(root)
+    return render(request,"home/home.html",{"groupList":groupList,"graphData":graphData})
 
 def manage(request):
     if not request.user.is_authenticated:
@@ -49,13 +63,13 @@ def linkList(request):
         print("흠")
         return render(request, "link/linkList.html",{"memberList":memberList,"groupList":groupList})
     parent = [i.strip('"그룹사람') for i in request.POST['parent'].strip("[]").split(",")]
-    pid = get_object_or_404(Member, name = parent[0])
     child = [i.strip('"그룹사람') for i in request.POST['child'].strip("[]").split(",")]
     for i in child:
         obj = get_object_or_404(Member, name=i)
-        obj.parent = pid
+        obj.parent = parent[0]
+        obj.save()
     for i in child:
-        print(obj.parent.name)
+        print(obj.parent)
     return render(request, "link/linkList.html",{"memberList":memberList,"groupList":groupList})
 
 def linkLevelList(request):
