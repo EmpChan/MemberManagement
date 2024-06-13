@@ -45,6 +45,8 @@ def linkList(request):
         return redirect("login:login")
     groupList = Member.objects.filter(gender="GROUP")
     memberList = Member.objects.exclude(gender__icontains="GROUP")
+    if request.method == "POST":
+        print(dict(request.POST))
     return render(request, "link/linkList.html",{"memberList":memberList,"groupList":groupList})
 
 def linkLevelList(request):

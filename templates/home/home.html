@@ -19,7 +19,7 @@
             <div>
                 <ul class="dataList">
                 {% for group in groupList %}
-                    <li id="test" class="hoo">{{group.name}}</li>
+                    <li id="test" class="hoo"><a href="{% url 'mainpages:home' group.name %}">{{group.name}}</a></li>
                 {% endfor %}
                 </ul>
             </div>

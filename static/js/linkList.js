@@ -47,7 +47,9 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-document.getElementById("link_save").addEventListener('click', function () {
+//document.getElementById("link_save").addEventListener('click', );
+/*
+function saveItems() {
     var parentElement = document.getElementById("parent");
     var dragBoxesp = parentElement.getElementsByClassName("dragBox");
     var parentData = [];
@@ -79,8 +81,67 @@ document.getElementById("link_save").addEventListener('click', function () {
 
     var jsonData = JSON.stringify(data);
     console.log(jsonData);
+}
+*/
+function saveItems() {
+    var parentElement = document.getElementById("parent");
+    var dragBoxesp = parentElement.getElementsByClassName("dragBox");
+    var parentData = [];
 
-});
+    for (var i = 0; i < dragBoxesp.length; i++) {
+        var dragBoxp = dragBoxesp[i];
+        var pgroupName = dragBoxp.querySelector("p.drag-list").textContent;
+        parentData.push(pgroupName);
+    }
+
+    var childElement = document.getElementById("childe");
+    var dragBoxesc = childElement.getElementsByClassName("dragBox");
+    var childData = [];
+
+    for (var i = 0; i < dragBoxesc.length; i++) {
+        var dragBoxc = dragBoxesc[i];
+        var cgroupName = dragBoxc.querySelector("p.drag-list").textContent;
+        childData.push(cgroupName);
+    }
+
+    var data = {
+        parent: parentData,
+        child: childData
+    };
+
+    var jsonData = JSON.stringify(data);
+    console.log(jsonData);
+
+    // 폼 생성
+    var form = document.createElement("form");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", "/linkList");
+
+    // CSRF 토큰 입력 추가 (Django는 POST 요청에 이 토큰이 필요함)
+    var csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+    var csrfInput = document.createElement("input");
+    csrfInput.setAttribute("type", "hidden");
+    csrfInput.setAttribute("name", "csrfmiddlewaretoken");
+    csrfInput.setAttribute("value", csrfToken);
+    form.appendChild(csrfInput);
+
+    // parent와 child 데이터를 위한 숨겨진 입력 필드 생성
+    var parentInput = document.createElement("input");
+    parentInput.setAttribute("type", "hidden");
+    parentInput.setAttribute("name", "parent");
+    parentInput.setAttribute("value", JSON.stringify(parentData));
+    form.appendChild(parentInput);
+
+    var childInput = document.createElement("input");
+    childInput.setAttribute("type", "hidden");
+    childInput.setAttribute("name", "child");
+    childInput.setAttribute("value", JSON.stringify(childData));
+    form.appendChild(childInput);
+
+    // 폼을 body에 추가하고 제출
+    document.body.appendChild(form);
+    form.submit();
+}
 
 document.getElementById('re').addEventListener('click', function(){
     location.reload();
