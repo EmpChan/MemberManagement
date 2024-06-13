@@ -7,6 +7,28 @@
         <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
         {% block css %}
         <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+        <script type="text/javascript">
+            const graphData = JSON.parse('{{ graphData|escapejs }}');
+            const root = '{{ root|escapejs }}';
+            console.log('Test Data:', JSON.stringify(graphData, null, 2));
+
+            if(root!=="none"){
+                if (Array.isArray(graphData) && graphData.length === 0) {
+                    const testData = {
+                    name: root
+                    }; 
+                    window.testData = testData;
+                } else {
+                    const testData = {
+                    name: root,
+                    children: graphData
+                    }; 
+                    window.testData = testData;
+                }
+
+                console.log('Test Data:', JSON.stringify(testData, null, 2));
+            }   
+        </script>
         {% endblock %}
         <title>회원 관리</title>
     </head>

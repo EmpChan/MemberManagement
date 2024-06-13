@@ -1,18 +1,5 @@
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
-const testdata = {
-  "name": "엠시스",
-  "children": [
-    {
-      "name": "pchuk",
-    }
-    ,
-    {
-      "name": "청주새콤주먹",
-    }
-  ]
-};
-
 const predefinedColors = [
   "#ff0000", "#0000ff", "#00ff00", "#EA3FF7", 
   "#ffa500","#00bfff", "#000000", "#D40765",
@@ -116,6 +103,10 @@ function draw(data) {
   container.append(svg.node());
 }
 
-document.getElementById('test').addEventListener('click', function(){
-  draw(testdata);
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  if(testData){
+    console.log("그래프 그리기")
+  draw(testData);
+  }
 });

@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Member
 from time import timezone
+import json
 
 
 def gohome(request):
@@ -26,7 +27,8 @@ def home(request,root):
         return redirect("login:login")
     groupList = Member.objects.filter(gender="GROUP")
     graphData = getData(root)
-    return render(request,"home/home.html",{"groupList":groupList,"graphData":graphData})
+    graphData_json = json.dumps(graphData)
+    return render(request,"home/home.html",{"groupList":groupList,"graphData":graphData_json,"root":root})
 
 def manage(request):
     if not request.user.is_authenticated:
